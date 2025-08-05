@@ -1,0 +1,233 @@
+.table-item {
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.table-item:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  padding: 15px 0;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.table-header {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.header-cell {
+  padding: 10px 0;
+  font-weight: 500;
+  color: #6c6c6c;
+  padding-left: 10px;
+}
+
+.table-container {
+  margin: 20px;
+
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* TableStyles.css */
+.table-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.table-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.table-filter input {
+  padding: 8px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.table-filter button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.table-filter button:hover {
+  background-color: #f0f0f0;
+}
+
+/* TableFilters.css */
+.table-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0px 10px 0px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5rem;
+  width: fit-content;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 0.5rem 0;
+  margin-left: 0.5rem;
+}
+.sort-buttons {
+  display: flex;
+}
+.sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: white;
+  margin-left: 0.5rem;
+}
+
+.sort-button svg {
+  margin-left: 0.5rem;
+}
+
+.sort-button:first-of-type {
+  margin-left: 0;
+}
+
+.sort-button:last-child {
+  padding: 10px 10px 10px 2px;
+}
+
+.overview-transactions-wrapper {
+  margin: 20px;
+}
+/* OverviewTransactions.css */
+.overview-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.overview-card {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Lighter shadow with reduced opacity */
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.overview-card:last-child {
+  margin-right: 0;
+}
+
+.overview-card-header {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.overview-card-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.transaction-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.transaction-filter select {
+  border: 1px solid #e6e6e6;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333333;
+  margin-left: 10px;
+}
+
+.overview-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+/* Custom dropdown arrow */
+.transaction-filter select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%234D4D4D' height='24' width='24' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px; /* Make space for the icon */
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.pagination-item {
+  margin: 0 5px;
+  padding: 5px 10px;
+
+  cursor: pointer;
+  color: #333;
+  background-color: #fff;
+}
+
+.pagination-item:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination-item.active {
+  color: #fff;
+  background-color: #146eb4;
+  border-color: #146eb4;
+  border-radius: 5px;
+}
+
+/* Additional styling to disable text selection */
+.pagination-item {
+  user-select: none;
+}
+
+/* Optional: Styling for the ellipsis */
+.pagination-item:disabled {
+  cursor: default;
+  color: #999;
+}

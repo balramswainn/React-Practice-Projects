@@ -1,0 +1,113 @@
+.profileHeader {
+  display: flex;
+  gap: 12px;
+  padding: 10px 8.5px;
+  margin: 10px 10px;
+}
+
+.profileImage {
+  border-radius: 10%;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profileName {
+  color: white;
+  font-weight: 300;
+  margin: 0;
+  font-size: 0.975rem;
+}
+
+.storeLink {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.775rem;
+  line-height: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  width: fit-content;
+  margin: 0;
+  margin-top: 1px;
+}
+
+.menu {
+  margin: 0;
+  padding: 10px 10px 10px 5px;
+  flex-grow: 1;
+}
+.sidebarListItem {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+  padding: 0 25px;
+}
+
+.menu li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px; /* Increase border-radius for a more rounded effect on hover */
+  cursor: pointer;
+}
+.sidebarListItem:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Equivalent to hover:bg-white/10 */
+  cursor: pointer;
+}
+
+.sidebarListItem.hover-effect,
+.sidebarListItem.hover-effect .sidebarListItemText {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Equivalent to hover:bg-white/10 */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebarListItemText {
+  color: rgba(255, 255, 255, 0.8); /* Equivalent to text-white/80 */
+  font-size: 0.875rem; /* Equivalent to text-sm */
+  font-weight: 500; /* Equivalent to font-medium */
+  margin-left: 12px; /* Equivalent to space-x-3 */
+}
+
+.available-credits {
+  padding: 6px 12px; /* Equivalent to py-1.5 px-3 */
+  background-color: #353c53; /* Replace with your 'bg-background' color */
+  border-radius: 5px; /* Tailwind's 'rounded-full', adjust as needed for your design */
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  gap: 12px; /* Equivalent to space-x-3 */
+}
+
+.credits-icon {
+  padding: 5px; /* Equivalent to p-1.5 */
+  background-color: rgba(255, 255, 255, 0.1); /* Equivalent to bg-white/10 */
+  border-radius: 5px; /* Tailwind's 'rounded-full' */
+  /* Set width and height if the icon is not occupying the correct size */
+}
+
+.credits-info {
+  flex-grow: 1;
+}
+
+.credits-text {
+  color: rgba(255, 255, 255, 0.8); /* Equivalent to text-white/80 */
+  font-size: 0.875rem; /* Equivalent to text-sm */
+  margin: 0; /* Remove default margins */
+}
+
+.credits-amount {
+  font-weight: 500; /* Equivalent to font-medium */
+  color: white; /* text-white */
+  margin: 0; /* Remove default margins */
+}

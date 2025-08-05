@@ -1,0 +1,60 @@
+.container {
+  display: grid;
+  grid-template-columns: 222px auto;
+  grid-template-rows: 64px 1fr auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+.header {
+  grid-area: header;
+  height: 64px;
+  border-bottom: 1px solid #cccccc;
+  z-index: 1;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  width: 222px;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1e263f;
+}
+
+.main {
+  grid-area: main;
+
+  background-color: #fafafa;
+}
