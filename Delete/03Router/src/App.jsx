@@ -29,6 +29,7 @@ function App() {
         Click on the Vite and React logos to learn more "extra" 
         Click on the Vite and React logos to learn more "extra"
         <h1>editt</h1>
+        <h1>editt</h1>
       </p>
     </>
   )
