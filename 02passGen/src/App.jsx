@@ -67,6 +67,7 @@ function App() {
         value={length}
          className='cursor-pointer'
          onChange={(e) => {setLength(e.target.value)}}
+         //so react needs function reference not function call
           />
           <label>Length: {length}</label>
       </div>
