@@ -3,7 +3,7 @@
 
 /* clerk user button adjust */
 
-.cl-avatarBox {
+.cl-avatarBox {    /*profile section ka width and height badhane */
   width: 3rem;
   height: 3rem;
 }

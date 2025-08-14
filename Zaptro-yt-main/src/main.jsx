@@ -8,7 +8,7 @@ import { CartProvider } from './context/CartContext.jsx'
 import { ToastContainer } from 'react-toastify'
 import ScrollToTop from 'react-scroll-to-top'
 
-// Import your Publishable Key
+// Import your Publishable Key    ye clerk intall karne k baad dashboard me jo mila yaha paste kiya hai clerk ne bola
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 if (!PUBLISHABLE_KEY) {
@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
   // <StrictMode>
   <DataProvider>
     <CartProvider>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">     {/* clerk se ye mila main me wrap karna pada*/}
         <App />
         <ScrollToTop color='white' smooth style={{backgroundColor:'#fa2d37', display:'flex', alignItems:'center', justifyContent:'center'}}/>
         <ToastContainer

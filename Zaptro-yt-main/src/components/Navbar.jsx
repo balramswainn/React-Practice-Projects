@@ -12,10 +12,16 @@ import ResponsiveMenu from './ResponsiveMenu'
 const Navbar = ({location, getLocation, openDropdown, setOpenDropdown}) => {
 
     const {cartItem} = useCart()
-    const [openNav, setOpenNav] = useState(false)
+    const [openNav, setOpenNav] = useState(false)      
     
     const toggleDropdown = ()=>{
         setOpenDropdown(!openDropdown)
+       // This uses the current variable value from the function scope.Might cause wrong results if openDropdown hasn’t updated yet (because state updates are asynchronous).Safer only if you are 100% sure you’re using it in a place where the state is fresh. means fresh onclick pe ho rhaha:- The click handler runs synchronously right after the render No delay = no chance for the value to be stale yaha pe ye sahi hai , not fresh If you’re inside an async function or timeout, the value might be outdated so use (prev) => !prev)  
+
+
+        // setOpenDropdown((prev) => !prev)  
+
+        //Recommended This uses the previous state value (prev) directly from React.Works safely even if multiple state updates happen quickly.Avoids problems with stale state when React batches updates.
     }
     return (
         <div className='bg-white py-3 shadow-2xl px-4 md:px-0'>
@@ -24,17 +30,23 @@ const Navbar = ({location, getLocation, openDropdown, setOpenDropdown}) => {
                 <div className='flex gap-7 items-center'>
                     <Link to={'/'}><h1 className='font-bold text-3xl'><span className='text-red-500 font-serif'>Z</span>aptro</h1></Link>
                     <div className='md:flex gap-1 cursor-pointer text-gray-700 items-center hidden'>
-                        <MapPin className='text-red-500' />
+
+                        <MapPin className='text-red-500' />   {/* mappin lucide react ka icon ka name hai */}
+                        
                         <span className='font-semibold '>{location ? <div className='-space-y-2'>
-                            <p>{location.county}</p>
+                            <p>{location.country}</p>
                             <p>{location.state}</p>
-                        </div> : "Add Address"}</span>
-                        <FaCaretDown onClick={toggleDropdown}/>
+                            <p>{location.city}</p>
+                            <p>{location.suburb}</p>
+                            
+                        </div> : <span onClick={toggleDropdown} >    {/*muje chahiye tha add address pe click hone k baad bhi pop up aaye*/}
+                            Add Address</span>}</span>  {/* location nhi hai toh add address dikhega */}
+                        <FaCaretDown onClick={toggleDropdown}/>  {/*click karne k baad ye true hogya niche waka pop up open hoga*/}
                     </div>
                     {
                         openDropdown ? <div className='w-[250px] h-max shadow-2xl z-50 bg-white fixed top-16 left-60 border-2 p-5 border-gray-100 rounded-md'>
                          <h1 className='font-semibold mb-4 text-xl flex justify-between'>Change Location <span onClick={toggleDropdown}><CgClose/></span></h1>
-                         <button onClick={getLocation} className='bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-red-400'>Detect my location</button>
+                         <button onClick={getLocation} className='bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-red-400'>Detect my locationn</button>
                         </div> : null
                     }
                 </div>
@@ -51,7 +63,7 @@ const Navbar = ({location, getLocation, openDropdown, setOpenDropdown}) => {
                         <span className='bg-red-500 px-2 rounded-full absolute -top-3 -right-3 text-white'>{cartItem.length}</span>
                     </Link>
                     <div className='hidden md:block'>
-                        <SignedOut>
+                        <SignedOut>  {/* CLERK  se mila ye show karna hai na sign out ho to sign in dikhaye and sign in raho toh user ka profile and sign out toh clerk handle karega  */}
                             <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer"/>
                         </SignedOut>
                         <SignedIn>
