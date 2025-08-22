@@ -6,7 +6,7 @@ function useCurrencyInfo(currency){
     useEffect(() => {
         fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1/currencies/${currency}.json`)  
         .then((res) => res.json()) // json string ko js object me convert karta hai
-        .then((res) => setData(res[currency]))    // res[currency] res [usd] gives only key value pairs  before it was usd={all the data } now only {key value pairs}
+        .then((res) => setData(res[currency]))    // res[currency] res [usd] gives usd ka object milta hai { usd:{all the data that we will get }}} usd object milta hai jisme pura object mila { inr:009; euro: 9898;....}
         console.log(data);
     }, [currency])
     console.log(data);
