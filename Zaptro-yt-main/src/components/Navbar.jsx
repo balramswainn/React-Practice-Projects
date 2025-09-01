@@ -33,7 +33,9 @@ const Navbar = ({location, getLocation, openDropdown, setOpenDropdown}) => {
 
                         <MapPin className='text-red-500' />   {/* mappin lucide react ka icon ka name hai */}
                         
-                        <span className='font-semibold '>{location ? <div className='-space-y-2'>
+                        <span className='font-semibold '>
+                          {location ? <div className='-space-y-2'>  
+                            {/* so location ki func app me hai yaha pe click hoga to true hoga dropdown fhir location detect hoga and hume miljaega location yahah dikega */}
                             <p>{location.country}</p>
                             <p>{location.state}</p>
                             <p>{location.city}</p>

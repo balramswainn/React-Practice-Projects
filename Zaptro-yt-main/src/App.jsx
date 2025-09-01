@@ -31,9 +31,9 @@ const App = () => {
 
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`  //ye ek api hai jo latitude and longitutde leke exact location batata hai jisme state,city sab kuch hota hai
       try {
-        const location = await axios.get(url)        //Axios is a library used to create HTTP requests to external resources like fetch
+        const location = await axios.get(url)        //Axios is a library used to create HTTP requests to external resources like fetch isme hume json object ko js object me convert nhi karna padta automatically hota hai 
         const exactLocation = location.data.address   //api k andhr ka value hai data.address
-        setLocation(exactLocation)                    //loaction iske pass agyi ab location ko as aprop pass karke navbar me bhej diya
+        setLocation(exactLocation)                    //loaction iske pass agyi ab location ko as aprop pass karke navbar me bhej diya location k andhr -> city ,country,state hai
         setOpenDropdown(false)               //false bcz jab detect location pe click karte hi ye func chalta hai us time pe click hone k baad woh pop up band karna hai isiliye ye state yaha likha and ab false toh click karte hai close hoga
         console.log(exactLocation);
 
@@ -47,7 +47,7 @@ const App = () => {
 
   useEffect(() => {
     getLocation()
-  }, [])
+  },[])
 
   //Load cart from local storage on initial render
   useEffect(() => {
