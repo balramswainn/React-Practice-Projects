@@ -22,6 +22,8 @@ const App = () => {
   const getLocation = async () => {                                 //location nikalne k liye ye function
     navigator.geolocation.getCurrentPosition(async pos => {   //Ye browser ka built-in function hai jo user ka current GPS location (latitude & longitude) de deta hai. Permission maangta hai user se ("Allow location access?"). Agar allow mil gaya to position object return karta hai jisme location details hoti hain.
 
+      //Agar tum chahte ho ki await axios.get(url) chale, to callback function ko bhi async banana zaroori hai.async function ke level pe lagta hai, not global.Har function jaha tum await likhna chahte ho, us function ko async hona hi hoga.
+
       //Ye function callback leta hai (ek function jo data milte hi chalega). callback ke andar async lagaya hai, taaki tum uske andar await use kar sako.
       const { latitude, longitude } = pos.coords    //Jab location milti hai, getCurrentPosition tumhe pos (position object) deta hai. 
 //  {coords: { latitude: 19.1234,longitude: 72.5678,accuracy: 10,...},timestamp: 1698989898989}  humne destructuring use ki latitude = pos.coords.latitude  longitude = pos.coords.longitude

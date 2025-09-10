@@ -3,10 +3,13 @@ import {useEffect, useState} from "react"
 
 function useCurrencyInfo(currency){
     const [data, setData] = useState({})
+     //Always initialize state with a meaningful default. Objects/arrays → useState({}) ya useState([])Strings/numbers → useState(''), useState(0)Async/fetch data (jaise user) → useState(null)
+     
     useEffect(() => {
         fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1/currencies/${currency}.json`)  
         .then((res) => res.json()) // json string ko js object me convert karta hai
         .then((res) => setData(res[currency]))    // res[currency] res [usd] gives usd ka object milta hai { usd:{all the data that we will get }}} usd object milta hai jisme pura object mila { inr:009; euro: 9898;....}
+        //Tumne function ko useCurrencyInfo("usd") se call kiya.Matlab currency = "usd".Jab bracket notation likha res[currency] → yeh res["usd"] ban gaya.
         console.log(data);
     }, [currency])
     console.log(data);

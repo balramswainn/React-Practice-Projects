@@ -1,6 +1,8 @@
 import React from 'react'
 import banner from '../assets/banner1.jpg'
 
+// import k time name kuch bhi de sakta hai and react recommended img import karo 
+
 const MidBanner = () => {
   return (
     <div className='bg-gray-100 md:py-24'>
