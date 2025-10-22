@@ -14,12 +14,12 @@ export class AuthService {
             
     }
 
-    async createAccount({email, password, name}) {
+    async createAccount({email, password, name}) {   //account create karne k liye
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
                 // call another method
-                return this.login({email, password});
+                return this.login({email, password});  //useraccount ban gaya toh login  wala fun run hoga 
             } else {
                return  userAccount;
             }
@@ -30,7 +30,7 @@ export class AuthService {
 
     async login({email, password}) {
         try {
-            return await this.account.createEmailSession(email, password);
+            return await this.account.createEmailSession(email, password);  //email and password leke login karva de
         } catch (error) {
             throw error;
         }
@@ -59,3 +59,7 @@ export class AuthService {
 const authService = new AuthService();
 
 export default authService
+
+
+// pehle export default AuthService tha ---class bana ke export kiya so jo bhi ye class ko use karega ek new object banana padega tabhi sare method use kar paega 
+// so abhi  const authService = new AuthService(); directly object bana k hi export kardiya ab object authService ko hi import kardo usme sare method lage hue honge

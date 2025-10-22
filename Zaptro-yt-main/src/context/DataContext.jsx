@@ -15,8 +15,8 @@ export const DataProvider = ({ children }) => {
            console.log(res);
            //Jab tum axios.get() use karte ho, uska response ek object hota jisme {data:{},status: 200,..bahot kuch hota hai} Matlab API se jo raw data aata hai wo res.data ke andar hota hai.
  
-           const productsData = res.data.products
-           setData(productsData)
+           const productsData = res.data.products   //data:{...,products:[],..} object k andhr ek products karke array hai usse access karne k liye
+           setData(productsData)   //so pura array ka acces milgya products k
            
         } catch (error) {
             console.log(error);
@@ -24,15 +24,15 @@ export const DataProvider = ({ children }) => {
         }
     }
 
-    const getUniqueCategory = (data, property) =>{
-        let newVal = data?.map((curElem) =>{
-            return curElem[property]    //curElem["category"] bracket notation
-        })
-        newVal = ["All",...new Set(newVal)]
+    const getUniqueCategory = (data, property) =>{  // data jo hai na woh ek array hai [{},{},...]  
+        let newVal = data?.map((curElem) =>{    // curElem har ek object pe iterate kar rha hai usme ek key hai category 
+            return curElem[property]    //curElem["category"] bracket notation se access kiya bcz hume category string me diya niche
+        })                               //category sab ek array me agye [...] but hume unique chahiye repeated nhi
+        newVal = ["All",...new Set(newVal)]   // yaha hume bas unique category chahiye repeated nhi usse array me dediya
         return newVal
       }
     
-      const categoryOnlyData = getUniqueCategory(data, "category")
+      const categoryOnlyData = getUniqueCategory(data, "category")  // uper wale function me directly category likhta toh ajata curElem.category and yaha string ,me nhi likhna padta but hume brand k liye ye function wapis se likhna padta isiliye esa diya 
       const brandOnlyData = getUniqueCategory(data, "brand")
     return <DataContext.Provider value={{ data, setData,fetchAllProducts, categoryOnlyData, brandOnlyData }}>
         {children}

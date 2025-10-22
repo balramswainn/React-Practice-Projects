@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 
 
+
 function useCurrencyInfo(currency){
     const [data, setData] = useState({})
      //Always initialize state with a meaningful default. Objects/arrays → useState({}) ya useState([])Strings/numbers → useState(''), useState(0)Async/fetch data (jaise user) → useState(null)
@@ -8,7 +9,7 @@ function useCurrencyInfo(currency){
     useEffect(() => {
         fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1/currencies/${currency}.json`)  
         .then((res) => res.json()) // json string ko js object me convert karta hai
-        .then((res) => setData(res[currency]))    // res[currency] res [usd] gives usd ka object milta hai { usd:{all the data that we will get }}} usd object milta hai jisme pura object mila { inr:009; euro: 9898;....}
+        .then((res) => setData(res[currency]))    //res={jisme extra dta hai and usd:{all currency rates}} so  res[currency] res [usd] gives usd ka object milta hai { usd:{all the data that we will get }}} usd object milta hai jisme pura object mila { inr:009; euro: 9898;....}
         //Tumne function ko useCurrencyInfo("usd") se call kiya.Matlab currency = "usd".Jab bracket notation likha res[currency] → yeh res["usd"] ban gaya.
         console.log(data);
     }, [currency])
@@ -28,4 +29,8 @@ export default useCurrencyInfo;
 // se data rehta hai)
 
 
+// Why do we use custom hooks in React when we can manage things with Redux or Context?
+// A:Custom hooks are used to reuse logic easily across components without depending on global state management.
+// Redux/Context are good for app-wide state sharing.Custom hooks are good for component-level reusable logic (like API calls, form handling, timers).They make code clean, testable, and DRY (Don’t Repeat Yourself).You can even combine Redux/Context logic inside a custom hook for better abstraction.
+// 👉 Example:If multiple components need to fetch users, instead of repeating useEffect + axios everywhere, we just write useUsers() once as a custom hook.
 

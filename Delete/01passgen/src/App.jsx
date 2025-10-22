@@ -46,7 +46,7 @@ function App() {
     
       />
       <button 
-        onClick={copytoClips}
+        onClick={copytoClips}   //react  me onClick ko function reference chahiye hota hai execution nhi
       
       className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
       >copy</button>

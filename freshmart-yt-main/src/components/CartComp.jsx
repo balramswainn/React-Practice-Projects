@@ -8,11 +8,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCart } from '../Redux/CartSlice'
 
 const CartComp = ({ isOpen, onClose }) => {
-    const { cart } = useSelector(store => store.cart)
+    const { cart } = useSelector(store => store.cart) // store yaha global redux state hai.store.cart matlab → pura cart slice ka state.     cart: { cart: [] } array nhi pura object { cart: [] } array ki property use nhi kar paega ye toh object hai so const { cart } = store.cart yaha tum destructure kar rahe ho cart slice ke andar se.Matlab tumhe milega slice ke andar ka cart array. object destructuring ab cart karke array use kar sakte ho ya
+    
+     //const cart = useSelector(store => store.cart.cart) ese bhi likh sakte hai 
     const dispatch = useDispatch()
 
-    const updateQuantity = (cart, productId, action) => {
-        dispatch(setCart(cart.map(item => {
+    const updateQuantity = (cart, productId, action) => {  //Agar data (cart) already store/state/props se available hai, toh argument me pass mat karo.Argument tabhi pass karo jab function ko alag source se dynamic data dena ho.
+        dispatch(setCart(cart.map(item => {   //setCart  ye value lega and cart.map wala ka output setCart me jaega
             if (item.id === productId) {
                 let newUnit = item.unit;
                 if (action === "increase") {
@@ -20,15 +22,17 @@ const CartComp = ({ isOpen, onClose }) => {
                 } else if (action === "decrease") {
                     newUnit -= 1;
                 }
-                return newUnit > 0 ? { ...item, unit: newUnit } : null;
+                return newUnit > 0 ? { ...item, unit: newUnit } : null;  // woh specific product me unit k andhr changes karde 
+                // unit ka value badha toh usko update and jiska zero uska pura object replace karke null [{},{},null,{}] fhir niche uss null ho hata dega
             }
             return item;
-        }).filter(item => item != null) // remove items with quantity 0
+        }).filter(item => item != null) // remove items with quantity 0  //jo nahi hai null wohi rahenge
         ))
 
     }
 
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.unit, 0)
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.unit, 0)   //ek iterate pe price * unit = equal hoga fhir baki ka add karega 
+    
     return (
         <div className={`fixed overflow-y-scroll top-0 right-0 h-full w-[400px] bg-gray-100 shadow-lg p-4 transform z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300`}>
             <h2 className='text-xl px-4 font-bold mb-4 flex justify-between'>

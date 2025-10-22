@@ -8,7 +8,7 @@ export const todoSlice=createSlice({
     name:'todo',
     initialState,
     reducers:{
-        addTodo:(state,action)=>{
+        addTodo:(state,action)=>{    //Redux slice reducer functions me hamesha do parameters hote hain:tate,action
             const todo={
                 id:nanoid(),
                 text:action.payload
@@ -43,3 +43,13 @@ export default todoSlice.reducer
         //       todo.text = text;
         //     }
         //   }
+
+
+
+
+
+
+
+
+
+

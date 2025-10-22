@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import {removeTodo,updateTodo} from '../features/todo/todoSlice'
 
 function Todos() {
-    const todos = useSelector(state => state.todos)
+    const todos = useSelector(state => state.todos)  //useSelector ek React hook hai jo tumhe Redux store ke state ko read karne deta hai.useSelector ko ek function dete ho: (state) => state.todo.todos Ye function ko Redux store ka state object pass hota hai(meaning configurestore me jo reducer pass kiya uska state object banta hai jisme har reduder ka naam key and uski value jo uska state hai waha jake dekh bataya hai ab yaha multiple slices nhi hai single hai toh waha koi reducer ka object nhi bana isliye state.todos karke access ho jaega nhi toh state.todo.todos )
+
+    // reducer: todoReducer -> state:{ todos: [...] } acess kese kare->  state.todos        todoReducer toh state hi hai jisme todos hai object k andhr
+    
     const dispatch = useDispatch()
 
     const [editId, setEditId] = useState(null);

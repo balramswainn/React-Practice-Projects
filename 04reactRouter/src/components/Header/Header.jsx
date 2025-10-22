@@ -40,6 +40,12 @@ export default function Header() {
                                     //NavLink tumhare function ko { isActive: true, isPending: false } object deta hai.humko sirf isActive chahiye, to tumne object destructuring use ki:humne sirf isActive extract karne ke liye ({ isActive }) likha.
 
                                     //className ko ek function doge, to React Router us function ko call karega aur tumhe ek object pass karega.Us object me ek property hoti hai isActive (true/false), jo batati hai ki ye link active route pe hai ya nahi.
+
+                                    //In a normal HTML application, the <a> tag reloads the entire page whenever we navigate. But React applications are Single Page Applications (SPA). If we use <a>, the browser does a full page refresh, which means React state, context, or Redux store data will be lost.
+
+                                    //Link from react-router-dom solves this problem. It updates the URL and renders the correct component without reloading the page, so the app feels much faster and state is preserved.
+
+                                    //NavLink is similar to Link, but it also provides an easy way to style the active route by automatically applying an active class or custom styles. This is especially useful for navigation menus to highlight which page the user is currently on.
                                     
                                 >
                                     Home

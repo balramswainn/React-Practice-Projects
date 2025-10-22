@@ -18,7 +18,7 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(authLogin(userData));
+                if(userData) dispatch(authLogin({userData}));     //useData ek object k andhr hai so waha hum payload={ useData } 
                 navigate("/")
             }
         } catch (error) {

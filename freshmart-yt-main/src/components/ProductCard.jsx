@@ -11,13 +11,17 @@ const ProductCard = ({product}) => {
 
   const addToCart = (product)=>{
     const productExists = cart.some(item => item.id === product.id);
+   
     if(productExists){
       let newUnit = product.unit
       newUnit += 1;
-      dispatch(setCart([...cart]))  //Return the same cart without adding duplicate product
+      // dispatch(setCart([...cart]))  //Return the same cart without adding duplicate product,pura array jarha hai..payload:[...cart]
       toast("Product is already in the cart!")
     }else {
-      dispatch(setCart([...cart, product])) //Add product if not already in cart
+      dispatch(setCart([...cart, product])) //Add product if not already in cart  ,, ...cart bhi dalna pad raha hai cuz yaha se hum pura array de rahe hai sirf product->object nhi toh ye pura replace reassign ho rha hai cart ka value me new array araha hai so cart se sab value yaha leke aaya and yaha spread kar rha hai with new value toh sab store ho rha hai esa nhi kiya toh value 1 hi jaegii
+      // toast.success("Product is added to cart!")
+
+      //  dispatch(setCart(product)) //bas ek object de rha hoon pura array nhi
       toast.success("Product is added to cart!")
     }
   }
@@ -31,7 +35,7 @@ const ProductCard = ({product}) => {
             <p className='text-sm mt-1 text-gray-500'>{product.category}</p>
             <h3 className='font-semibold text-sm mt-1 h-[40px] text-gray-800 line-clamp-2'>{product.name}</h3>
             <p className='text-sm text-gray-600 mt-1'>{product.quantity}</p>
-            <p className='font-bold mt-1 text-gray-700'>₹{product.price?.toFixed(2)}</p>
+            <p className='font-bold mt-1 text-gray-700'>₹{product.price?.toFixed(2)}</p>  {/* toFixed(2) price ko 2 decimal places tak format karta hai. Example */}
         </div>
       </div>
       <div className='p-4 pt-1'>

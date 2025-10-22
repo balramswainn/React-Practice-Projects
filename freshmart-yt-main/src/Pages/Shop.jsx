@@ -14,11 +14,21 @@ const Shop = () => {
     setOpenFilter(!openFilter)
   }
 
+
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase()) &&
+    product.name.toLowerCase().includes(search.toLowerCase()) &&          
     (category === "" || product.category === category) &&
     product.price >= priceRange[0] && product.price <= priceRange[1]
   )
+  //Converts both product name and search input to lowercase (case-insensitive match).If the search input "app" exists in "Apple", it returns true.
+
+  //If no category is selected → category === "" → true for all products.If a category is selected (e.g., "Fruits") → only products with product.category === "Fruits" will return true.Basically, empty means show all, otherwise filter by selected category.
+
+  //Checks that the product’s price is greater than or equal to minimum (priceRange[0])AND less than or equal to maximum (priceRange[1]).If priceRange = [0, 500] → only products between ₹0 and ₹500 will be shown.
+
+  //A product will be included in filteredProducts only if all 3 conditions are true:Name matches search input.Category is either empty (all) or matches selected one.Price is inside the selected range.
+
+
 
   return (
     <div className='max-w-6xl mx-auto flex flex-col lg:gap-6 my-7 lg:mt-28 mt-24 h-max'>

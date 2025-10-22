@@ -39,7 +39,7 @@ function InputBox({
                 >
                     
                         {currencyOptions.map((currency) => (
-                            <option key={currency} value={currency}>
+                            <option key={currency} value={currency}>   {/* key key hamesha map ka direct child pe hona chahiye. */}
                             {currency}
                             </option>
                         ))}

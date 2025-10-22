@@ -12,3 +12,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 
+//React app ko Redux store ka access dena hota hai.Iske liye tum Provider use karte ho:Ab pura React app ke andar jo bhi component hai usko Redux store ke state ka access mil jata hai.
