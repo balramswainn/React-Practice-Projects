@@ -88,7 +88,7 @@ function App() {
          onChange={(e) => {setLength(e.target.value)}}
          //so react needs function reference not function call
           />
-          <label>Length: {length}</label>
+          <label>Lengthh: {length}</label>
       </div>
       <div className="flex items-center gap-x-1">
       <input
