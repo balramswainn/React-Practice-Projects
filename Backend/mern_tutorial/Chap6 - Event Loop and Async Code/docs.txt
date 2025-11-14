@@ -1,0 +1,143 @@
+   Event Loop
+
+ 1. Event Driven
+ 2. Single Threaded
+ 3. V8 vs libuv
+ 4. Node Runtime
+ 5. Event Loop
+ 6. Async Code
+ 7. Blocking Code
+
+ ----------------------------------------------------
+
+ 1. Event-driven means:
+
+The program waits for something to happen (an event) and then reacts to it.
+Instead of running everything in a fixed order, Node.js responds to events — like:
+A user clicking a button
+A file finishing loading
+A request coming to the server.
+
+-------------------------------------------------------
+
+2. Single Threaded
+
+A thread = one sequence of instructions (execution line).So when we say “JavaScript is single-threaded,” we mean:It has only one call stack, and it can run one piece of code at a time.No two lines of JS code can run simultaneously in the same thread.
+
+In JavaScript (Browser Environment)
+
+In the browser, JS runs in a single thread — it handles:
+DOM manipulation, Events (clicks, scrolls), API calls, Timers
+
+But to make it feel multitasking, the browser provides:
+Web APIs → handle async tasks (like setTimeout, fetch, etc.)
+Event Loop → manages when callbacks return to main thread
+Callback Queue → stores ready tasks waiting to execute
+
+🔁 Flow:
+
+JS executes main code on Call Stack
+When async code appears → it’s sent to Web API
+When done → callback moves to Callback Queue
+Event Loop checks if stack is empty → moves callback to stack
+
+
+⚙️ In Node.js
+
+Node.js is also single-threaded (for running JS code).
+But under the hood, it’s powered by libuv, which gives Node extra abilities:
+File system access, Network requests, Thread pool for heavy I/O
+
+🧩 How it works in Node:
+
+Node.js uses:
+Call Stack → executes JS
+libuv → handles async tasks (like reading files, database queries, etc.)
+Event Loop → manages execution of callbacks
+Thread Pool (inside libuv) → for heavy tasks like file I/O, DNS lookup, crypto
+
+
+| Concept       | JavaScript (Browser)              | Node.js                                 |
+| ------------- | --------------------------------- | --------------------------------------- |
+| Thread        | Single                            | Single (for JS execution)               |
+| Async Support | Web APIs (like setTimeout, fetch) | libuv (manages file I/O, network, etc.) |
+| Event Loop    | Yes                               | Yes                                     |
+| Thread Pool   | No                                | Yes (for heavy tasks)                   |
+| Goal          | Handle UI events & network calls  | Handle backend requests & I/O           |
+
+
+------------------------------------------------------------------------------
+
+3. V8 vs libuv
+
+ V8:
+ 1. Open-source JavaScript engine by Google.
+ 2. Used in Chrome and Node.js.
+ 3. Compiles JavaScript to native machine code.
+ 4. Ensures high-performance JavaScript execution.
+
+ libuv:
+ 1. Multi-platform support library for Node.js.
+ 2. Handles asynchronous I/O operations.
+ 3. Provides event-driven architecture.
+ 4. Manages file system, networking, and timers non-blockingly across platforms.
+
+
+ -----------------------------------------------------------------------------
+
+ 4. Node Runtime
+
+ Your JS Code → V8 Engine  --------→ Machine Code
+                 ↳ Uses libuv for async tasks
+                 ↳ Event Loop manages callbacks
+                 ↳ Uses core modules for I/O, network, etc.
+
+const fs = require('fs');
+
+fs.readFile('text.txt', 'utf8', (err, data) => {
+  console.log(data);
+});
+
+
+Behind the scenes:
+
+V8 runs the JavaScript code.
+fs.readFile() → sent to libuv (background thread).
+Main thread continues (non-blocking).
+When file is ready → Event Loop brings callback → executes console.log(data).
+
+
+
+for example :
+1. normal code event queue me jaega fhir event loop uuse v8 me leke jaega and execute hoga 
+2. jo async code hai woh jaega libuv k pass (iske aghe jo normal code hai woh libuv me nhi jaega woh normally chalte rahenge)
+3. libuv se code jaega  event Queue me 
+4. fhir event queue se  event loop code leke woh code jaega v8 me execute hone k liye
+
+-----------------------------------------------------------------------------------
+
+ 5. Event Loop
+
+ priority for execution
+
+ ● timers: this phase executes callbacks scheduled by setTimeout() and setInterval().
+ ● pending callbacks: executes I/O callbacks deferred to the next loop iteration.
+ ● idle, prepare: only used internally.
+ ● poll: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks,the ones scheduled by   timers, and setImmediate()); node will block here when appropriate.
+
+ ● check: setImmediate() callbacks are invoked here.
+ ● close callbacks: some close callbacks, e.g. socket.on('close', ...).
+
+-----------------------------------------------------------------------------------
+
+ 7. Blocking Code
+
+  fs.writeFileSync('user.txt', JSON.stringify(bodyObject));  
+
+  ye jo code hai ye event loop ko bolta hai muje pehle execute kar kisi aur ko mat de worker thread ko mat dena  and event loop se karenge toh bahot slow hoga still usse hi hota hai execute so baki sab jo humne uper likha hai sabko wait karna padega toh ye block kardeta hai sab kuch so usse bachnek liye we use :
+
+   fs.writeFile('user.txt', JSON.stringify(bodyObject), error => {
+    console.log('data written succesfull')
+   });  
+  ye async hai 
+
