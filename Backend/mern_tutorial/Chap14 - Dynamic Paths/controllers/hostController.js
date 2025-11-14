@@ -1,0 +1,69 @@
+const Home = require("../models/home");    //home ko import kara uske method use karna hai na 
+
+exports.getAddHome = (req, res, next) => {
+  res.render("host/addHome", {             //  humne app me bataya tha ki views me dhundna mil jaega and pehle direclty file name dalte 
+    pageTitle: "Add Home to airbnb",        //the but ab yaha host folder andhr-> addHome hai so host/addHome dena pada 
+    currentPage: "addHome",
+  });
+};
+
+exports.getEditHome = (req, res, next) => {
+  const homeId = req.params.homeId;             //req.params URL ke dynamic parts (variables) ko capture karta hai.URL ke andar jo :variable likha hota hai, uski value req.params me milti hai. ex :/edit-home/55 in url -> req.params = { homeId: "55" }
+  const editing = req.query.editing === 'true';
+
+  Home.findById(homeId, home => {
+    if (!home) {
+      console.log("Home not found for editing.");
+      return res.redirect("/host/host-home-list");
+    }
+
+    console.log(homeId, editing, home);
+    res.render("host/edit-home", {
+      home: home,
+      pageTitle: "Edit your Home",
+      currentPage: "host-homes",
+      editing: editing,
+    });
+  });
+};
+
+
+exports.getHostHomes = (req, res, next) => {  //jisne bhi form bhara hai muje woh data chahiye so me fetchAll se data lelunga 
+  Home.fetchAll((registeredHomes) =>          // fetchAll ->model me hai jo hume homes.json ka data parse karke dega 
+    res.render("host/host-home-list", { // waha callback me data rakh liya tha so woh as registeredHome(object) name kuch bhi hosakta hai
+      registeredHomes: registeredHomes,       // isse -> host-home-list -> page  me dedenga jo show homes listing show karega 
+      pageTitle: "Host Homes List",           // un pages k pass ye object chali jati hai
+      currentPage: "host-homes",
+    })
+  );
+};
+
+exports.postAddHome = (req, res, next) => {              //post req hai toh req me iska pas form ka data hoga isliye req.body
+  const { houseName, price, location, rating, photoUrl } = req.body;//object destructure hua req.body me sab object value hai na ye namese
+  const home = new Home(houseName, price, location, rating, photoUrl); // unhe nikal k as a value dediya ab class me new constructor call 
+  home.save();                                                          // ese hi hota hai ek object instance ban jata hai  home karke
+
+   res.redirect("/host/host-home-list");
+};
+
+exports.postEditHome = (req, res, next) => {
+  const { id, houseName, price, location, rating, photoUrl } = req.body;
+  const home = new Home(houseName, price, location, rating, photoUrl);
+  home.id = id;
+  home.save();
+  res.redirect("/host/host-home-list");
+};
+
+exports.postDeleteHome = (req, res, next) => {
+  const homeId = req.params.homeId;
+  console.log('Came to delete ', homeId);
+  Home.deleteById(homeId, error => {
+    if (error) {
+      console.log('Error while deleting ', error);
+    }
+    res.redirect("/host/host-home-list");
+  })
+};
+
+
+

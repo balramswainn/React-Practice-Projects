@@ -1,8 +1,8 @@
 const Home = require("../models/home");    //home ko import kara uske method use karna hai na 
 
 exports.getAddHome = (req, res, next) => {
-  res.render("host/addHome", {
-    pageTitle: "Add Home to airbnb",
+  res.render("host/addHome", {             //  humne app me bataya tha ki views me dhundna mil jaega and pehle direclty file name dalte 
+    pageTitle: "Add Home to airbnb",        //the but ab yaha host folder andhr-> addHome hai so host/addHome dena pada 
     currentPage: "addHome",
   });
 };
@@ -17,7 +17,7 @@ exports.getHostHomes = (req, res, next) => {  //jisne bhi form bhara hai muje wo
   );
 };
 
-exports.postAddHome = (req, res, next) => {
+exports.postAddHome = (req, res, next) => {              //post req hai toh req me iska pas form ka data hoga isliye req.body
   const { houseName, price, location, rating, photoUrl } = req.body;//object destructure hua req.body me sab object value hai na ye namese
   const home = new Home(houseName, price, location, rating, photoUrl); // unhe nikal k as a value dediya ab class me new constructor call 
   home.save();                                                          // ese hi hota hai ek object instance ban jata hai  home karke

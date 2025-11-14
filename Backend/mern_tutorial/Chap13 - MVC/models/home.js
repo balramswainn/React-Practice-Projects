@@ -18,7 +18,7 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
       const homeDataPath = path.join(rootDir, "data", "homes.json"); //data folder me homes.json naam se file mil jaega
       fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => { //homeDataPath jo ki homes.json file hai usme data daldo
         console.log("File Writing Concluded", error);                          //  data -> jo ki registeredHomes hai uska data daldo
-      });
+      });       // pehli baar jabfile nhi ho writeFile create karega but jab file bani hui hai woh Wo existing file overwrite kar deta hai
     });
   }
   //Reason: fetchAll() ek STATIC method hai, class ke andar defined hai.Static method class ka part hota hai, object ka nahi.Isliye use call karne ka sahi syntax hai:Home.fetchAll()   
@@ -33,7 +33,8 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
     const homeDataPath = path.join(rootDir, "data", "homes.json");
     fs.readFile(homeDataPath, (err, data) => {  //error ho ya data hume dedena
       callback(!err ? JSON.parse(data) : []);  
-      //error nhi hai toh -> data parse karke bhejdo ; error hai toh empty array (error bas name hai error nhi so empty array jaega    home.json file me fhir uss file jab next time koi form fillkarega and  jab data aaega tab array k andhr sab object add hoga)
+      //error nhi hai toh -> data parse karke bhejdo ; error hai toh empty array jaega 
+      //If file does NOT exist → fs.readFile() ✔ Ek error object deta hai, data = undefined hota hai,🔹 File nahi mili → error trueNode crash nahi hota , Sirf callback me err aa jata hai wohi error hume empty object dega according to condition
     });
   }
 };
