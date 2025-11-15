@@ -1,19 +1,20 @@
 const Home = require("../models/home");    //home ko import kara uske method use karna hai na 
 
 exports.getAddHome = (req, res, next) => {
-  res.render("host/addHome", {             //  humne app me bataya tha ki views me dhundna mil jaega and pehle direclty file name dalte 
+  res.render("host/edit-home", {             //  humne app me bataya tha ki views me dhundna mil jaega and pehle direclty file name dalte 
     pageTitle: "Add Home to airbnb",        //the but ab yaha host folder andhr-> addHome hai so host/addHome dena pada 
     currentPage: "addHome",
+    editing: false,
   });
 };
 
-exports.getEditHome = (req, res, next) => {
+exports.getEditHome = (req, res, next) => {  // host homes me edit pe click karega toh ye open hoga
   const homeId = req.params.homeId;             //req.params URL ke dynamic parts (variables) ko capture karta hai.URL ke andar jo :variable likha hota hai, uski value req.params me milti hai. ex :/edit-home/55 in url -> req.params = { homeId: "55" }
-  const editing = req.query.editing === 'true';
+  const editing = req.query.editing === 'true';  //Hum URL se value puch rahe hain true ya false fhir woh value editing me store
 
-  Home.findById(homeId, home => {
+  Home.findById(homeId, home => {          //findById se hume woh id jisme  woh object hai mil jaega
     if (!home) {
-      console.log("Home not found for editing.");
+      console.log("Home not found for editing.");   //object nhi mila toh
       return res.redirect("/host/host-home-list");
     }
 
@@ -22,7 +23,7 @@ exports.getEditHome = (req, res, next) => {
       home: home,
       pageTitle: "Edit your Home",
       currentPage: "host-homes",
-      editing: editing,
+      editing: editing,   // true hoga toh true warna false 
     });
   });
 };

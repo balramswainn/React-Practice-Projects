@@ -62,13 +62,13 @@ exports.postRemoveFromFavourite = (req, res, next) => {
 }
 
 exports.getHomeDetails = (req, res, next) => {
-  const homeId = req.params.homeId;
-  Home.findById(homeId, home => {
-    if (!home) {
-      console.log("Home not found");
-      res.redirect("/homes");
+  const homeId = req.params.homeId;           //home pe humne id details pe click kiya toh woh particluar home ki id ajeag ayaha pe 
+  Home.findById(homeId, home => {             //yaha id dalke woh object mil jaega 
+    if (!home) {                              
+    console.log("Home not found");
+      res.redirect("/homes");                 // home nhi hai toh homes pe redirect kardo jo wohi page hai
     } else {
-      res.render("store/home-detail", {
+      res.render("store/home-detail", {       // detaol wala page open ho jaega jisme detal change karna ka option hai
         home: home,
         pageTitle: "Home Detail",
         currentPage: "Home",

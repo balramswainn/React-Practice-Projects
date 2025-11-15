@@ -6,10 +6,19 @@ exports.pageNotFound = (req, res, next) => {
 
 
 
+// ✅ MVC basically ek folder structure + code organization pattern hai.
+
+// M (Model) → data & database logic
+// V (View) → UI templates
+// C (Controller) → request–response logic
+
+// Bas is pattern me project ko organize karne se code clean, readable, aur maintainable hota hai.
 
 
-
-
+// app.js -> server create hogi and isme sab routes rahange (store -> for user , host -> for admin) dono k liye alag 
+// routes -> storeRoutes , hostRoutes -> yaha bas routing handle hogi
+// controller -> storeController , hostController -> yaha middleware likhenge and view se pages kese link kare routes se and usse routes me bhej denge
+// models -> main logic ki db se data fetch and send kese kare
 
 
 //flow -> mene form bhara jese hi submit kiya 
@@ -18,3 +27,4 @@ exports.pageNotFound = (req, res, next) => {
 
 //2 . Dynamic paths :
     // unique id banaya -> ek button me detail dalidya jo hume 
+

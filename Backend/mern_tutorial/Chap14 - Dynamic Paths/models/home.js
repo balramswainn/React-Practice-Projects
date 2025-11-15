@@ -18,11 +18,11 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
   save() {      // controller me save se call hua and  contructor object bana k bheja tha woh aya 
     Home.fetchAll((registeredHomes) => { // new data add karne se pehle existing array data fetchAll se aya and aghe ka data push kar rhe
       
-      if (this.id) { // edit home case
-        registeredHomes = registeredHomes.map(home => 
-          home.id === this.id ? this : home);
+      if (this.id) { // edit home case               this=object so if object me uski id agar regsiteredHomes k andhr kisise bhi match ho 
+        registeredHomes = registeredHomes.map(home =>   //rhi hai toh pura object replace karde woh specific wala
+          home.id === this.id ? this : home);      
       } else { // add home case
-        this.id = Math.random().toString();
+        this.id = Math.random().toString();   //new object jo form se aya use ek id dedo
         registeredHomes.push(this);    // woh object ko registeredHomes  me push kardiya,“this” hamesha current object instance hot
       }
     
@@ -50,8 +50,8 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
    static findById(homeId, callback) { //homeId kis id k liye ghar chahiye and callback jab id pata lagegi toh value pass hojaegi usme
     this.fetchAll(homes => {          //fetchAll se sab value leke loop lagaya 
       const homeFound = homes.find(home => home.id === homeId); //find -> jo id equal hua homeId se and true return kiya uss pure object 
-      callback(homeFound);                                      // ko callback me dedo
-    })
+      callback(homeFound);                                      // single object ko callback me dedo
+    })                                     //in simple findById ko id mila toh woh tumhe us id ka object dedega
   }
   
    static deleteById(homeId, callback) { 
