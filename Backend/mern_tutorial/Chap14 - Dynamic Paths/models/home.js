@@ -23,8 +23,10 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
           home.id === this.id ? this : home);      
       } else { // add home case
         this.id = Math.random().toString();   //new object jo form se aya use ek id dedo
-        registeredHomes.push(this);    // woh object ko registeredHomes  me push kardiya,“this” hamesha current object instance hot
+        registeredHomes.push(this);    // woh object ko registeredHomes  me push kardiya,“this” hamesha current object instance hota hai
       }
+      // news form data aaega toh else pe jaega bcz usme id nhi 
+      // edit karne k baad koi data araha hai toh usme id hai toh woh if me jaega and fhir woh id se registeredHomes k array me dhundega and pura particular object jisme woh id hai use replace kardega
     
       fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => { //homeDataPath jo ki homes.json file hai usme data daldo
         console.log("File Writing Concluded", error);                          //  data -> jo ki registeredHomes hai uska data daldo
@@ -51,13 +53,13 @@ module.exports = class Home {   //constructor banaya jo call karte hi object ban
     this.fetchAll(homes => {          //fetchAll se sab value leke loop lagaya 
       const homeFound = homes.find(home => home.id === homeId); //find -> jo id equal hua homeId se and true return kiya uss pure object 
       callback(homeFound);                                      // single object ko callback me dedo
-    })                                     //in simple findById ko id mila toh woh tumhe us id ka object dedega
+    })                                     //in simple findById ko id mila toh woh tumhe us id ka object dedega and fhir usse save() me dedenga uss particular object ko replace marne
   }
   
-   static deleteById(homeId, callback) { 
+   static deleteById(homeId, callback) {     //jo bhi id milegi usse lake fiter kardo 
     this.fetchAll(homes => {           
-      homes = homes.filter(home => home.id !== homeId);
-      fs.writeFile(homeDataPath, JSON.stringify(homes), error => {
+      homes = homes.filter(home => home.id !== homeId); // match nhi kar rha toh hi raho and jo kar rha usse nikal do
+      fs.writeFile(homeDataPath, JSON.stringify(homes), error => {   // fhir woh main file ko rewrite kardo
         Favourite.deleteById(homeId, callback);
       });
     })

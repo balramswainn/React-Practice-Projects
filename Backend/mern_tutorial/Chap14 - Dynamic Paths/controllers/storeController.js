@@ -29,11 +29,11 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavouriteList = (req, res, next) => {
-  Favourite.getFavourites(favourites => {
-    Home.fetchAll((registeredHomes) => {
-      const favouriteHomes = registeredHomes.filter(home => favourites.includes(home.id));
+  Favourite.getFavourites(favourites => {   // yaha se favourites ka array mil jaega
+    Home.fetchAll((registeredHomes) => {    // yaha se array jisme sab objects hai ............. array.includes(id) ->
+      const favouriteHomes = registeredHomes.filter(home => favourites.includes(home.id)); //array me jo include hai usse dedo
       res.render("store/favourite-list", {
-        favouriteHomes: favouriteHomes,
+        favouriteHomes: favouriteHomes, // so sab objects jo condition match kiya sab array me agye  [{},{},{}] fav me woh dikhenge
         pageTitle: "My Favourites",
         currentPage: "favourites",
       })
@@ -62,14 +62,14 @@ exports.postRemoveFromFavourite = (req, res, next) => {
 }
 
 exports.getHomeDetails = (req, res, next) => {
-  const homeId = req.params.homeId;           //home pe humne id details pe click kiya toh woh particluar home ki id ajeag ayaha pe 
+  const homeId = req.params.homeId;           //home pe humne id details pe click kiya toh woh particluar home ki id ajeaga ayaha pe 
   Home.findById(homeId, home => {             //yaha id dalke woh object mil jaega 
     if (!home) {                              
     console.log("Home not found");
       res.redirect("/homes");                 // home nhi hai toh homes pe redirect kardo jo wohi page hai
     } else {
-      res.render("store/home-detail", {       // detaol wala page open ho jaega jisme detal change karna ka option hai
-        home: home,
+      res.render("store/home-detail", {       // detail wala page open ho jaega 
+        home: home,                           // home -> object hai jisme data hai toh isse hume woh data ejs page jaega and dikehga
         pageTitle: "Home Detail",
         currentPage: "Home",
       });

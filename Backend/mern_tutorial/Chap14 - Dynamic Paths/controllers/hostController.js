@@ -4,8 +4,8 @@ exports.getAddHome = (req, res, next) => {
   res.render("host/edit-home", {             //  humne app me bataya tha ki views me dhundna mil jaega and pehle direclty file name dalte 
     pageTitle: "Add Home to airbnb",        //the but ab yaha host folder andhr-> addHome hai so host/addHome dena pada 
     currentPage: "addHome",
-    editing: false,
-  });
+    editing: false,                        // false hai bcz edit-home page humne define kiya hai ki false hoga toh input empty honge 
+  });                                      // true hoga toh input me data hoga bcz baadme edit karn hoga
 };
 
 exports.getEditHome = (req, res, next) => {  // host homes me edit pe click karega toh ye open hoga
@@ -13,14 +13,14 @@ exports.getEditHome = (req, res, next) => {  // host homes me edit pe click kare
   const editing = req.query.editing === 'true';  //Hum URL se value puch rahe hain true ya false fhir woh value editing me store
 
   Home.findById(homeId, home => {          //findById se hume woh id jisme  woh object hai mil jaega
-    if (!home) {
+    if (!home) {                                    // object nhi mila toh jo ki hona chahiye isliye error handling hai ye
       console.log("Home not found for editing.");   //object nhi mila toh
       return res.redirect("/host/host-home-list");
     }
 
-    console.log(homeId, editing, home);
-    res.render("host/edit-home", {
-      home: home,
+    console.log(homeId, editing, home); 
+    res.render("host/edit-home", {        //object mila toh edit-home page open karo yaha bas apna kaam tha ye page open karna data 
+      home: home,                            // baadme post pe jaega means fhir save() call hoga
       pageTitle: "Edit your Home",
       currentPage: "host-homes",
       editing: editing,   // true hoga toh true warna false 
@@ -51,8 +51,8 @@ exports.postEditHome = (req, res, next) => {
   const { id, houseName, price, location, rating, photoUrl } = req.body;
   const home = new Home(houseName, price, location, rating, photoUrl);
   home.id = id;
-  home.save();
-  res.redirect("/host/host-home-list");
+  home.save();                              // jo edit karne k baad data aya usse object banaya and save() call kiya woh particular id pe 
+  res.redirect("/host/host-home-list");     // object overwrite karne 
 };
 
 exports.postDeleteHome = (req, res, next) => {
