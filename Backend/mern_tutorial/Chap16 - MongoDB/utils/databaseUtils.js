@@ -2,7 +2,7 @@ const mongo = require('mongodb');  //mongodb package load kiya
 
 const MongoClient = mongo.MongoClient;  //Uske andar ka MongoClient object nikala, MongoClient = MongoDB se connect hone ka tool
 
-const MONGO_URL = "mongodb+srv://root:root@completecoding.tw25bjj.mongodb.net/?appName=CompleteCoding";
+// const MONGO_URL = "mongodb+srv://root:root@completecoding.tw25bjj.mongodb.net/?appName=CompleteCoding";
 // Yeh tumhara Atlas cluster ka connection string hai. root:root = username + password , tw25bjj.mongodb.net = cluster address , appName = optional MongoDB name , Is URL ko MongoClient connect karega.
 
 let _db;   //Local variable to store DB instance,Jab Mongo connect hota hai, _db me actual DB object store hoga.Baad me koi bhi file getDB() se is DB ko use karegi.Initially _db = undefined.
