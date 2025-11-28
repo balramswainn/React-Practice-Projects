@@ -37,6 +37,7 @@ exports.getFavouriteList = (req, res, next) => {
       const favouriteHomes = registeredHomes.filter(home =>  favourites.includes(home._id.toString())); 
       //favouriteHomes contains only those values from registeredHomes that also exist in favourites, because includes() checks if a value is present in the array."  favourites k andhr jo value hai woh value regiteredHomes me bhi hai toh match karega wohi aaega baki sab nhi
       //jo include hai usse dedo yaha pe apne Favourites me  registeredHomes
+      //fav me include hai ye iske andr toh isko rakh le 
     
       res.render("store/favourite-list", {
         favouriteHomes: favouriteHomes, // so sab objects jo condition match kiya sab array me agye  [{},{},{}] fav me woh dikhenge
@@ -51,7 +52,7 @@ exports.postAddToFavourite = (req, res, next) => {
    const homeId = req.body.id;          // ye post req hai isliye me req.params.homeId se nhi req.body.id se le rha hoon id
   const fav = new Favourite(homeId);
   fav.save().then(result => {
-    console.log('Fav added: ', result);
+    // console.log('Fav added: ', result);
   }).catch(err => {
     console.log("Error while marking favourite: ", err);
   }).finally(() => {                                      //then ho ya catch redirect toh hona hi hai

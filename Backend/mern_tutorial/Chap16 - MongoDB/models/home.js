@@ -80,7 +80,18 @@ module.exports = class Home {
     .next();                               //Isliye hum this._id ko ObjectId me convert kar rahe hain(warna match nahi hoga)
     //.find() ek cursor deta hai .next() us cursor ka first document return karta hai Because _id unique hota hai → 1 hi document milega
   }
-
+ // structure
+//   {
+//   "_id": {
+//     "$oid": "691daf433b9f63605da82fd4"
+//   },
+//   "houseName": "Atlantis",
+//   "price": "12000",
+//   "location": "Vasai",
+//   "rating": "5",
+//   "photoUrl": "https://images.unsplash.com",
+//   "description": "book it"
+// }
   static deleteById(homeId) {    //Jo document _id match karega → usse delete kar do
     const db = getDB();
     return db.collection('homes')     

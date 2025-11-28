@@ -23,7 +23,7 @@ exports.getEditHome = (req, res, next) => {  // host homes me edit pe click kare
       console.log("Home not found for editing.");   //object nhi mila toh
       return res.redirect("/host/host-home-list");
     }
-    console.log(homeId, editing, home); 
+    console.log(homeId, editing, home); //yhome -> object hai bas array nhi
     res.render("host/edit-home", {        //object mila toh edit-home page open karo yaha bas apna kaam tha ye page open karna data 
       home: home,                            // baadme post pe jaega means fhir save() call hoga
       pageTitle: "Edit your Home",
