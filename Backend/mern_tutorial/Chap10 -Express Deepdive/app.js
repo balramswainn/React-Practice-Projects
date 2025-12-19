@@ -13,7 +13,7 @@ const app = express();
                                                                                                           //just an example
 app.use(express.urlencoded()); //Form submit data ko req.body me convert karta hai. and object me show karta hai(not needed now)
 app.use(userRouter);   // yaha bina base path ka connect kiya bcz need nhi but niche -> host/add-home karke access kar paye isiliye
-app.use("/host", hostRouter);  //isko hum routes ko group / organize karne ke liye use karte hain. /host → base path, hostRouter → ek alag file me likhe hue routes..So jo bhi routes hostRouter me hain, woh sab /host se start honge.
+app.use("/host", hostRouter);  //isko hum routes ko group / organize karne ke liye use karte hain. /host → base path, hostRouter → ek alag file me likhe hue routes..So jo bhi routes hostRouter me hain, woh sab /host se start honge. so /host/add-home karke access
 
 app.use((req, res, next) => {   // ordering of middleware is imp isse start me lagadeta toh error hi ata baki kuch nhi chalta
   res.status(404).sendFile(path.join(rootDir, 'views', '404.html')); 
@@ -38,7 +38,7 @@ app.listen(PORT, () => {
 // res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 
 // path.join() → different folder names ko sahi OS format me join karta hai.
-// rootDir → project ka main folder
+// rootDir → project ka main folder  ya main path jo humne pathUtil.js me banaya tha 
 // 'views' → folder name
 // '404.html' → file
 
@@ -51,7 +51,7 @@ app.listen(PORT, () => {
 
 
 
-// hum -> (require.main.filename)  se file ka path le rhe hai jo rootDir hai simple yaha toh path alag hoga and server pe alag so hard coded nhi rakh sakte dynamic hon chahiye jo path hai mil jaega 
+// hum -> (require.main.filename) ye pathUtil.js me hai... se file ka path le rhe hai jo rootDir hai simple yaha toh path alag hoga and server pe alag so hard coded nhi rakh sakte dynamic hon chahiye jo path hai mil jaega 
 
 // laptop me project ka folder yaha ho sakta hai: res.sendFile("C:/Users/YourName/Desktop/MyProject/views/home.html");
 // But Jab Project Server par Upload Hota Hai…
@@ -80,7 +80,7 @@ app.listen(PORT, () => {
 // module.exports.extra = "Extra";
 
 
-//shortcut   but object ban ke export ho rha hai toh waha bhi wese destructure  karna padega like { requestHandler } to import
+//shortcut   but object ban ke export ho rha hai toh waha bhi wese destructure  karna padega like { requestHandler } to import or obj me dalke obj.handler() use karna 
   
 // exports.handler = requestHandler;
 // exports.extra = "Extra"

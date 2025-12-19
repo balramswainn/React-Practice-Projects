@@ -73,27 +73,92 @@ const userRequestHandler =(req, res) => {
   res.end();
 };
 
-module.exports = userRequestHandler;
+module.exports = userRequestHandler;  //bas sirf ek module export karna ho toh
 
 
-//  WE CAN ALSO WRITE module.exports LIKE THIS
-// multiple exports using object 
+// WE CAN ALSO WRITE module.exports LIKE THIS
 
-// module.exports={
-//     handler: requestHandler,
-//     extra: "Extra"
-// }
+// single export :- 
+//  module.exports = userRequestHandler;
+
+// single import :- 
+//  const requestHandler = require('./user');          //koi bhi name se import ho sakta hai bcz yaha toh single export hua
+
+// --------------------------------------------------------------------------
+
+// multiple exports :- 
+//  module.exports = {        
+//   userRequestHandler,
+//   anotherFunction
+//  };  
+
+// multiple import :-  
+//  const { userRequestHandler, anotherFunction } = require('./file');
+
+
+
+// multiple exports :- 
+//  module.exports={               //Bahar bhejne ka custom name de rahe ho
+//      handler: requestHandler,   //requestHandler → export hoga handler naam se
+//      extra: "Extra"             // text hai bas function nhi 
+//  }
+
+// import :-        const { handler , extra } = require('./file')     //so ab directly handler dalke use kar sakta hai
+// during import :- 
+//  const obj = require('./file');
+
+//  obj.handler();   // requestHandler chalega
+//  obj.extra;       // "Extra"  
+
+// -------------------------------------------------------------------------------------
 
 //Setting multiple properties
 
 // module.exports.handler = requestHandler;
 // module.exports.extra = "Extra";
 
-
-//shortcut   but object ban ke export ho rha hai toh waha bhi wese destructure  karna padega like { requestHandler } to import
+//shortcut   
   
 // exports.handler = requestHandler;
 // exports.extra = "Extra"
+
+// during import :- 
+//  const obj = require('./file');
+
+//  obj.handler();   // requestHandler chalega
+//  obj.extra;       // "Extra" text hai bas function nhi 
+
+// ----------------------------------------------------------------------------------------
+
+
+// obj.handler vs obj.handler()
+//obj.handler
+// ➡️ Ye sirf function ka reference hai
+// ➡️ Function call / execute nahi hota
+
+// obj.handler();
+// ➡️ Parentheses () zaroori hain
+// ➡️ Tab function execute hota hai
+
+// so -> authRouter.get("/login", authController.getLogin);......me getLogin() kyu nhi ? 
+
+// Express khud function ko call karta hai, isliye sirf reference dene par bhi kaam karta hai ✅
+// router.get() expects a callback function reference,
+// which Express invokes automatically when a matching request arrives.
+
+// Jab koi function baad me kisi aur ke control me execute hona ho,
+// toh function ka reference diya jaata hai — call () nahi.
+
+// Callback dene waqt reference do,
+// callback ke andar functions call karo.
+
+// 1. 1️⃣ setTimeout(fun, 2000)   fun-> callback but if uske andhr koi
+// 2. addEventListener
+
+
+// authRouter.get("/login", authController.getLogin());
+// Ye kya karega?
+// Function turant execute ho jaayega, Return value Express ko mil jayegi, Request aane par kuch nahi chalega ❌, Isliye ye galat hai
 
 
 

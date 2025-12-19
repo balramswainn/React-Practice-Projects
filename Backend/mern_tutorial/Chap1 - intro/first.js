@@ -1,7 +1,7 @@
 console.log("KG coding is the best ")
-
 const fs = require('fs');                                 //fs module (file system)
-fs.writeFile("output.txt","Writing File", (err) => {       // isme output.txt file create hogyi, uske andhr "writing file" 
+
+fs.writeFile("output.txt","Writing File", (err) => {       // isme output.txt file create hogyi, uske andhr "writing file" likhajaega
   if(err) console.log("Error Occured");
   else  console.log('File Written Succesfully');
 })
@@ -13,5 +13,6 @@ fs.writeFile("output.txt","Writing File", (err) => {       // isme output.txt fi
 
 // REPL (read,eval,print,loop) for -> quick testing, session management, node api ko check ya test karne k liye 
 // jo bhi statment isme likhenge usse read karega , evaluate karega ,  fhir output show hoga.
+
 // write -> node ......in vs code terminal ( browser k console jese chalega)
 // ex:- 4+3 -> 7

@@ -31,7 +31,7 @@ app.use(errorsController.pageNotFound);  // 404 error page not found aya toh 404
 
 const PORT = 3000;
 
-//_db = client.db('airbnb')mongo me airbnb se lete the wese yaha idhr likha airbnb.
+//_db = client.db('airbnb')mongo me airbnb se lete the wese yaha idhr likha airbnb. <---exact niche
 const DB_PATH = "mongodb+srv://root:root@completecoding.tw25bjj.mongodb.net/airbnb?appName=CompleteCoding"; 
 //   Yeh tumhara Atlas cluster ka connection string hai. root:root = username + password , tw25bjj.mongodb.net = cluster address , appName = optional MongoDB name , Is URL ko MongoClient connect karega.
 

@@ -73,4 +73,6 @@ app.listen(PORT, () => {
 
  // to use both add script ->  "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch"
 // in the json file so npm start se work karega 
+
+//simple work nhi kiya toh alag terminal me use kar sirf tailwind
  

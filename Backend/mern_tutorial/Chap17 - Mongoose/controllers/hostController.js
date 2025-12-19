@@ -49,7 +49,7 @@ exports.postAddHome = (req, res, next) => {              //post req hai->toh req
   const { houseName, price, location, rating, photoUrl, description } = req.body;
   //object destructure hua req.body me sab object value hai na ye name se
  const home = new Home({houseName, price, location, rating, photoUrl, description});// Mongoose apne aap constructor banata hai, isliye hume manually constructor likhne ki zaroorat nahi.Aur Mongoose ka constructor sirf ek hi argument leta hai — ek object {}, kyunki schema me field-names fixed hote hain.Agar hum multiple values pass karein: toh Mongoose confuse ho jayega ki kaunsi value kis field me set karni hai. Isliye hume always:object ke form me hi dena padta hai. for more detail niche jao 
-
+// -> {houseName: houseName ,price:price} isse short me {houseName ,price } ese pass kar rhe hai
  
  // jab home.save() hoga sab db me insert ho jaengi. Aur agar document me _id nahi hai toh MongoDB khud hi automatically _id generate karta hai, aur woh ObjectId type ka hota hai. 
    home.save().then(() => {  

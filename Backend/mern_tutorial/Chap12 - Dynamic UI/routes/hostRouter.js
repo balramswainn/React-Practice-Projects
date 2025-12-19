@@ -10,6 +10,7 @@ const rootDir = require("../utils/pathUtil");
 
 hostRouter.get("/add-home", (req, res, next) => {
  res.render('addHome', {pageTitle: 'Add Home to airbnb', currentPage: 'addHome'}); //addHome page ka name hai and { pageTitle}: page ka title   ...currentpage isiliye nav me hightlight kar paye
+  //  res.sendFile(path.join(rootDir, 'views', 'addHome.html'));  pehle ka
 })
 
 const registeredHomes = [];

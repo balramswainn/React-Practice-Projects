@@ -3,10 +3,10 @@ const Home = require("../models/home");
 
 exports.getIndex = (req, res, next) => {
   Home.fetchAll().then( registeredHomes =>{   //fetchAll promise return kar rha hai to handle that we use then 
-    res.render("store/index", {                 //there were two arrays so humne array destructuring kiya bas pehle wala chahiye tha
-      registeredHomes: registeredHomes,          // callback me bas .then(result=>{}) likhe toh -> [[{real data}],[data type define hai]] 
-      pageTitle: "airbnb Home",                //mil jaega but hume sirf data chaiye na ki type wla array so [registeredHomes]
-      currentPage: "index",               // to know more homes.js me check karle
+    res.render("store/index", {                
+      registeredHomes: registeredHomes,          
+      pageTitle: "airbnb Home",                
+      currentPage: "index",              
     })
   });
 };

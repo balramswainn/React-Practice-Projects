@@ -45,7 +45,7 @@ homeSchema.pre('findOneAndDelete', async function(next) {   //Home delete hone s
   await favourite.deleteMany({houseId: homeId}); 
   // Favourite collection me jitne documents hain jisme houseId = iss homeId → sab delete kar do.
   next(); //→ delete process aage continue karo Pre hook complete Ab Mongoose asal me home ko delete karega
-}); //in simple jese hi home me kisine delete kiya fav se bhi delete ho jaye 
+}); //in simple jese hi home me kisine delete kiya fav se bhi delete ho jaye , and jab bhi koi home delete hoga  findOneAndDelete ye method use karke to uski id lele and fav me dede fhir woh bhi apne collection se delete kardega 
 
 module.exports = mongoose.model('Home', homeSchema);//this creates a model and exports it, model ka naam hoga Home and based hoga homeSchema pe, and jab ye mongodb me jayega ye , "Home" change ho jayega-> homes, so model convert hojayega plural me and lowercase me
 

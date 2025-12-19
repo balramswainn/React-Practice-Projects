@@ -22,7 +22,7 @@ const getDB = () => {             //jisse bhi variable chahiye jisme object _db=
     throw new Error('Mongo not connected');
   }
   return _db;                  //Agar set hai → database object return kar do  Baad me koi bhi file DB access karte waqt karega:
-                              //const db = getDB(); db.collection("homes").find().toArray();
+                              //const db = getDB();   db.collection("homes").find().toArray();
 }
 
 exports.mongoConnect = mongoConnect;  //mongoConnect() → server start hone se pehle call karte ho (bcz nhi kiya toh error aaega Server early requests ko handle nahi kar paayega)

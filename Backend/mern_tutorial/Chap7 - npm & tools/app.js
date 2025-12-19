@@ -1,4 +1,5 @@
 const http = require('http');
+const { inherits } = require('util');
 
 
 const server = http.createServer();
@@ -30,3 +31,9 @@ server.listen(PORT, () => {
 // npm i nodemon --save-dev  -> npm start  ( for every project )
 //or
 // npm i nodemon -g    --->    nodmeon app.js  (ye globally installed hai toh locally install karne ki jarurat nhi next time koi bhi project banana  no need to install nodemon only in your pc )
+
+// 1. npm init 
+// 2. node app.js                 -> to run 
+// 3. npm i nodemon --save-dev   
+// 4. nodemon app.js              -> to run 
+// 5. "start":"nodemon app.js"    -> add this in package.json file

@@ -2,7 +2,7 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Login",
     currentPage: "login",
-    isLoggedIn: false          //by default humne isLoggedIn false kiya hai true hone pe hi sab menu and pages show honge so websiteopen hote hi false hai and login pe jane k baad bhi false hai ... jab login karega tab true hoga and sab dikehega ...nav toh ek hi sabka bas ek component ki tarah use kar rhe hai so waha pe define kiya hai 
+    isLoggedIn: false          //by default humne isLoggedIn false kiya hai true hone pe hi sab menu and pages show honge so websiteopen hote hi false hai and login pe jane k baad bhi false hai ... jab login karega tab true hoga and sab dikehega ...nav toh ek hi sabka bas ek component ki tarah use kar rhe hai so waha pe define kiya hai
   });
 };
 

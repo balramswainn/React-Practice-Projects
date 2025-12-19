@@ -51,7 +51,7 @@ exports.getBookings = (req, res, next) => {
 
 exports.getFavouriteList = (req, res, next) => {
   Favourite.find() //Ye Favourite collection se saare favourite items fetch karta hai.
-  .populate('houseId') //Favourite document me houseId ek reference (ObjectId) hota hai means humne favourite.js me reference diya hai na type define karte waqt so uska type objectId hai adn ref home.js jisme sab details hai ghar ka ,Toh populate us id ko use karke related Home document ka complete data fetch kar leta hai.pehle houseId = "671daf43...." sirf ek id hota tha ab populate ke baad → pura Home object milta:  
+  .populate('houseId') //Favourite document me houseId ek reference (ObjectId) hota hai means humne favourite.js me reference diya hai na type define karte waqt so uska type objectId hai and ref home.js jisme sab details hai ghar ka ,Toh populate us id ko use karke related Home document ka complete data fetch kar leta hai.pehle houseId = "671daf43...." sirf ek id hota tha ab populate ke baad → pura Home object milta:  
   // before populate { _id: "fav1", houseId: "671daf43..."   // sirf id }
   //after populate { _id: "fav1", houseId: { _id: "671daf43...",houseName: "Goa Villa",price: 5000,location: "Goa",rating: 4.7, ...}}
   .then((favourites) => {
@@ -72,6 +72,14 @@ exports.postAddToFavourite = (req, res, next) => {
       console.log("Already marked as favourite");
     } else {
       fav = new Favourite({houseId: homeId}); //Favourite model me field ka naam schema me fixed hai → houseId Isliye aapko object me bhi same name dena padta hai: houseId: homeId bcz sirf houseId likhenge toh new object create kese hoga uska value toh homeId me hai
+    // reason iska {houseId: homeId} if humne schema me filed ka naam homeId rakha hota toh yaha bas {homeId} likhna padta bas -> {homeId:homeId} dono same hai so name diff tha isiliye houseId: homeId likha 
+
+    //so constructor me object banate time {houseId:homeId} samjh ata bcz Mongoose ka constructor sirf ek hi argument leta hai — ek object {} so use confuse na ho
+    // but uper findOne({houseId: homeID}) kyu ? 
+
+    //Home.findByIdAndDelete(homeId) -> MongoDB me har document ka primary key _id hota hai, Mongoose ne _id ke liye special helper methods bana rakhe hain ...........homeID -> { _id: homeId } esa hojata hai baame internally 
+    //Favourite.findOneAndDelete({ homeId })  -> yaha homeId -> normal field hai Wo _id nahi hai _id mongoose banata hai , yaha Mongo ko batana padta hai:kaunsa field ,uski value kya hai 👉 Field name same hone se shortcut nahi milta Shortcut sirf _id ke liye hota hai
+    //Dono internally object hi use karte hain, bas tumhe ek jagah dikh raha hai, dusri jagah hidden hai.
       fav.save().then((result) => {
         console.log("Fav added: ", result);
       });
@@ -83,9 +91,18 @@ exports.postAddToFavourite = (req, res, next) => {
 };
 
 
+  // favourites collection ka structure  [{},{},{}]
+// {
+//   "_id": {                                  //ye nhi
+//     "$oid": "691dc23fc8dd2cab42cba325"
+//   },
+//   "houseId": "691daf433b9f63605da82fd4"       //hum ye use kar rhe hai identify karne k liye
+// }
+
+
 exports.postRemoveFromFavourite = (req, res, next) => {
   const homeId = req.params.homeId;
-  Favourite.findOneAndDelete({houseId: homeId}) //Ye bhi Mongoose ka inbuilt method hai. object dhoondo jiska houseId = homeId hoAur milte hi delete kar do .Favourite collection me search karega Jis document ka field houseId hai aur value homeId ke equal hai Milte hi usi moment delete karega
+  Favourite.findOneAndDelete({houseId: homeId}) //Ye bhi Mongoose ka inbuilt method hai. object dhoondo jiska houseId = homeId hoAur milte hi delete kar do .Favourite collection me search karega Jis document ka field houseId hai aur value homeId ke equal hai Milte hi usi moment delete karega and pehle findByIdAndDelete bcz woh id tha yaha bas normal field hai bas name houseId hai isiliye findOneAndDelete
     .then((result) => {
       console.log("Fav Removed: ", result);
     })
