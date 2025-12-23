@@ -44,7 +44,8 @@ app.use(session({             //This entire block enables sessions in your Expre
 
 
 
-app.use((req, res, next) => { 
+app.use((req, res, next) => { //ye har req pe chalega so sabko iska access milega and ye true hai ya false hai hume har middleware ko batana padega so woh nav toh dikha paye ki login hai logout har middleware pe {isLoggedIn: req.isLoggedIn } diya hai but yaha hum directly isLoggedIn: req.session.isLoggedIn  bhi de sakte the har middleware me bcz ab session toh server se araha hai so ye route banane ki jarurat nhi hai but abhi esa likha hai bas
+  
   //ye har path me chalega isiliye koi path nhi hai -> cookies ko read karne k liye we use this why?goto-> authController me bataya hai Postlogin me but in simple sabko batana padega ki redirect k baad isloggedin true hai so jese hi req pehli baar server k passayi check karlo cookie aayi hai ya nhi if aayi toh uski value nikal k req me set kardo humne pehle hi define kiya hai isloggedin true toh menu dikhao so sabko pata chal jaega 
   
 //const cookies = req.get("Cookie") || "";  //req se cookie liya jo  controller me-> res.cookie("isLoggedIn", true) kiya tha

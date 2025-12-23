@@ -24,7 +24,7 @@ const homeSchema = mongoose.Schema({         //this creates a schema, schema k a
     type: Number,
     required: true
   },
-  photoUrl: String,
+  photo: String,
   description: String,
 });
 

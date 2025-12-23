@@ -45,7 +45,7 @@ exports.getFavouriteList = async (req, res, next) => { //Jab user “My Favourit
 //   { _id: "67aa1", houseName: "Sky villa", price: 2000, ... },
 //   { _id: "67aa2", houseName: "Beach Home", price: 3500, ... }
 // ] Ab UI me complete home details show ho sakti hain.
-  res.render("store/favourite-list", {
+  res.render("store/favourite-list", {  //session se id nikala to populate favourites  so sab id convert hogye pure object me 
     favouriteHomes: user.favourites,   //ye array  hai user.favourites=[{},{},{}] 
     pageTitle: "My Favourites",        //Isko directly EJS page me loop karke cards show kar sakte ho
     currentPage: "favourites",
@@ -54,10 +54,13 @@ exports.getFavouriteList = async (req, res, next) => { //Jab user “My Favourit
   });
 };
 //This function runs when user clicks “Add to Favourite” async because DB calls + await use honge
+// add to fav karne pe -> muje chahiye ki ye mere user collection me favourites array me add ho jaye but usse pehle check karna padega ki ye pehle se add hai ki nhi if nhi hai tab hi add hoga ya toh nhi so for that i need ( homeid & userid ) homeid chahaiye ye home identify karne k liye and userid user identify karne k liye .... pehle jab fav ka collection tha toh directly fav ko import karke dal dete the but abhi ye User collection k andhr hai toh user to lena padega
+// userid milega muje sessions se 
+// homeid milega muje req.body.id se 
 exports.postAddToFavourite = async (req, res, next) => {  // todo : hume id leke user collection k fav array me id dalni hai
-  const homeId = req.body.id;             //add to fav karne pe jo form se id aya post req pe 
-  const userId = req.session.user._id;    // Currently logged-in user ka ID ...session me humne user store kiya tha jab login hua
-  const user = await User.findById(userId); //Database me real user object find karo Jisme favourites ka array stored hai: favourites array humne model me banaya tha user.js me ex: {_id: "123",firstName: "Balram",favourites: ["home1","home2"] } bas id store karte hai
+  const homeId = req.body.id;             //ye ghar ka id hai ...add to fav karne pe jo form se id aya post req pe 
+  const userId = req.session.user._id;    //ye user ka id hai ...Currently logged-in user ka ID ...session me humne user store kiya tha jab login hua
+  const user = await User.findById(userId); //Database me real user object find karo Jisme favourites ka array stored hai: favourites array humne model me banaya tha user.js me ex: {_id: "123",firstName: "Balram",favourites: ["home1","home2"] } bas id store karte hai .....user ={ pura object }
   if (!user.favourites.includes(homeId)) {  //if homeId pehle se nhi hai array me toh ye new user id push kardo 
     user.favourites.push(homeId); 
     await user.save();           //Updated user ko database me save kar do

@@ -38,13 +38,14 @@ app.use(session({             //This entire block enables sessions in your Expre
   resave: false,//Session change nahi hua →store me dobara save mat karo.Performance better hota hai Unnecessary writes store pe nahi hote
 
   saveUninitialized: true, //User ke req.session me kuch data na bhi ho, fir bhi session create ho jaye. User ne login nahi kiya koi data set nahi hua Fir bhi session create hota hai
-
+  // pehle memmory me karta tha store abhi isse server pe karega 
   store  // -> store:store -> Ye tumhare session ka backend hota hai. Example:MemoryStore,MongoDB Store,Redis Store It stores sessions like:{ "abc123": { isLoggedIn: true, userId: "64378..."}} Where all sessions are saved (backend storage). After this:👉 You can do: req.session.isLoggedIn = true; 👉 And access later: req.session.isLoggedIn .. 
 })); 
 
 
 
-app.use((req, res, next) => { 
+app.use((req, res, next) => { //ye har req pe chalega so sabko iska access milega and ye true hai ya false hai hume har middleware ko batana padega so woh nav toh dikha paye ki login hai logout har middleware pe {isLoggedIn: req.isLoggedIn } diya hai but yaha hum directly isLoggedIn: req.session.isLoggedIn  bhi de sakte the har middleware me bcz ab session toh server se araha hai so ye route banane ki jarurat nhi hai but abhi esa likha hai bas
+
   //ye har path me chalega isiliye koi path nhi hai -> cookies ko read karne k liye we use this why?goto-> authController me bataya hai Postlogin me but in simple sabko batana padega ki redirect k baad isloggedin true hai so jese hi req pehli baar server k passayi check karlo cookie aayi hai ya nhi if aayi toh uski value nikal k req me set kardo humne pehle hi define kiya hai isloggedin true toh menu dikhao so sabko pata chal jaega 
   
 //const cookies = req.get("Cookie") || "";  //req se cookie liya jo  controller me-> res.cookie("isLoggedIn", true) kiya tha
