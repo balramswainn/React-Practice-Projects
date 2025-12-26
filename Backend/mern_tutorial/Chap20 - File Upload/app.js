@@ -105,7 +105,7 @@ app.use("/homes/uploads", express.static(path.join(rootDir, 'uploads'))) // ( pe
 // 2️⃣ Ab page ke andar <img> tag hota hai <img src="<%= home.photo %>"> db se  home.photo = "uploads/abc.jpg" milta hai
 // 3️⃣ Browser image ke liye new request bhejta hai -> Toh browser bana deta hai: /homes/uploads/abc.jpg
 //     Reason : bcz img me relative url hai :- uploads/abc.jpg jo ki current url k sath jud jaega 
-//     Without / = relative → current URL ke saath judta hai ||  With / = absolute → root se start hota hai
+//     Without / = relative url→ current URL ke saath judta hai ||  With / = absolute url→ root se start hota hai
 //     ab tu sochega /homes/69492eee56561042e5560161/uploads/abc.jpg esa hona chahiye tha but, Browser is URL ko aise todta hai: Last part (69492eee56561042e5560161) =    file-like segment, ye ek resource (file) hai, folder nahi isliye last segment hata deta hai
 //     Base directory ban jaata hai: /homes/
 //     Browser rule (IMPORTANT): Relative path hamesha current directory se resolve hota hai, pure URL se nahi means ( Relative URL banate time browser last URL segment hata deta hai, phir uske baad relative path jodta hai.) Relative URL = current URL ka last part hatao + relative path jodo.
