@@ -4,7 +4,7 @@ exports.createTodoItem = async (req, res, next) => {
   console.log(req.body);
   const { task, date } = req.body;
   const todoItem = new TodoItem({ task, date });
-  await todoItem.save();
+  await todoItem.save();                              //ui react me banaya isiliye yaha views folder hata diya so bcz of that yaha render karne ki jarurat nhi 
   res.status(201).json(todoItem);
 }
 
