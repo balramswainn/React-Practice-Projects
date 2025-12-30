@@ -19,7 +19,7 @@
 
 // string is a primitive data type used to represent and manipulate a sequence of characters, essentially textual data. Strings are immutable, meaning their contents cannot be changed after creation, and any method that seems to modify a string actually returns a new one. 
 
-// "use strict"enables strict mode in JavaScript Strict mode enforces stricter parsing and error handling on your code, which helps you write cleaner, safer, and more robust JavaScript by catching common mistakes and disallowing "unsafe" or poorly thought-out features of the language. 
+// "use strict" enables strict mode in JavaScript Strict mode enforces stricter parsing and error handling on your code, which helps you write cleaner, safer, and more robust JavaScript by catching common mistakes and disallowing "unsafe" or poorly thought-out features of the language. 
 
 
 
@@ -101,6 +101,12 @@
 // let name2 = name.toUpperCase() 
 // console.log(name2) // -> JERRY .... aghe ese value change karne k baad store karenge durse variable me 
 
+// let first = "balram";
+// let sec = first.toUpperCase();
+// console.log(sec)   //-> BALRAM
+// console.log(first)  //-> balram    ye change nhi hua 
+
+ 
 
 // ----------------------
  
@@ -134,6 +140,102 @@
 
 // BigInt  is a built-in JavaScript numeric data type used to represent whole numbers larger than the maximum value that the standard Number type can safely handle, which is Number.MAX_SAFE_INTEGER (2⁵³ - 1, or 9,007,199,254,740,991). 
 
-// let myNumber = BigInt(12);   -> 12n
-// let sameNumber = 123n;
+// let myNumber = BigInt(12);   //-> 12n
+// let sameNumber = 123n;       //-> ese bhi bi int likh sakte hai 
 // console.log(typeof sameNumber)  -> bigint
+
+// let normalNumber = 10 ;
+// console.log(sameNumber + normalNumber)  // -> TypeError: Cannot mix BigInt and other types, use explicit conversions
+
+
+// -----------------------------------------------
+
+// loose equality vs strict equality
+
+// let num1 = 7;
+// let num2 ="7";
+
+// console.log(num1 == num2 ) //-> true
+// console.log(num1 === num2 ) //-> false    compares the value but also the data types
+
+// console.log(num1 != num2) //-> false   only comapres the value
+// console.log(num1 !== num2) //-> true 
+
+// -----------------------------------------------
+
+// falsy values:- false,"",null,0,undefined
+// truthy values:- true,"hey",12,-1
+
+//--------------------------------------------------
+
+
+//  else if
+
+// const temp = 15;
+
+// if(temp < 0 ){
+//   console.log(" extemely cold outside")
+// }else if(temp < 10){
+//   console.log("it is chilly")
+// }else if(temp < 16){
+//   console.log(" normal")
+// }else if(temp < 25){
+//   console.log("warm")
+// }else if(temp < 35){
+// console.log("hot")
+// }
+
+// console.log("hello ")
+
+// o/p :- normal    -> jo pehle condition match kiya bas fhir execution bahaar jump  
+// hello  
+
+
+// ----------------------------------------------------------
+
+// while loop
+
+// let i = 0;
+
+// while( i < 5){
+//   console.log(i);
+//   i++;
+// }
+
+// o/p -> 0 1 2 3 4 
+
+
+
+
+//for loop
+
+// for(let i=0; i<10;i++){    
+//   console.log(i)
+// }
+
+// console.log(i)    -> refernce error bcz let -> block scope variable banata hai toh i bahar exist nhi karta 
+
+
+// for(var i=0; i<10;i++){    
+//   console.log(i)
+// }
+// o/p :->  0 1 2 3 4 5 6 7 8 9    -> not 10 bcz uspe condition satisfy ho jata hai 
+// console.log(i)    //-> 10 bcz var only creates function scope variable  
+
+
+
+// let i=0
+// for( i<10; i++ ){    
+//   console.log(i)
+// }
+// o/p :->  0 1 2 3 4 5 6 7 8 9    
+// console.log(i)    //-> 10 bcz i ko bahar declare kiya hai  
+
+
+//do while loop.... condition false ho toh bhi ek baar toh chalega hi
+
+// let i=0;
+// do{
+//   console.log(i);
+//   i++;
+// }while(i<10)
