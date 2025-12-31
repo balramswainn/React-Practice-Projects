@@ -152,6 +152,17 @@
 
 
 
+// let fullname ="balramswain"   //slice kya karta hai jitna tuje chahiye utna nikal k deta hai immutable hai 
+// console.log(fullname.slice(0,1)) //-> b   (0 se 1 k bich ka nikal k de)
+// console.log(fullname.slice(0)) //-> balramswain   (0 se sab nikal k de)
+// console.log(fullname.slice(1))   //-> alramswain   (1 se sab nikal k de)
+// console.log(fullname.slice(-1))  //-> n
+// console.log(fullname.slice(-3))  //-> ain
+// console.log(fullname.slice(-0))  //-> balramswain
+
+
+
+
 // let array1 = ["item1", "item2"];
 
 // let array2 = array1.slice() //-> ["item1", "item2"]    // slice() hamesha NAYA array banata hai  Chahe tum: slice(0) , slice() dono ka matlab: 👉 copy the array
@@ -182,7 +193,7 @@
 
 // ✔️ slice() ne: NAYA array banaya (A2) par elements ko copy nahi kiya sirf references copy kiye 👉 Dono arrays ke andar same object (O1) ka reference hai 
 // ❓ “Heap me toh actual array/object store hota hai, reference toh stack me hota hai. Phir heap ke andar reference kaise aa gaya?”
-// Heap ke andar object store hota hai, lekin object ke properties ya array ke elements me (means object and array  k andhr references ho sakte hain.)
+// Heap ke andar object store hota hai, lekin object ke properties ya array ke elements   k andhr references ho sakte hain.
 // Stack = variables, Heap = objects, Objects ke andar values bhi ho sakti hain, references bhi 
 // Array ke elements direct value nahi hote (jab element object ho)  (means array k andhr if object ho toh usse direct nhi likhte uska reference hota hai )
 // Stack stores variable references, heap stores objects, and objects can themselves contain references to other objects.   
@@ -207,7 +218,7 @@
 
 // array1.push("item3");
 
-// console.log(array1===array2);  //-> false  bcz alag 
+// console.log(array1===array2);  //-> false  bcz alag spread operator creates a new array  and shallow copy banata hai 
 // console.log(array1) 
 // console.log(array2)
 
@@ -239,7 +250,7 @@
 // STACK              HEAP
 // fruits ───▶ A1 ───▶ ["apple", "mango"]
 // 👉 fruits variable A1 reference ko hold karta hai
-// 👉 const ka rule: Reference change nahi ho sakta
+// 👉 const ka rule: Reference change nahi ho sakta (jo stack memory me hai )
 
 // 👉 fruits.push("banana"); -> fruits ko reassign nahi kiya ,Sirf same array object mutate kiya ✔️ Allowed
 
@@ -436,7 +447,7 @@
 // const obj1 = {    
 //   key1: "value1",
 //   key2: "value2",
-//   key1: "value99"   // key ka name same nhi ho sakta same hai toh jo baadme declare hua woh vakue ajaegi
+//   key1: "value99"   // key ka name same nhi ho sakta same hai toh jo baadme declare hua woh value ajaegi
 // }; 
 // console.log(obj1)   //-> {key1: 'value99', key2: 'value2'}
 
