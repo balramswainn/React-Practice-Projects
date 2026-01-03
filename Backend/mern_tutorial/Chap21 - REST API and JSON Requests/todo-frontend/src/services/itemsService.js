@@ -64,7 +64,7 @@ export const getItemsFromServer = async () => {                        // 👉 S
   const items = await response.json();                                      //👉 Server ka JSON response JS array/object me convert ho gaya
   return items.map(mapServerItemToLocalItem);               //👉 Har server item ko frontend format me convert 👉 New array return hoti hai (clean, UI-ready)
 };
-
+// api/todo base path hai means  app.use("/api/todo", todoItemsRouter);  Ye line batati hai ki /api/todo se aane wali saari requests todoItemsRouter handle karega.
 
 
 //Ye function server pe todo ko completed mark karta hai aur updated todo frontend-ready format me return karta hai.

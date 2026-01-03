@@ -22,7 +22,7 @@ exports.deleteTodoItem = async (req, res, next) => {
 exports.markCompleted = async (req, res, next) => {
   const { id } = req.params;
   const todoItem = await TodoItem.findById(id);
-  todoItem.completed = true;
-  await todoItem.save();
+  todoItem.completed = true;  // jo object mila usme completed true karde
+  await todoItem.save();    // fhir use save krde
   res.json(todoItem);
 }

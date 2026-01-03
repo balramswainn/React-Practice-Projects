@@ -17,7 +17,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/todo", todoItemsRouter);
+app.use("/api/todo", todoItemsRouter);  //Ye line batati hai ki /api/todo se aane wali saari requests todoItemsRouter handle karega.
 
 app.use(errorsController.pageNotFound);
 

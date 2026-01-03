@@ -236,6 +236,12 @@
 // userNames.sort();
 // console.log(userNames);   //->  ['ABC', 'Harshit', 'aabc', 'abcd', 'harshit', 'mohit', 'nitish']   capital letter pehle sort hoga bcz unka ascii code kam haia isiliye opehle aaye and small letters ka jyada hai 
 
+
+//sort method ka rule  Positive = push back, Negative = pull front
+// flow ko change karne k liye (a-b)-> ascending (b-a)descending use karte hai 
+//for example (a-b) (5-9) = -4  so -> 5 aghe aaega  -> 5,9
+//            (b-a) (9-5) =  4  so -> 5 piche jaega -> 9,5
+
 // const numbers = [5,9,1200, 410, 3000];
 // numbers.sort((a,b)=> b-a);
 // console.log(numbers);  //-> [3000, 1200, 410, 9, 5]
@@ -325,7 +331,7 @@
 // =========================================================
 
 
-// every method   (sabelelement condition satisfy karega toh hi true return karega)
+// every method   (sab elelement condition satisfy karega toh hi true return karega)
 
 // const numbers = [2,4,6,9,10];
 // const ans = numbers.every((number)=>number%2===0);
@@ -389,18 +395,85 @@
 
 
 
-// splice method 
+// splice method   is mutating  means og array ko change  karega
 // start , delete , insert 
 
 // const myArray = ['item1', 'item2', 'item3'];
 
 // delete
 // const deletedItem = myArray.splice(1, 2);
-// console.log("delted item", deletedItem);
+// console.log("delted item", deletedItem);      //-> delted item (2) ['item2', 'item3']
+// console.log(myArray);  //-> ['item1']
+
 // insert 
 // myArray.splice(1, 0,'inserted item');
+// console.log(myArray);  //-> ['item1', 'inserted item', 'item2', 'item3']
 
 // insert and delete 
 // const deletedItem = myArray.splice(1, 2, "inserted item1", "inserted item2")
-// console.log("delted item", deletedItem);
-// console.log(myArray);
+// console.log("delted item", deletedItem);  //-> delted item (2) ['item2', 'item3']
+// console.log(myArray);  //-> ['item1', 'inserted item1', 'inserted item2']
+
+
+
+// ====================================================================
+
+
+
+// Mutating methods change the original data,
+// non-mutating methods return a new copy.
+
+// In React, we avoid mutating methods because state mutation does not trigger re-rendering.
+
+// 🟠 Array mutating methods
+
+// push()
+// pop()
+// shift()
+// unshift()
+// splice()
+// sort()
+// reverse()
+// fill()
+// copyWithin()
+
+
+// 🟠 Object mutating methods
+
+// Object.assign(target, source)
+// delete obj.key
+
+
+// 🟢 Array non-mutating methods
+
+// map()
+// filter()
+// reduce()
+// slice()
+// concat()
+// flat()
+// flatMap()
+// includes()
+// indexOf()
+// find()
+// findIndex()
+// some()
+// every()
+// join()
+// toSorted()      // new
+// toReversed()    // new
+// toSpliced()     // new
+
+
+// 🟢 Object non-mutating patterns
+
+// { ...obj }              // spread
+// Object.assign({}, obj)
+// structuredClone(obj)
+
+
+// let arr = [1,2,3,4,9]
+// let obj = {...arr}  //-> {0: 1, 1: 2, 2: 3, 3: 4, 4: 9}
+
+// let obj = Object.assign({},arr)  //-> {0: 1, 1: 2, 2: 3, 3: 4, 4: 9}
+// console.log(obj)

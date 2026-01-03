@@ -2,8 +2,8 @@ import TodoItem from "./TodoItem";
 
 const TodoItems = ({ todoItems, onDeleteClick, onToggleComplete }) => {
   // Group items by completion status
-  const pendingItems = todoItems.filter((item) => !item.completed);
-  const completedItems = todoItems.filter((item) => item.completed);
+  const pendingItems = todoItems.filter((item) => !item.completed); // use de jo item completed nhi hai
+  const completedItems = todoItems.filter((item) => item.completed); // use dede jo item completed hai 
 
   return (
     <div>
