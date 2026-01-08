@@ -348,27 +348,248 @@
 // ====================================================================
 
 
-const obj1 = {
-    key1: "value1",
-    key2: "value2"
-}
+// const obj1 = {
+//     key1: "value1",
+//     key2: "value2"
+// }
 
-// __proto__
+
+// there is one more way to create empty object
+// const obj2 = Object.create(obj1);   //👉 Object.create(obj1) ek naya object banata hai jiska prototype obj1 hota hai (inherit karta hai obj1 se). 👉 obj2 ke paas apni properties nahi hoti, wo missing properties obj1 se lookup karta hai (via prototype).
+// console.log(obj2) //->  {}
+
+// obj2.key3 = "value3";      //value add hui obj2
+// console.log(obj2)  //->  {key3: 'value3'}
+
+// obj2 me key2 toh hai nhi toh value kese aayi undefined kyu nhi aayi bcz humne uper ek connection bana liya tha jise obj2 me ye key nhi mili toh woh obj1 me dhundega
+// console.log(obj2.key2)  //-> value2
+//so ussse obj2 me nhi mila but js me  -> __proto__  hot hai usme reference hotahai ek object usme dhundt hai ye case me reference obj1 tha
 
 // offical ecmascript documentation 
+// __proto__ = [[prototype]]    ye dono same hai 
 
+// prototype     but ye alag hai 
+
+// [[Prototype]] : Object
+// key1 : "value1"
+// key2 : "value2"
+
+// if key add kardenge toh ye obj1 k pass nhi jaega 
+// obj2.key2 = "unique";
+// console.log(obj2.key2)  //-> unique
+// console.log(obj2)  //-> {key3: 'value3', key2: 'unique'}
+
+// console.log(obj2.__proto__);  //-> {key1: 'value1', key2: 'value2'}     hume obj1 ka object mila 
+
+// -----------------------------------------------------------------------------
+
+
+
+// prototype 👉 Ye sirf constructor function ke paas hota hai 
+//👉 JavaScript me normal function hi constructor function hota hai (jab new ke saath use karo). except arrow wo constructor nhi hota
+// function User() {}
+// User.prototype.sayHi = function () {};
+// prototype = property, Sirf functions (constructor) ke paas hoti hai, Naye objects ke liye blueprint / common store
+
+
+// __proto__ kya hai? 👉 Ye har object ke paas hota hai 
+
+// 👉 Prototype(__proto__) ek backup object hota hai Agar JS ko kisi object me property/method nahi milta, toh wo prototype me dhundta hai.
+// Prototype(__proto__) kyu hai? (main reason) 👉 Memory bachane ke liye + code reuse ke liye ,Socho agar 100 objects ko same function chahiye: ❌ har object me copy banaoge → memory waste ✅ ek jagah rakho → sab use kare , Prototype = common store
+// Object me prototype kyu hota hai? 👉 JS ko inheritance chahiye bina class ke (old JS) Isliye har object ke peeche ek hidden link hota hai: [[Prototype]]  →  kisi aur object ki taraf
+
+// object.__proto__ === Constructor.prototype
+// u.__proto__ === User.prototype // true
+
+// prototype = jaha se banana hai
+// __proto__  = jisse object connected hai
+
+
+// =======================================================================
+
+
+
+
+// __proto__ = k wajah se ab har object me hume method likhne ki jarurat nhi ek baar bana lo and usko use karo bina object me daalke like user.about = userMethods.about
+
+// const userMethods = {
+//     about : function(){
+//         return `${this.firstName} is ${this.age} years old.`;
+//     },
+//     is18 : function(){
+//         return this.age >= 18;
+//     },
+//     sing: function(){
+//         return 'toon na na na la la ';
+//     } //ek naya object banata hai jiska prototype obj1 hota hai (inherit karta hai obj1 se). 👉 obj2 ke paas apni properties nahi hoti, wo missing properties obj1 se lookup karta hai (via prototype).
+// }
+// function createUser(firstName, lastName, email, age, address){  
+//     const user = Object.create(userMethods);// {}    //pehle humne khud empty object define  kiya tha ab object.create ek empty object banaega,Object.create() -> iske andhr jo function ya object dalenge __proto__ me uska refernce milega, ab user call hoga toh usme proto hoga jo ki refernce hoga userMethods ka  jisse user -> userMethods ka method access kar paega and ab bas mthods ko access karne k liye -> user.about = userMethods.about;  nhi  linkhna padega  directly access kar paenge
+//     user.firstName = firstName;
+//     user.lastName = lastName;
+//     user.email = email;
+//     user.age = age;
+//     user.address = address;
+//     return user;
+// }
+
+// const user1 = createUser('harshit', 'vashsith', 'harshit@gmail.com', 9, "my address");
+// const user2 = createUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+// const user3 = createUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+// console.log(user1);   //-> {firstName: 'harshit', lastName: 'vashsith', email: 'harshit@gmail.com', age: 9, address: 'my address'}
+// console.log(user1.about());   //-> harshit is 9 years old.
+// console.log(user3.sing());  //-> toon na na na la la 
+
+
+// ==================================================================
+
+
+
+// function hello(){
+//     console.log("hello world");
+// }
+
+// javascript function ===> function  + object  (means fun ko bhi object jese access kar sakte hai )
+
+// name property ---> tells function name;
+// console.log(hello.name);   //-> name
+
+// you can add your own properties 
+// hello.myOwnProperty = "very unique value";      // jese object me key value pair add karte the yaha bhi kardiya
+// console.log(hello.myOwnProperty);   //-> very unique value
+
+
+// function provides more usefull properties.
+
+// hello ek constructor function hai, jisme prototype naam ki property hoti hai aur usme hum key–value pairs (shared methods) store kar sakte hain.
+// console.log(hello.prototype);   //->  {}   ye ek empty object hai 
+// 👉 hello.prototype ek object hota hai 👉 By default usme ek property hoti hai constructor 👉 constructor ki value wahi function hoti hai (hello) -> hello.prototype = { constructor: hello }, hello constructor function hai (kyunki normal function hai), Har constructor function ke paas ek prototype property hoti hai, prototype ek object hota hai , Us object me hum shared properties / methods add kar sakte hain
+
+// only functions provide prototype property
+
+// hello.prototype.abc = "abc";
+// hello.prototype.xyz = "xyz";
+// hello.prototype.sing = function(){
+//     return "lalalla";
+// };
+// console.log(hello.prototype.sing());   //-> lalalla
+// console.log(hello.prototype)   //-> {abc: 'abc', xyz: 'xyz', sing: ƒ}
+
+
+
+// const obj = {
+//     key1: "value1",
+// }
+// console.log(obj.prototype) //-> undefined so prototype bas function k sath hi milta hai 
+
+
+
+// ====================================================================
+
+
+// prototype 👉 Ye sirf function ke paas hota hai except arrow function  (har constructor function ke pass prototype naam ki property hoti hai aur usme hum key–value pairs (shared methods) functions, store kar sakte hain. )
+// __proto__ 👉 Ye har object ke paas hota hai ,jise hum reference se sare methods access kar paye 
+
+// function -> prototype        (expect arrow fun)
+// object -> __proto__  or [[Prototype]]
+
+
+// function createUser(firstName, lastName, email, age, address){   //Object.create -> empty object banata hai
+//     const user = Object.create(createUser.prototype);// {}   yaha pe createUser.prototype ki jagah object tha userMethods jise hum user k andhr jo __proto__ ke reference se sare methods access kar pa rhe the(bcz ) ab yaha pe direct prototype likh rhe cuz prototype me hum sab function dalne wale hai fhir user easily access kar paega bina koi aur bahar ke object ko use kiye
+    
+//  //  Object.create() -> iske andhr jo function ya object dalenge __proto__ me uska refernce milega
+//  //  so ye user ={} ko ab proto se   createUser.prototype(isme hum methods and key value pairs store kar sakte hai) ka refer kar paega and is se value acces kar paega 
+
+//     user.firstName = firstName;
+//     user.lastName = lastName;
+//     user.email = email;
+//     user.age = age;
+//     user.address = address;
+//     return user;
+// }
+// createUser.prototype.about = function(){
+//     return `${this.firstName} is ${this.age} years old.`;
+// };
+// createUser.prototype.is18 = function (){
+//     return this.age >= 18; 
+// }
+// createUser.prototype.sing = function (){
+//     return "la la la la ";
+// }
+
+
+// const user1 = createUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+// const user2 = createUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+// const user3 = createUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+// console.log(user1);  //-> createUser {firstName: 'harshit', lastName: 'vashsith', email: 'harshit@gmail.com', age: 18, address: 'my address'}
+// console.log(user1.is18());   //-> true
+
+
+
+// ========================================================================
+
+
+
+
+// new keyword 👉 new JS me ek naya object banata hai aur usse constructor function ke prototype se connect karta hai.
+// 1️⃣ Empty object banata hai   let obj = {}
+// 2️⃣ Us object ka [[Prototype]] (__proto__) set karta hai ->  obj.__proto__ = CreateUser.prototype  means   (iska matlab: agar obj me koi property/method nahi milegi,
+//     toh JS CreateUser.prototype me dhundega) ,    naye object k andhr jo proto hai woh (jisse hum ref leke value access karte hai usse yaha set kardiya jisse ab function k andhr jo value use access kar paenge  ) = CreateUser.prototype(isme hum methods and key value pairs store kar sakte hai) 
+// 3️⃣ Constructor function call karta hai ->  CreateUser.call(obj, firstName, lastName, email, age, address)  (yaha `this` = obj hota hai)
+// 4️⃣ Agar constructor kuch return nahi karta,  toh JS automatically `obj` return kar deta hai
+
+// 🔍 Ab step-by-step dekhte hain: new actually kya karta hai
+// const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+// 🧩 STEP 1: Empty object create hota hai -> user1 = {}
+
+// 🧩 STEP 2: Prototype link set hota hai  -> user1.__proto__ = CreateUser.prototype
+// means->  user1.is18   // pehle user1 me dhundega
+//             // nahi mila → CreateUser.prototype.is18
+//             user1.is18(); // kaam karta hai
+
+// 🧩 STEP 3: Constructor function call hota hai
+// CreateUser.call( user1, 'harshit', 'vashsith', 'harshit@gmail.com', 18, 'my address');     
+// Ab function ke andar: 
+// this.firstName = 'harshit';  // user1.firstName 
+// this.age = 18;              // user1.age        👉 Saari values user1 ke andar store ho jati hain
+
+// 🧩 STEP 4: Object return hota hai:-  return user1;
+//    console.log(user1);  pura objet
+
+
+// new = object creation + prototype linking + this binding
+// new sirf normal functions ke saath kaam karta hai ❌ Arrow functions ke saath nahi
+// this constructor ke andar new object ko refer karta hai
+
+// 1.) this = {}
+// 2.) return {} 
+//
+
+// __proto__ 
+// // official ecmascript document
 // [[prototype]]
 
-// __proto__ , [[prototype]]
+// constructor function 
+function CreateUser(firstName, lastName, email, age, address){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.age = age;
+    this.address = address;
+}
+CreateUser.prototype.about = function(){
+    return `${this.firstName} is ${this.age} years old.`;
+};
+CreateUser.prototype.is18 = function (){
+    return this.age >= 18; 
+}
+CreateUser.prototype.sing = function (){
+    return "la la la la ";
+}
 
 
-
-// prototype    
-
-const obj2 = Object.create(obj1); // {}
-// there is one more way to create empty object
-obj2.key3 = "value3";
-// obj2.key2 = "unique";
-console.log(obj2);
-
-console.log(obj2.__proto__);
+const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+const user2 = new CreateUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+const user3 = new CreateUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+console.log(user1);
+console.log(user1.is18());
