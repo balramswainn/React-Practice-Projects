@@ -60,6 +60,9 @@
 
 
 
+
+
+
 // ==============================================================================
 
 
@@ -113,9 +116,19 @@
 
 
 
+// function fun(){
+//     console.log("hello jerry",this)
+// }
+// fun.call()  //-> hello jerry Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+
+
+
+
 
 
 // ===========================================================
+
 
 // const user1 = {
 //     firstName : "harshit",
@@ -130,12 +143,14 @@
     
 // }
 
+
 // user1.about();  //-> harshit 8    👉 this = user1
 // user1.about.call(user2)  //-> mohit 9    
 // 👉 Rule: call(x) → function ke andar this = x      this === user2
 // call() function ko chalata hai aur function ke andar this ko kisi aur object se replace kar deta hai.means this ki value kya hogi call() k andhr likh sakte hai 
 
-// user1.about.call()  //-> undefined  undefined   bcz this ki value kya hogi humne defined hi nhi kiya empty choda hai
+// user1.about.call()  //-> undefined  undefined   bcz this ki value kya hogi humne defined hi nhi kiya empty choda hai(bcz user1.about -> about function hai ab about.call() hai so this undefined hogya ab if bas about() call karu toh undefined hi hota hai na yaha bas call hua if object k context me call karna hai toh andhr object likho)
+
 // user1.about.call(user1);  //-> harshit 8 
 
 
@@ -181,17 +196,22 @@
 // user1.about();  //-> harshit 8
 
 // function myFunc(){   console.log(this); }
-// myFunc(); -> window object  rule 👉 Function ko bina kisi object ke call kiya gaya hai, isliye this = window (browser me)
+// myFunc(); //-> window object  rule 👉 Function ko bina kisi object ke call kiya gaya hai, isliye this = window (browser me)
 
 
 
-// don't do this mistake 
+// //don't do this mistake 
 
-// const myFunc = user1.about;                // myFunc = function() {  console.log(this.firstName, this.age) };
+// const myFunc = user1.about;                           
+//                                                   //myFunc = function() {  console.log(this.firstName, this.age) };
 // myFunc()    //-> undefined undefined     //in simple user1.about -> function hai so sirf woh function store hoga myFunc mai but fhir woh fun me this hai uski value kya hogi ? this = current object    but ab koi object hi nhi so this = window  and window me koi firstname and age nhi hai so undefined
+
 
 // const myFunc = user1.about();  //-> harshit 8     bcz ye yaha pe call hogya hai and myFunc undefined aya bcz myFunc me kuch exist hi nhi karta 
 // console.log(myFunc)  //-> undefined       reason bcz uper humne console.log kiya hai yaha kuch value return nhi ho rhi hai if return hota toh woh value myFunc me jati
+
+
+
 
 
 // const ran=user1.about
@@ -224,7 +244,7 @@
 //     }   
 // }
 
-// user1.about();   //-> undefined undefined   bcz 👉 Arrow function ka this apna nahi hota, wo bahar wale scope se this le leta hai. and bahar wala scope toh window object hai  and winodw me firstname and age nhi hai so undefined 
+// user1.about();   //-> undefined undefined   bcz 👉 Arrow function ka this apna nahi hota, wo bahar wale scope se this le leta hai. and bahar wala scope toh window object hai  and window me firstname and age nhi hai so undefined 
 // so if parent scope ek object ho toh ? 👉 tab bhi window hi aayega — agar “parent” normal object ho. Arrow function sirf function-scope / lexical scope se this leta hai,object se nahi.
 
 // example:-
@@ -244,11 +264,13 @@
 //   };
 // }
 
-// const p = new Parent();
+// const p = new Parent(); // new => object banaega
+// console.log(p)  //-> Parent {firstName: 'Parent', age: 40, about: ƒ}
 // p.about(); // Parent 40   Kyu kaam kiya?  Arrow function ne this Parent function se lock kar liya  Ab call ka koi effect nahi
 
 // ❌ Object ke andar arrow → window
 // ✅ Function / constructor ke andar arrow → correct this
+
 
 
 // ===============================================================
@@ -363,7 +385,7 @@
 
 // obj2 me key2 toh hai nhi toh value kese aayi undefined kyu nhi aayi bcz humne uper ek connection bana liya tha jise obj2 me ye key nhi mili toh woh obj1 me dhundega
 // console.log(obj2.key2)  //-> value2
-//so ussse obj2 me nhi mila but js me  -> __proto__  hot hai usme reference hotahai ek object usme dhundt hai ye case me reference obj1 tha
+//so ussse obj2 me nhi mila but js me  -> __proto__  hota hai usme reference hotahai ek object usme dhundte hai ye case me reference obj1 tha
 
 // offical ecmascript documentation 
 // __proto__ = [[prototype]]    ye dono same hai 
@@ -410,7 +432,7 @@
 
 
 
-// __proto__ = k wajah se ab har object me hume method likhne ki jarurat nhi ek baar bana lo and usko use karo bina object me daalke like user.about = userMethods.about
+// __proto__ = k wajah se ab har object me hume method likhne ki jarurat nhi ek baar bana lo and usko use karo bina object me daalke like user1.about = userMethods.about
 
 // const userMethods = {
 //     about : function(){
@@ -452,7 +474,7 @@
 // javascript function ===> function  + object  (means fun ko bhi object jese access kar sakte hai )
 
 // name property ---> tells function name;
-// console.log(hello.name);   //-> name
+// console.log(hello.name);   //-> hello
 
 // you can add your own properties 
 // hello.myOwnProperty = "very unique value";      // jese object me key value pair add karte the yaha bhi kardiya
@@ -527,11 +549,11 @@
 
 
 // ========================================================================
+// uper hum ->  const user = Object.create(createUser.prototype);     ise hum ek new object bana rhe the  and uske __proto__ ko refernce de rhe the  contructor function k prototype k sath (means Us object ka __proto__ set kar rahe hain → createUser.prototype se) so-> new keyword exactly yahi 2 kaam karta hai (plus 2 aur) :-
 
 
 
-
-// new keyword 👉 new JS me ek naya object banata hai aur usse constructor function ke prototype se connect karta hai.
+// new keyword 👉 new JS me ek naya object banata hai aur usse constructor function ke prototype se connect karta hai. 
 // 1️⃣ Empty object banata hai   let obj = {}
 // 2️⃣ Us object ka [[Prototype]] (__proto__) set karta hai ->  obj.__proto__ = CreateUser.prototype  means   (iska matlab: agar obj me koi property/method nahi milegi,
 //     toh JS CreateUser.prototype me dhundega) ,    naye object k andhr jo proto hai woh (jisse hum ref leke value access karte hai usse yaha set kardiya jisse ab function k andhr jo value use access kar paenge  ) = CreateUser.prototype(isme hum methods and key value pairs store kar sakte hai) 
@@ -554,42 +576,423 @@
 // this.age = 18;              // user1.age        👉 Saari values user1 ke andar store ho jati hain
 
 // 🧩 STEP 4: Object return hota hai:-  return user1;
-//    console.log(user1);  pura objet
+//    console.log(user1);  pura object
 
 
 // new = object creation + prototype linking + this binding
 // new sirf normal functions ke saath kaam karta hai ❌ Arrow functions ke saath nahi
 // this constructor ke andar new object ko refer karta hai
 
-// 1.) this = {}
-// 2.) return {} 
-//
+// 1.) empty object banaega ={}            hum usme value fill karenge
+// 2.) wohi  object return karega {}    pehle hume khud return karna padta tha  -> return user 
+// 3.) __proto__ me value set kardega CreateCser.prototype
 
-// __proto__ 
-// // official ecmascript document
-// [[prototype]]
+// __proto__ isse official ecmascript document main esa likha hai [[prototype]]  dono same hai
 
-// constructor function 
-function CreateUser(firstName, lastName, email, age, address){
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.age = age;
-    this.address = address;
+// constructor function    -- C -> first letter capital 
+
+// function CreateUser(firstName, lastName, email, age, address){
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.email = email;
+//     this.age = age;
+//     this.address = address;
+// }
+// CreateUser.prototype.about = function(){
+//     return `${this.firstName} is ${this.age} years old.`;
+// };
+// CreateUser.prototype.is18 = function (){
+//     return this.age >= 18; 
+// }
+// CreateUser.prototype.sing = function (){
+//     return "la la la la ";
+// }
+
+
+// const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+// const user2 = new CreateUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+// const user3 = new CreateUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+// console.log(user1);   //-> CreateUser {firstName: 'harshit', lastName: 'vashsith', email: 'harshit@gmail.com', age: 18, address: 'my address'}
+// console.log(user1.is18());  //-> true
+
+
+
+
+
+// ==============================================================================
+
+// hasOwnProperty() -> 
+
+
+// function CreateUser(firstName, lastName, email, age, address){
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.email = email;
+//     this.age = age;
+//     this.address = address;
+// }
+// CreateUser.prototype.about = function(){
+//     return `${this.firstName} is ${this.age} years old.`;
+// };
+// CreateUser.prototype.is18 = function (){
+//     return this.age >= 18; 
+// }
+// CreateUser.prototype.sing = function (){
+//     return "la la la la ";
+// }
+
+
+// const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+// const user2 = new CreateUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+// const user3 = new CreateUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+
+
+// console.log(Object.getPrototypeOf(user1));   //-> {about: ƒ, is18: ƒ, sing: ƒ}   so ye methods use kar sakte hai
+
+// for(let key in user1){
+
+//     //console.log(key);  //->  firstName    lastName     email   age   address   about   is18    sing         (prototype jo function hai woh bhi agye key banke)
+
+//     if(user1.hasOwnProperty(key)){    // user1 ki khud ki property
+//         console.log(key);     //->    firstName    lastName     email   age   address        (isme protoype wale function nhi hai)
+//     }
+
+// }
+
+
+
+// ======================================================================
+
+// Jab tum likhte ho: let arr = [1, 2, 3, 5];
+
+// JavaScript engine kya karta hai? (simplified model)
+// Conceptually ye steps hote hain:
+
+// 1️⃣ Ek naya Array object create hota hai
+// 2️⃣ Uska [[Prototype]] → Array.prototype se link hota hai
+// 3️⃣ Elements 1,2,3,5 us object me store ho jaate hain
+// 4️⃣ length property set ho jaati hai
+
+// Isliye:  arr.__proto__ === Array.prototype // true   and  Array.prototype me sab array methods hai
+
+// Array literal ([]) internally new Array() jaisa behave karta hai,
+// but engine actually usse better & safer tareeke se create karta hai.
+
+
+
+// so  hum jo array k methods hai -> map,filter,some,concat...sab prototype se mil rhe hai ,wohijo hum function store kar rhe the and access ese -> user.prototype.somefun()
+// let numbers = [1,2,3];  
+// console.log(numbers);    //->   [1, 2, 3]
+// console.log(numbers.prototype); //-> undefined
+
+
+// // 1️⃣ Multiple values pass ki new Array(1, 2, 3); ✔️ Result: [1, 2, 3]
+// // 2️⃣ Sirf ek number passkiya new Array(5);       ⚠️ Result: [ <5 empty slots> ]  (length = 5, values nahi)
+// // Isliye best practice kya hai? ❌ Avoid:new Array(1,2,3)
+
+
+// let numbers2 = new Array(1,2,3)   //👉 Ek naya array banati hai jisme values hoti hain: numbers2 = [1, 2, 3];
+// console.log(numbers2)  //->   [1, 2, 3] 
+// console.log(numbers2.prototype); //-> undefined
+// console.log(Array.prototype);   //-> [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]   ye Array k prototype me sare methods hai
+
+// // but ye methods toh object mai hote hai ye array k andhr kyuhai bcz js me array bhi object hotehai
+ 
+// console.log(Object.getPrototypeOf(numbers));  //-> [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]  ye bhi prototype me kya hai bata dega 
+ // so jese hum constructor se new object banate the and uske prototype me sab methods hote the example:  Object.getPrototypeOf(user1));   //-> {about: ƒ, is18: ƒ, sing: ƒ}   
+ // array me wese uske methods hote hai jisse hum use kare logic lagete hai  ex:- numbers.map()
+
+// function hello(){
+//     console.log("hello");
+// }
+
+// console.log(hello.prototype)  //-> {} constructor:ƒ
+
+
+
+// =============================================================================
+
+
+
+
+// 2015 / es6 
+// class keyword 
+// class are fake
+
+// class is template for creating objects 
+// Class = constructor function + prototype methods (clean syntax) 👉 Matlab class koi naya concept nahi, bas syntax clean hai.
+// 3️⃣ Constructor se multiple objects ban rahe the, ❓ fir class kyu use ki? 
+// ✅ Reasons 
+// 🔹 1. Readability & Clean code   Class easy to read hai
+// class Car { start(){} stop(){} }     vs   Car.prototype.start = function(){}
+
+// 🔹 3. Built-in features
+// | Feature       | constructor           | class          |
+// | ------------- | --------------------- | -------------- |
+// | Constructor   | manual                | built-in       |
+// | Methods       | prototype me manually | auto prototype |
+// | Inheritance   | complex               | `extends`      |
+// | super keyword | ❌                     | ✅              |
+
+// 🔹 4. Inheritance easy ho jata hai
+
+// Constructor function se kaam ho jaata tha,
+// class use hoti hai because code clean, readable & maintainable hota hai
+
+
+
+
+// class CreateUser{
+//     constructor(firstName, lastName, email, age, address){
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.email = email;
+//         this.age = age;
+//         this.address = address;
+//     }
+
+//     about(){
+//         return `${this.firstName} is ${this.age} years old.`;
+//     }
+//     is18(){
+//         return this.age >= 18;
+//     }
+//     sing(){
+//         return "la la la la ";
+//     }
+
+// }
+
+
+// const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
+// const user2 = new CreateUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
+// const user3 = new CreateUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+
+// console.log(Object.getPrototypeOf(user1));  //-> {about: ƒ, is18: ƒ, sing: ƒ}  
+
+
+// =============================================================
+
+// class practice 
+
+// class Animal {
+//     constructor(name, age){
+//         this.name = name;
+//         this.age = age;
+//     }
+
+//     eat(){
+//         return `${this.name} is eating`;
+//     }
+
+//     isSuperCute(){
+//         return this.age <= 1;
+//     }
+
+//     isCute(){
+//         return true;
+//     }
+// }
+
+// class Dog extends Animal{
+    
+// } 
+
+ //object ka name hai tommy and hum dog class ka contructor call kar rhe hai but dog class ka yaha koi constructor nhi hai yaha, new consructor call karta hai but constructor nhi hai but hum Animal class se extend kar rhe hai so hum uska sb access kar sakte hai so tommy me add ho jaegi ye properties ( name ,age ) and animal wala constructor use hoga and if koi method nhi mili so js jis class me extend kar rhe hai waha dekhegi
+
+// const tommy = new Dog("tommy", 3);    
+// console.log(tommy);    //-> Dog {name: 'tommy', age: 3}
+// console.log(tommy.isCute());  //-> true
+// console.log(tommy.eat())  //-> tommy is eating
+
+
+
+// ========================================================================
+
+
+
+// // super 
+// class Animal {
+//     constructor(name, age){
+//         this.name = name;
+//         this.age = age;
+//     }
+
+//     eat(){
+//         return `${this.name} is eating`;
+//     }
+
+//     isSuperCute(){
+//         return this.age <= 1;
+//     }
+
+//     isCute(){
+//         return true;
+//     }
+// }
+
+// class Dog extends Animal{
+//     constructor(name, age, speed){
+//         super(name,age);
+//         this.speed = speed;
+//     }
+
+//     run(){
+//         return `${this.name} is running at ${this.speed}kmph`
+//     }
+// } 
+// // object / instance 
+// const tommy = new Dog("tommy", 3,45);
+// console.log(tommy.run());  //-> tommy is running at 45kmph
+
+
+
+// ======================================================
+
+
+
+
+// same method in subclass
+// class Animal {
+//     constructor(name, age){
+//         this.name = name;
+//         this.age = age;
+//     }
+
+//     eat(){
+//         return `${this.name} is eating`;
+//     }
+
+//     isSuperCute(){
+//         return this.age <= 1;
+//     }
+
+//     isCute(){
+//         return true;
+//     }
+// }
+
+// class Dog extends Animal{
+//     constructor(name, age, speed){
+//         super(name,age);
+//         this.speed = speed;
+//     }
+
+//     eat(){
+//         return `Modified Eat : ${this.name} is eating`
+//     }
+
+//     run(){
+//         return `${this.name} is running at ${this.speed}kmph`
+//     }
+// } 
+// // object / instance 
+// const tommy = new Dog("tommy", 3,45);
+// console.log(tommy.run());  //->tommy is running at 45kmph
+// console.log(tommy.eat());  //-> Modified Eat : tommy is eating        same method ho toh uper wale class me nhi jaega yaha se hi print karega
+
+// const animal1 = new Animal('sheru', 2);
+// console.log(animal1.eat());  //-> sheru is eating
+
+
+// console.log(Object.getPrototypeOf(animal1));  //-> {eat: ƒ, isSuperCute: ƒ, isCute: ƒ}
+
+
+
+
+// ----------------------------------
+
+
+//to find prototype
+
+// console.log(Object.getPrototypeOf(animal1));  //-> {eat: ƒ, isSuperCute: ƒ, isCute: ƒ}
+
+// function random(){
+    // console.log("hey")
+// }
+// console.log(random.prototype)  //-> {}   kuch add nhi kiya prototype mai
+
+// random.prototype.fun=function(){
+    // console.log("hey")
+// }
+// console.log(random.prototype) //-> {fun: ƒ}
+// console.log(Object.getPrototypeOf(random))   //-> ƒ () { [native code] }
+
+
+// let arr = [1,2,3,4]
+// console.log(arr.prototype) //-> undefined
+// console.log(Array.prototype) //-> [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]    sare methods hai
+
+
+
+// ============================================================
+
+
+// getter and setters 
+class Person{
+    constructor(firstName, lastName, age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`
+    }
+    set fullName(fullName){
+        const [firstName, lastName] = fullName.split(" ");
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
-CreateUser.prototype.about = function(){
-    return `${this.firstName} is ${this.age} years old.`;
-};
-CreateUser.prototype.is18 = function (){
-    return this.age >= 18; 
-}
-CreateUser.prototype.sing = function (){
-    return "la la la la ";
-}
 
 
-const user1 = new CreateUser('harshit', 'vashsith', 'harshit@gmail.com', 18, "my address");
-const user2 = new CreateUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
-const user3 = new CreateUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
-console.log(user1);
-console.log(user1.is18());
+const person1 = new Person("harshit", "sharma", 5);
+// console.log(person1.fullName());
+// console.log(person1.fullName);
+// person1.fullName = "mohit vashistha";
+// console.log(person1);
+
+
+
+// ==========================================================
+
+
+
+
+// static methods and properties
+// class Person{
+//     constructor(firstName, lastName, age){
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.age = age;
+//     }
+//     static classInfo(){
+//         return 'this is person class';
+//     }
+//     static desc = "static property";
+//     get fullName(){
+//         return `${this.firstName} ${this.lastName}`
+//     }
+//     set fullName(fullName){
+//         const [firstName, lastName] = fullName.split(" ");
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//     }
+//     eat(){
+//         return `${this.firstName} is eating`;
+//     }
+
+//     isSuperCute(){
+//         return this.age <= 1;
+//     }
+
+//     isCute(){
+//         return true;
+//     }
+// }
+
+// const person1 = new Person("harshit", "sharma", 8);
+// // // console.log(person1.eat());
+// // const info = Person.classInfo();
+// // console.log(person1.desc);
+// // console.log(info);
