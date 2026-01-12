@@ -903,7 +903,7 @@
 // ----------------------------------
 
 
-//to find prototype
+//to find prototype   ( function pe direclty milega , Object k liye ek method likkhna padega)
 
 // console.log(Object.getPrototypeOf(animal1));  //-> {eat: ƒ, isSuperCute: ƒ, isCute: ƒ}
 
@@ -928,29 +928,52 @@
 // ============================================================
 
 
+
+
+// 👉 Getter: Object ki value read / get karne ka method     .. but can get as a object property not as function 
+// 👉 Setter: Object ki value change / set karne ka method
+
 // getter and setters 
-class Person{
-    constructor(firstName, lastName, age){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-    get fullName(){
-        return `${this.firstName} ${this.lastName}`
-    }
-    set fullName(fullName){
-        const [firstName, lastName] = fullName.split(" ");
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-}
+// class Person{
+//     constructor(firstName, lastName, age){
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.age = age;
+//     }
+//     myNameDemo(){    //demo  normal method
+//         return `${this.firstName} ${this.lastName}`
+//     }
+//     get fullName(){
+//         return `${this.firstName} ${this.lastName}`
+//     }
+//     changeDemo(firstName,lastName){   //demo change karne ka normal method
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//     }
+//     set fullName(fullName){
+//         const [firstName, lastName] = fullName.split(" ");   //fullName ko split kiya fhir use array destructure
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//     }
+// }
 
 
-const person1 = new Person("harshit", "sharma", 5);
-// console.log(person1.fullName());
-// console.log(person1.fullName);
-// person1.fullName = "mohit vashistha";
-// console.log(person1);
+// const person1 = new Person("harshit", "sharma", 5);
+// console.log(person1.myNameDemo());  //-> harshit sharma    ( method ko call karte the pehle esa )
+
+// console.log(person1.fullName);    //-> harshit sharma     (get k wajah se isse as a object property k tarah access kar pa rhe hai bina call kiye )
+// console.log(person1.fullName());    //   TypeError: person1.fullName is not a function   ye function nhi hai property ban gya hai
+
+
+
+// person1.changeDemo("balram","swain");   // (if value change karmi ho toh)
+// console.log(person1)        //-> Person {firstName: 'balram', lastName: 'swain', age: 5}    
+
+// person1.fullName = "mohit vashistha";      //  (set k wajah se value bhi change kar sakte hai bcz as a object property access hua so uski tarah change bhi hosakta hai)
+// console.log(person1);           //-> Person {firstName: 'mohit', lastName: 'vashistha', age: 5}  Lagta hai jaise simple property assign kar rahe ho → cleaner & natural 👉 User ko ye nahi pata hota andar kya logic hai
+
+// Normal method se value change ho sakti hai,Setter isliye use hota hai kyunki wo property jaisa behave karta hai + rules enforce karta hai.
+// 2️⃣ Abstraction (andar ka logic chhupa rehta hai) 3️⃣ Control & Validation Setter me tum rule laga sakte ho: Normal method me log directly galat data bhej denge.
 
 
 
@@ -960,39 +983,56 @@ const person1 = new Person("harshit", "sharma", 5);
 
 
 // static methods and properties
-// class Person{
-//     constructor(firstName, lastName, age){
-//         this.firstName = firstName;
-//         this.lastName = lastName;
-//         this.age = age;
-//     }
-//     static classInfo(){
-//         return 'this is person class';
-//     }
-//     static desc = "static property";
-//     get fullName(){
-//         return `${this.firstName} ${this.lastName}`
-//     }
-//     set fullName(fullName){
-//         const [firstName, lastName] = fullName.split(" ");
-//         this.firstName = firstName;
-//         this.lastName = lastName;
-//     }
-//     eat(){
-//         return `${this.firstName} is eating`;
-//     }
+// 👉 A static method belongs to the class itself, not to its objects, and can be called directly using the class name without creating an instance.
 
-//     isSuperCute(){
-//         return this.age <= 1;
-//     }
+class Person{
+    constructor(firstName, lastName, age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    static classInfo(){
+        return 'this is person class';
+    }
+    static desc = "static property";
+   
+    eat(){
+        return `${this.firstName} is eating`;
+    }
 
-//     isCute(){
-//         return true;
-//     }
-// }
+   
+}
 
 // const person1 = new Person("harshit", "sharma", 8);
-// // // console.log(person1.eat());
-// // const info = Person.classInfo();
-// // console.log(person1.desc);
-// // console.log(info);
+// console.log(person1.eat());  //-> harshit is eating
+
+// const info = Person.classInfo();
+// console.log(info);  //->this is person class
+
+console.log(Person.desc)  //-> static property
+
+// console.log(person1.desc);  //-> undefined    bcz static method belongd directly to class , object ko nhi so bina instance create kiya directly object se call hota hai
+ 
+
+
+
+class Demo{
+    constructor(name,age){
+        this.name = name
+        this.age = age
+    }
+   
+    static demo3(){
+        return `hey ${this.name}`
+    }
+    static demo4(){
+        return `hey without this`
+    }
+
+
+}
+
+const demo1 = new Demo("balram","swain")
+
+console.log(Demo.demo3())  //-> hey Demo     ( Static method me this object ko nahi, class ko refer karta hai.)
+console.log(Demo.demo4())  //-> hey without this
