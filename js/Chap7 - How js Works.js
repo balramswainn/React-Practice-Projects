@@ -114,7 +114,7 @@
 
 
 
-// 🔹 PHASE 1: Creation Phase (Memory Creation)
+// 🔹 PHASE 1: Memory Creation Phase 
 // Is phase me code execute nahi hota, sirf memory allocate hoti hai.
 
 // JS engine kya karta hai:
@@ -122,7 +122,7 @@
 // 2️⃣ Memory Creation Phase
 //  Memory allocate karta hai:
 //     1. Variables → undefined
-//     2. Functions → poora function, memory me store hota ha
+//     2. Functions → poora function definition, memory me store hota ha (only applys to function declaration) baki sab undefined hi store karenge
 
 // Example: console.log(a); var a = 10;
 // Creation phase me:   a = undefined
@@ -254,6 +254,7 @@
 
 
 
+
 let foo = "foo";
 console.log(foo); //-> foo
 
@@ -269,7 +270,7 @@ const personName = getFullName("harshit", "sharma");      // yaha function call 
 console.log(personName);     //-> harshit sharma
 
 
-// 1. memory creation phase :- 
+// 1. memory creation phase :- 👉 Memory creation phase me koi function call hota hi nahi.Memory creation phase ka kaam sirf memory allocate karna hota hai
 // window: {}
 // this: window
 // foo : uninitialised
@@ -278,8 +279,8 @@ console.log(personName);     //-> harshit sharma
 
 // 2. execution phase :-
 // foo : foo            
-// getFullName : function definition   
-// personName : uninitialised        //ab yaha pe ye function k liye Function Execution Context chalega 
+// getFullName : function definition     //Kuch bhi execute nahi hota. Function sirf memory me available rehta hai, jab tak usko explicitly call na kiya jaye.
+// personName : uninitialised      //function call hua so ab yaha pe ye function k liye Function Execution Context chalega 
 
 
 
@@ -320,14 +321,24 @@ console.log(personName);     //-> harshit sharma
 // lexical environment, scope chain
 
 // Lexical environment = own variables + outer (parent) reference
-// Lexical environment me current scope ke variables hote hain aur parent scope ka reference hota hai.
-//A lexical environment is where JavaScript stores variables and functions for a scope along with a reference to its parent scope.
+// Lexical environment is the current scope of a function along with references to its parent scopes, determined by where the code is written.
+
+
 
 
 // Lexical Scope 
 // Lexical scope means JavaScript determines variable access based on where the code is written, not where it is executed.
 
-// Lexical environment defines variable scope using environment records and outer scope references.
+
+// Lexical Scope → rule
+
+// Variables are accessible based on where the code is written.
+
+// Lexical Environment → mechanism / structure
+
+// The actual place where variables and references are stored.
+
+
 // Lexical Environment is where JavaScript keeps variables and functions and decides from which scope a variable can be accessed.
 // “Code jahan likha hai, JS wahi se variables dhoondhta hai.”
 // A lexical environment consists of an environment record (variables/functions) and a reference to its outer lexical environment, which enables scope chaining.
@@ -335,7 +346,7 @@ console.log(personName);     //-> harshit sharma
 
 // const lastName = "Vashistha";            //uninitialized -> Vashistha
 
-// const printName = function(){              // yaha pe ye const and function expression hai isliye memory creation phase me ye uninitialized hogyi fhir execution phase me ye function hoga 
+// const printName = function(){      // yaha pe ye const and function expression hai isliye memory creation phase me ye uninitialized hogyi fhir execution phase me ye function hoga 
 //     const firstName = "harshit";        //fec -> uninitialized -> harshit
 //         console.log(firstName);
 //         console.log(lastName);   // ab yaha toh lastName define nhi hai toh kaha se laega ye FEC hai iske bahar GEC hai so waha se laega uske lexical environment se aur ye tab tak dekhte raheg jab tak hum GEC tak pahuch nhi jate
@@ -360,3 +371,9 @@ console.log(personName);     //-> harshit sharma
     
 // }
 // printName();
+
+
+
+
+
+
