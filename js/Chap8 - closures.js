@@ -3,6 +3,9 @@
 
 // A closure is a function that has access to its lexical scope even after the parent scope has finished executing.
 
+// Lexical environment is the current scope of a function along with references to its parent scopes, determined by where the code is written.
+//  Lexical scope means JavaScript determines variable access based on where the code is written, not where it is executed.
+
 
 // function can return functions
 
