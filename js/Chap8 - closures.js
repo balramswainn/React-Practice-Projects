@@ -121,3 +121,5 @@
 // const myFunc = func();
 // myFunc();   //->Hi You Called me
 // myFunc();   //->Mai already ek bar call ho chuka hoon!
+
+

@@ -255,19 +255,19 @@
 
 
 
-let foo = "foo";
-console.log(foo); //-> foo
+// let foo = "foo";
+// console.log(foo); //-> foo
 
-function getFullName(firstName, lastName){
-    console.log(arguments);                 //->Arguments(2) ['harshit', 'sharma', callee: ƒ, Symbol(Symbol.iterator): ƒ]
-    let myVar = "var inside func";         //-> var inside func
-    console.log(myVar);
-    const fullName = firstName + " " + lastName;
-    return fullName;
-}
+// function getFullName(firstName, lastName){
+//     console.log(arguments);                 //->Arguments(2) ['harshit', 'sharma', callee: ƒ, Symbol(Symbol.iterator): ƒ]
+//     let myVar = "var inside func";         //-> var inside func
+//     console.log(myVar);
+//     const fullName = firstName + " " + lastName;
+//     return fullName;
+// }
 
-const personName = getFullName("harshit", "sharma");      // yaha function call hua so js ek naya execution context banata hai so isi ko Function Execution Context kehte hain.
-console.log(personName);     //-> harshit sharma
+// const personName = getFullName("harshit", "sharma");      // yaha function call hua so js ek naya execution context banata hai so isi ko Function Execution Context kehte hain.
+// console.log(personName);     //-> harshit sharma
 
 
 // 1. memory creation phase :- 👉 Memory creation phase me koi function call hota hi nahi.Memory creation phase ka kaam sirf memory allocate karna hota hai
