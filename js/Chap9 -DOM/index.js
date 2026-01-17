@@ -241,20 +241,263 @@
 //classlist
 
 
-const sectionTodo = document.querySelector(".section-todo");      //-> <section class="section-todo container">...<section>
-console.log(sectionTodo.classList);         //-> DOMTokenList(2) ['section-todo', 'container', value: 'section-todo container']
+// const sectionTodo = document.querySelector(".section-todo");      //-> <section class="section-todo container">...<section>
+// console.log(sectionTodo.classList);         //-> DOMTokenList(2) ['section-todo', 'container', value: 'section-todo container']     // bas 2 class hai 
 
-sectionTodo.classList.add('bg-dark');
-sectionTodo.classList.remove("container");
-console.log(sectionTodo.classList);         //-> DOMTokenList(2) ['section-todo', 'bg-dark', value: 'section-todo bg-dark']
+// sectionTodo.classList.add('bg-dark');
+// sectionTodo.classList.remove("container");
+// console.log(sectionTodo.classList);         //-> DOMTokenList(2) ['section-todo', 'bg-dark', value: 'section-todo bg-dark']
 
-const ans = sectionTodo.classList.contains("container");
-console.log(ans);                   //-> false
+// const ans = sectionTodo.classList.contains("container");
+// console.log(ans);                   //-> false    
 
-sectionTodo.classList.toggle("bg-dark");
+// sectionTodo.classList.toggle("bg-dark");   // jo class hai hata deta hai and nhi hai toh add kardeta hai
+// console.log(sectionTodo.classList)
 
-const header = document.querySelector(".header");    //-><header class="header bg-dark">...</header>
+// const header = document.querySelector(".header");    //-><header class="header bg-dark">...</header>
 
 
-header.classList.add("bg-dark");
-console.log(header.classList);   //-> DOMTokenList(2) ['header', 'bg-dark', value: 'header bg-dark']
+// header.classList.add("bg-dark");
+// console.log(header.classList);   //-> DOMTokenList(2) ['header', 'bg-dark', value: 'header bg-dark']
+
+
+
+
+
+// ===========================================================
+
+
+// difference between innerHTML,innerText,textContent
+
+// const todoList = document.querySelector(".todo-list");
+
+// console.log(todoList.innerHTML)    
+//       //  <li>
+//       //     <span class="text">Do this do that</span>
+//       //     <div class="todo-buttons">
+//       //       <button class="todo-btn done">Done</button>
+//       //       <button class="todo-btn remove">Remove</button>
+//       //     </div>
+//       //   </li>
+// console.log(todoList.textContent)   //->   Do this do that          Done        Remove
+// console.log(todoList.innerText)  //-> Do This Do That        Done Remove
+
+
+// | Property        | What it returns          | Special Behavior                   |
+// | --------------- | ------------------------ | ---------------------------------- |
+// | **innerText**   | Only visible text        | Ignores hidden text & respects CSS |
+// | **innerHTML**   | Full HTML inside element | Includes tags and formatting       |
+// | **textContent** | All text inside element  | Includes hidden text, ignores CSS  |
+
+
+
+
+// ------------------
+
+
+
+
+// Add new HTML elements to page 
+
+
+// innerHTML to add html element
+
+// const todoList = document.querySelector(".todo-list");
+// console.log(todoList.innerHTML)    //->  pura html elements print hoga        <li>   </li>
+
+// todoList.innerHTML = "<li>New Todo 2 </li>"
+// console.log(todoList)                                      //-> <ul class="todo-list"> <li>New Todo 2 </li> </ul>
+// todoList.innerHTML += "<li>New Todo </li>";              //jo pehli html elemts thi woh and aghe jo add kareunga
+// todoList.innerHTML += "<li>teach students </li>";
+// console.log(todoList)                                      //-> <ul class="todo-list"> <li>New Todo 2 </li><li>New Todo </li><li>teach students </li> </ul>
+// console.log(todoList.innerHTML)     //-> <li>New Todo 2 </li><li>New Todo </li><li>teach students </li>
+
+// when you should use it , when you should not
+// todoList.insertAdjacentElement("afterbegin", '<li>Hi</li>')
+
+
+
+
+
+// =========================================
+
+
+
+// document.createElement()   element create kar sakte hai
+// append(last), prepend(start), remove
+
+
+
+// const newTodoItem = document.createElement("li");       //-> <li></li>
+// const newTodoItemText = document.createTextNode("Teach students");   //-> "Teach students"
+// // or
+// newTodoItem.textContent = "Teach students";
+// console.log(newTodoItem)                        //-> <li>Teach students</li>
+
+
+// const todoList = document.querySelector(".todo-list");           
+// console.log(todoList) 
+//  /*<ul class="todo-list">
+//         <li>
+//           <span class="text">Do this do that</span>
+//           <div class="todo-buttons">
+//             <button class="todo-btn done">Done</button>
+//             <button class="todo-btn remove">Remove</button>
+//           </div>
+//         </li>
+//       </ul> */
+
+// todoList.prepend(newTodoItem);     //ek element start me add hoga
+// console.log(todoList) 
+
+// {/* <ul class="todo-list">
+//         <li>Teach students</li>                
+//         <li>
+//           <span class="text">Do this do that</span>
+//           <div class="todo-buttons">
+//             <button class="todo-btn done">Done</button>
+//             <button class="todo-btn remove">Remove</button>
+//           </div>
+//         </li>
+//       </ul> */}
+
+
+
+// const todo1 = document.querySelector('.todo-list li');         //-> <li>Teach students</li>
+// todo1.remove();
+// console.log(todoList)         //-> wo <li>Teach students</li>  remove ho jaega
+
+
+// -----------------------
+// before 
+// after
+
+// const newTodoItem = document.createElement("li");
+// newTodoItem.textContent = "Teach students";
+// const todoList = document.querySelector(".todo-list");
+// todoList.after(newTodoItem);      //-> <ul class="todo-list"></ul>    iska baad print hoga  ->  Teach students
+// todoList.before(newTodoItem);     //-> <ul class="todo-list"></ul>    iska baad print hoga  -> Teach students
+
+
+
+
+
+
+// ========================================================
+
+
+
+// element.insertAdjacentHTML(where, html)    uper kesa pehle li banao fhir usse prepend ,append karo yaha direct ho sakta hai
+
+// beforebegin
+// afterbegin;
+// beforeend;
+// afterend;
+
+// const todoList = document.querySelector(".todo-list");
+
+// todoList.insertAdjacentHTML("beforeend", "<li>Teach Students </li>");       //->ul element k andhr last me add hoga  ... ui me show hoga console me nhi
+// todoList.insertAdjacentHTML("afterbegin", "<li>Teach Students </li>");      //->ul element k andr pehle add hoga  
+
+// todoList.insertAdjacentHTML("afterend", "<li>Teach Students </li>");        //->ul element k baad me add hoga  
+// todoList.insertAdjacentHTML("beforebegin", "<li>Teach Students </li>");     //->ul element k pehle me add hoga  
+
+
+
+
+
+
+
+// =========================================
+
+
+// clone nodes (clone karna ho toh)
+
+// const ul = document.querySelector(".todo-list");
+// const li = document.createElement("li");
+// li.textContent = "new todo";    //-> <li>new todo</li>
+
+// const li2 = li.cloneNode(true); //-> <li>new todo</li>        true means deep cloning hogi child bhi hogi means uska andhr ka text nhi toh bas <li>
+
+// ul.append(li);         //->ul element k andr pehle add hoga        <li>new todo</li>
+// ul.prepend(li2);       //->ul element k andhr last me add hoga    <li>new todo</li>
+
+
+
+//========================================
+
+
+// some old methods to support poor IE
+// appendChild;
+// insertBefore;
+// replaceChild;
+// removeChild
+
+
+// const ul = document.querySelector(".todo-list");
+
+// // new element
+// const li = document.createElement("li");
+// li.textContent = "new todo";
+
+
+// const referenceNode = document.querySelector(".first-todo");
+
+// ul.insertBefore(li,referenceNode)     // ul k andhr jo bhi referenceNode humne select kiya uske pehle print hoga
+// // ul.removeChild(referenceNode);       //  first-todo remove ho jaega
+// ul.appendChild(li,referenceNode)     // ul k andhr jo bhi referenceNode humne select kiya uske baadme print hoga
+// ul.replaceChild(li,referenceNode)     // ul k andhr jo bhi referenceNode humne select kiya woh hat jaega li aajega uske jagah
+
+
+
+
+
+// =========================================
+// static list  vs  live list
+
+// querySelectorAll will give  static list 
+// getElementsBySomthing(class,tagname) will give live list
+
+
+//first added 4 <li> in html page NodeList(5) [li.first-todo, li, li, li, li]
+
+
+
+// const ul = document.querySelector(".todo-list");
+// const listItems = ul.getElementsByTagName("li");    //ul k andhr jitne bhi li hai
+// console.log(listItems)        //->   HTMLCollection(5) [li.first-todo, li, li, li, li]      
+
+// const sixthLi = document.createElement("li");
+// sixthLi.textContent = "item 6";
+
+// ul.append(sixthLi);
+// console.log(listItems);      //->  HTMLCollection(6) [li.first-todo, li, li, li, li, li]   last me add hogya 
+
+// or
+
+
+// const ul = document.querySelector(".todo-list");
+// const listItems = ul.querySelectorAll("li");    //ul k andhr jitne bhi li hai
+// console.log(listItems)        //->   NodeList(5) [li.first-todo, li, li, li, li]        
+
+// const sixthLi = document.createElement("li");
+// sixthLi.textContent = "item 6";
+
+// ul.append(sixthLi);
+// console.log(listItems);      //->  NodeList(5) [li.first-todo, li, li, li, li]   last li toh add kiya tha (ui me hua) but yaha show nhi ho rha hai  bcz ye static list hai
+
+
+
+
+// =========================================
+
+
+// how to get the dimension of element
+// height width 
+const sectionTodo = document.querySelector(".section-todo");
+const info = sectionTodo.getBoundingClientRect();
+console.log(info);       //-> DOMRect {x: 29.65625, y: -7.8125, width: 533.6875, height: 444.46875, top: -7.8125, …}
+
+
+
+//====================================================
