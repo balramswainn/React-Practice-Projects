@@ -494,10 +494,339 @@
 
 // how to get the dimension of element
 // height width 
-const sectionTodo = document.querySelector(".section-todo");
-const info = sectionTodo.getBoundingClientRect();
-console.log(info);       //-> DOMRect {x: 29.65625, y: -7.8125, width: 533.6875, height: 444.46875, top: -7.8125, …}
+// const sectionTodo = document.querySelector(".section-todo");
+// const info = sectionTodo.getBoundingClientRect();
+// console.log(info);       //-> DOMRect {x: 29.65625, y: -7.8125, width: 533.6875, height: 444.46875, top: -7.8125, …}
 
 
 
 //====================================================
+
+
+// intro to events
+// click 
+// event add karne ke 3 tarike hai 
+
+
+// const btn = document.querySelector(".btn-headline");
+// // method --- addEventListener
+
+// btn.addEventListener("click", function(){   
+//     console.log("you clicked me !!!!");
+// });
+
+
+// btn.addEventListener("click", ()=>{          //arrow function
+//     console.log("arrow function !!!")
+// });
+
+
+
+// ===================
+
+
+// this keyword in eventlistener
+
+// const btn = document.querySelector(".btn-headline");
+
+// btn.addEventListener("click",function(){
+//     console.log("you clicked me !!!!");                    //-> you clicked me !!!!
+//     console.log("value of this")                 //-> value of this
+//     console.log(this);       //-> <button class="btn btn-headline">Learn More</button>         this ki value ye element hi hogi
+// });
+
+
+// btn.addEventListener("click",()=>{
+//     console.log(this);       //-> Window {window: Window, self: Window, document: document, name: '', location: Location, …} cuz ye arrow function tha
+// });
+
+
+
+// ==============================================================
+
+
+
+
+
+// for this ek new page banaya hai -> clickEvent.html usme jake liveserver on kar to view
+
+// const allButtons = document.querySelectorAll(".my-buttons button");
+// console.log(allButtons)      //->NodeList(3)0: button#one1: button#two2: button#threelength: 3[[Prototype]]: NodeList
+                             //-> NodeList(3) [button#one, button#two, button#three]                
+
+
+// for(let index of allButtons){
+
+//    index.addEventListener('click',function(){
+//     console.log(this)                         //<button id="two">My Button Two</button>     jis button pe click karo uska pura element dedega cuz of this
+//     console.log(this.textContent)             // My Button Two        button k andhr ka text
+//    })
+
+// //    or
+
+// //    index.addEventListener('click',()=>{           //arrow function
+// //     console.log(this)                            //-> Window {window: Window, self: Window, document: document, name: '', location: Location, …}        
+// //    }) 
+
+// }
+
+// for(let i = 0 ; i< allButtons.length; i++){
+//     allButtons[i].addEventListener("click", function(){
+//         console.log(this);             //-> <button id="three">My Button three</button>
+//     })
+// }
+
+// allButtons.forEach(function(button){
+//     button.addEventListener("click", function(){
+//         console.log(this);              //-> <button id="three">My Button three</button>
+//         });
+// })
+
+
+
+
+
+// =================================================================================
+
+
+// for this ek new page banaya hai -> clickEvent.html usme jake liveserver on kar to view
+
+
+
+// event object 
+// const firstButton = document.querySelector("#one");
+
+
+// firstButton.addEventListener("click", function(event){
+//     console.log(event);    //-> PointerEvent {isTrusted: true, pointerId: 3, width: 1, height: 1, pressure: 0, …}   pura object mil jaega jisse you can access all the prop
+// })
+
+// jab bhi mai kisi bhi element pe event listener add hoga 
+// js Engine --- line by line execute karta hai 
+// browser ---- js Engine + extra features 
+// browser ----- js Engine + WebApi
+
+// jab browser ko pata chala ki user ne event perform kia 
+// jo hum listen kar rahe hai 
+// browser ----- 2 
+// 1.) callback function hai vo js Engine ko degi ...... 
+// 2.)  callback function ke sath browser jo event hua hai uski information bhi dega
+// ye info hamein ek object ke form mai milegi 
+
+
+
+
+// 🔹 Difference in Simple Words
+
+// target → jis element pe click hua
+// currentTarget → jis element pe listener laga hai
+
+// Agar click aur listener same element pe hai → output same
+// Agar click child pe hai aur listener parent pe hai → output different
+
+// const allButtons = document.querySelectorAll(".my-buttons button");
+
+
+// for(let button of allButtons){
+//     button.addEventListener("click",(e)=>{
+//         console.log(e.currentTarget);           //-><button id="one">My Button one</button>
+//         console.log(e.target);           //-><button id="one">My Button one</button>
+//     })
+// }
+
+
+
+
+
+// ======================================================
+
+// for this ek new page banaya hai -> clickEvent.html usme jake liveserver on kar to view
+
+
+
+// console.log("script start !!!!!")
+// const allButtons = document.querySelectorAll(".my-buttons button"); //-> NodeList(3) [button#one, button#two, button#three]
+
+
+// allButtons.forEach((button)=>{                //jab button click hoga tab chalega
+//     button.addEventListener("click", (e)=>{
+//         let num = 0;
+//         for(let i = 0; i<= 1000000000; i++){      //It calculates the sum of numbers from 0 to 1 billion.    100cr = 1billion
+//             num += i;
+//         }
+//         console.log(e.currentTarget.textContent, num);
+//     })
+// })
+
+// let outerVar = 0;
+// for(let i = 0; i<= 100000000; i++){
+//     outerVar += i;
+// }
+// console.log("value of outer variable is ", outerVar);
+// console.log("script end !!!!!")
+
+// Ye code page load hote hi kuch heavy calculations karta hai aur buttons pe click hone par bhi heavy calculation karta hai, jisse JavaScript ka single-threaded behavior samajh aata hai.
+// JavaScript single-threaded hai, isliye jab heavy loop chal raha hota hai, tab button clicks wait karte hain.
+
+
+
+// ✅ Browser = JavaScript Engine + Web APIs    
+// The browser runs JavaScript using a JS engine and provides extra capabilities through Web APIs.
+
+// 🔹 JavaScript Engine :- JS code ko run karta hai ,  Example: V8 (Chrome), SpiderMonkey (Firefox)
+
+// 🔹 Web APIs :- Browser provide karta hai extra,   features: DOM API → document.getElementById(), Timers API → setTimeout(), Fetch API → fetch(), Local Storage, Geolocation, etc
+// Web APIs are browser-provided features that allow JavaScript to interact with the DOM, timers, network requests, and other browser capabilities.
+
+// Callback Queue: The callback queue holds callback functions (like event handlers and setTimeout) waiting to be executed.
+
+// Event Loop: The event loop continuously checks whether the call stack is empty and then moves tasks from the callback queue to the call stack for execution.
+
+// 1. code run -> GEC 
+// 2. so buttons memory phase me hai allButtons = NodeList(3) [button#one, button#two, button#three] 
+// 3. so hume listen karna hai , user jab button click karega but js ye kaam nhi karegi bcz its a single threaded hai js ko aur bhi code execute karni hai so js browser se help letahai and bolega user jab click karega muje callback function dedena and Browser k pass api hoti hai jo provide karti hai extra features  humne lagaya hai na  button.addEventListener jo js ko callback dega jab button click hoga ... so js aghe ka code run karega 
+// 4. so now user button click kiya toh directly call stack nhi jata sab button callback queue me jata hai and wait karte hai jab call stack empty hoga tab event loop call stack se btns ko call stack me move karega (GEC chal rha hota hai jab GEC khtm tab bhejega pehle btn1 ko fhir woh execute hoga then btn2 ko )
+
+//                          ┌────────────────────┐
+//                          │      Web APIs      │
+//                          │────────────────────│
+//                          │ setTimeout()       │
+//                          │ DOM Events         │
+//                          │ fetch()            │
+//                          └─────────┬──────────┘
+//                                    │
+//                                    │ callbacks
+//                                    ▼
+// ┌───────────────┐   checks   ┌──────────────┐   pushes   ┌─────────────────┐
+// │  Call Stack   │ ◀───────── │  Event Loop  │ ─────────▶│  Callback Queue │
+// │───────────────│            │              │            │─────────────────│
+// │ main()        │            │              │            │ click handlers  │
+// │ functions     │            │              │            │ timer callbacks │
+// └───────────────┘            └──────────────┘            └─────────────────┘
+
+
+
+// ================================================
+
+// style
+
+
+// // little practice with click event
+// const allButtons = document.querySelectorAll(".my-buttons button")
+// // console.log(allButtons.length);
+
+// allButtons.forEach(button =>{
+//     button.addEventListener("click", (e)=>{
+//         // console.log(e.target);
+//         e.target.style.backgroundColor = "yellow";
+//         e.target.style.color = "#333";
+//     })
+// })
+
+
+
+
+// ====================================================
+
+// random color generator
+//pehle little-demo me ja   ke live server chalu karo usme html ka code hai
+
+
+
+
+// const mainButton = document.querySelector("button");   //-> <button id="one">My Button one</button>
+// console.log(mainButton)
+// const body = document.body; 
+// console.log(body)      //-> <body>...</body>
+
+
+// const currentColor = document.querySelector(".current-color");
+
+// function randomColorGenerator(){
+//     const red = Math.floor(Math.random() * 256);
+//     const green = Math.floor(Math.random() * 256);
+//     const blue = Math.floor(Math.random() * 256);
+//     const randomColor = `rgb(${red}, ${green}, ${blue})`
+//     return randomColor;
+// }
+
+// mainButton.addEventListener("click",()=>{
+//     const randomColor = randomColorGenerator();
+//     body.style.backgroundColor = randomColor;
+//     currentColor.textContent = randomColor;
+// })
+
+
+
+
+// =====================================================================
+
+// keypress event  : - pure body me koi bhi key press kare muje pata lagna chahiye ( keyboard me koi bhi letter type karu woh dega)
+// mouseover event :- jese hi hover karu toh trigger hoga
+// const body = document.body;
+
+
+// keypress event
+// body.addEventListener("keypress", (e) => {
+//     console.log(e.key)  //-> s
+//   console.log(e); //-> KeyboardEvent {isTrusted: true, key: 's', code: 'KeyA', location: 0, ctrlKey: false, …}
+// });
+
+
+// const mainButton = document.querySelector(".btn-headline");
+// console.log(mainButton);         //->  <button class="btn btn-headline">Learn More</button>
+
+// mainButton.addEventListener("mouseover", () => {
+//   console.log("mouseover event ocurred!!!");
+// });
+
+// mainButton.addEventListener("mouseleave", () => {
+//   console.log("mouseleave event ocurred!!!");
+// });
+
+
+
+
+
+// ================= go to Folder Event-Bubbling-Capturing-Delegation================
+
+// uske baad ye ==============================================
+
+
+
+
+
+
+
+// const todoForm = document.querySelector(".form-todo");
+// const todoInput = document.querySelector(".form-todo input[type='text']");
+// const todoList = document.querySelector(".todo-list");
+
+// todoForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const newTodoText = todoInput.value;
+//   const newLi = document.createElement("li");
+//   const newLiInnerHtml = `
+//         <span class="text">${newTodoText}</span>
+//         <div class="todo-buttons">
+//             <button class="todo-btn done">Done</button>
+//             <button class="todo-btn remove">Remove</button>
+//         </div>`;
+//   newLi.innerHTML = newLiInnerHtml;
+//   todoList.append(newLi);
+//   todoInput.value = "";
+// });
+
+// todoList.addEventListener("click", (e) => {
+//   // check if user clicked on done button
+//   if (e.target.classList.contains("remove")) {
+//     const targetedLi = e.target.parentNode.parentNode;
+//     targetedLi.remove();
+//   }
+//   if (e.target.classList.contains("done")) {
+//     const liSpan = e.target.parentNode.previousElementSibling;
+//     liSpan.style.textDecoration = "line-through";
+//   }
+// });
+
+
