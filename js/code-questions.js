@@ -23,7 +23,7 @@
 
 
 
-// 1.1 new object banana hai ?
+// 1.1 new object banake usme value store karni hai ?
 
 // let newobj = {};
 
