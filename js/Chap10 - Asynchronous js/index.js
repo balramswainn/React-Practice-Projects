@@ -254,7 +254,7 @@ const heading10 = document.querySelector(".heading10");
 // },1000)
 
 
-
+// //or
 
 
 // function changeText(element, text, color, time, onSuccessCallback, onFailureCallback) {

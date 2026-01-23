@@ -3,6 +3,43 @@
 // 👉 JavaScript single-threaded, synchronous by default, non-blocking language hai
 // 👉 Browser / Node.js ke paas JS Engine hota hai (Chrome → V8)
 
+// Browser ke andar multiple cheezein hoti hain:
+// JavaScript Engine (JS code run karta hai)
+// Chrome → V8
+// Firefox → SpiderMonkey
+// Safari → JavaScriptCore
+
+// Web APIs
+
+// Event Loop
+
+// Rendering Engine
+
+
+// ✅ Frontend (Browser Environment)
+// Jab tumhara frontend project browser me run hota hai, browser ke paas hota hai:
+// 🔹 Browser ke Components:
+// JavaScript Engine (V8 etc.)
+// Web APIs (DOM, setTimeout, fetch, localStorage…)
+// Event Loop
+// Rendering Engine (HTML/CSS render karta hai)
+
+// 👉 Yahan DOM bhi hai
+// 👉 UI bhi render hota hai
+
+
+
+
+// ✅ Backend (Node.js Environment)
+// Node.js browser nahi hai ❌
+// Node.js me hota hai:
+// 🔹 Node.js ke Components:
+// V8 Engine (JS run karta hai)
+// Node APIs (fs, http, path, crypto etc.)
+// Event Loop (libuv based)
+
+// ❌ No DOM
+// ❌ No Rendering Engine
 
 
 
