@@ -54,6 +54,7 @@
 //     })
 
 
+
 // setTimeout(()=>{
 //     console.log("hello from settimeout")
 // },0)  
@@ -227,7 +228,7 @@
 //   .then((value)=>{
 //     console.log(value);  //-> foo
 //     value += "bar";
-//     // return value    // return nhi karte toh undefined hojata
+//     return value    // return nhi karte toh undefined hojata
 //   })
 //   .then((value) =>{
 //     console.log(value);   //-> foobar
@@ -280,6 +281,7 @@
 // changeText(heading1, "one", "red", 1000)
 //   .then((success)=>{
 //         console.log(success)      //-> undefined  bcz humne resolve me kuch nhi dala
+
 //       return changeText(heading2, "two", "purple", 1000) //Agar changeText() khud promise return karta hai,toh return karne ka matlab hai: Next .then() tab tak wait kare jab tak ye promise resolve na ho.❌ Agar return nahi karoge 👉 Next .then() immediately execute ho jayega 👉 Wait nahi karega 👉 Promise chain break ho jayegi for example return nhi likha three and four me toh dono sath me print hoga four wait nhi karega three k print hone ka 
 // // 🔹 Isliye chaining ka rule
 // // ✔️ Agar async function call kar rahe ho
@@ -482,7 +484,7 @@
 // const URL = "https://jsonplaceholder.typicode.com/posts";
 
 
-//Second object ko options object bolte hain — isme hum request ka configuration dete hain. fetch(url) 👉 Ye by default GET request bhejega 
+//fetch me Second object ko options object bolte hain — isme hum request ka configuration dete hain. fetch(url) 👉 Ye by default GET request bhejega 
 // fetch(url) 👉 Ye by default GET request bhejega  👉 Koi body nahi 👉 Koi custom headers nahi
 
 // fetch(URL,{           
@@ -496,6 +498,7 @@
 //         'Content-type': 'application/json; charset=UTF-8',       //means “Jo data body me bheja hai wo JSON format me hai.”
 //     },           //charset=UTF-8 👉 Ye batata hai ki text encoding UTF-8 use ho rahi hai, 👉 Taaki special characters sahi se read ho sake
 //     })
+
 //     .then(response =>{
 //         if(response.ok){              //🔹 response.ok true hota hai jab status 200–299 ho 🔹 Agar 404 / 500 aaye → response.ok false hoga
 //             return response.json()        //response.json() bhi promise return karta hai Isliye next .then() me data milta hai
@@ -519,44 +522,70 @@
 
 
 
-    // async await
+
+// const URL = "https://jsonplaceholder.typicode.com/posts";
 
 // fetch(URL)
 //     .then(response => {
-//         return response.json()
+//         console.log(response)   //-> Response {type: 'cors', url: 'https://jsonplaceholder.typicode.com/posts', redirected: false, status: 200, ok: true, …}
+        
+//         return response.json()  //-> .json() response body ko read karta hai Aur us JSON string ko JavaScript object me convert karta hai,Ye method promise return karta hai
+//      // Kyu promise return karta hai? Response ka body: ReadableStream -> Matlab data chunk by chunk aata hai, Isliye usko read karna async process hai
+
+//      // console.log(response.json()) //-> Promise {<pending>}[[Prototype]]: Promise[[PromiseState]]: "fulfilled"[[PromiseResult]]: Array(100)
+
 //     })
 //     .then(data => {
 //         console.log(data);
 //     })
 
+// Response object hota hai (raw HTTP response) Ye sirf data nahi hota — ye pura metadata hota hai.
+
+//A ReadableStream is a programming interface (in JavaScript/Web APIs and Node.js) for handling streams of data, allowing you to read data in chunks as it arrives, rather than waiting for the entire dataset, making it efficient for large files or network responses, and is used in browser APIs (Fetch API) and Node.js for tasks like streaming file contents or HTTP data. It manages data flow using methods like read(), events like 'data', and can be created with a constructor or from iterables, providing control over data consumption and cleanup.  
+    
+
+
+
+
+
+
+// ==========================================================
+    
+    
+// async await
 
 console.log("script start");
 const URL = "https://jsonplaceholder.typicode.com/posts";
 
-// async function getPosts(){
-//     const response = await fetch(URL);
-//     if(!response.ok){
-//         throw new Error("Something went wrong")
-//     }
-//     const data = await response.json();
-//     return data;
-// }
+// // async function getPosts(){
+// //     const response = await fetch(URL);
+// //     if(!response.ok){
+// //         throw new Error("Something went wrong")
+// //     }
+// //     const data = await response.json();
+// //     return data;
+// // }
 
 
-const getPosts = async() =>{
-    const response = await fetch(URL);
+// // or
+
+const getPosts = async() =>{                 //async function hamesha Promise return karti hai.
+    const response = await fetch(URL);      //👉 await yahan function ko pause karta hai 👉 Lekin poora JS thread block nahi hota 👉 Sirf async function pause hoti hai
+    // 👉 await fetch ke promise ke resolve hone ka wait karta hai,  Matlab: Server response aane tak rukega, Jab response aa jayega tab next line chalegi
+    // ❓ Par wait kyu kare? .then() se handle kar sakte the na? yes kar sakte the jese pehle kiya tha fetch().then() but fhir await kyu use kiya bcz 👉 await code ko synchronous jaisa readable bana deta hai 👉 Function ke andar sequential flow milta hai  means await wait karega and jab fetch resolve hoga ( server se response aaega ) tab await aghe function ko chalne dega 
     if(!response.ok){
-        throw new Error("Something went wrong")
+        throw new Error("Something went wrong")   //👉 Agar status 200–299 nahi hai, To manually error throw kar rahe ho, Promise reject ho jayega , but manually error throw kyu karna hai?  👉 fetch() 404/500 pe reject nahi karta 👉 Sirf network error pe reject karta hai 👉 Tum manually promise ko reject kar rahe ho 👉 Taaki .catch() chale , We manually throw an error because fetch does not reject on HTTP errors like 404.
     }
-    const data = await response.json();
+    const data = await response.json();  // 👉 response.json() bhi promise return karta hai isiliye await jab response aaega tab chalega
     return data;
+    // ✅ Await kab use karna chahiye? 👉 Jab function promise return kare 👉 Aur tumhe uska result next line me chahiye jese fetch k pehle lagaya Examples:fetch(), response.json(), database calls, file reads
 }
-
-// const myData = getPosts();
-// console.log(myData);
+// Behind the scenes JS isko convert karta hai:->return Promise.resolve(data); Async function return value ->Automatically wrapped in Promise isliye then lagake milega value
+const myData = getPosts();
+console.log(myData);       //Promise {<pending>}    // yaha data nhi milega promise return karega  bcz async fun promise hi return karega
 
 getPosts()
-    .then((myData) => {
+    .then((myData) => {          //promise resolve hota hai fhir hume array milega
         console.log(myData);
     })
     .catch(error =>{
@@ -569,5 +598,19 @@ console.log("script end ");
 
 //-> 
 // script start
-// index.js:568 script end 
-// index.js:560 (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+// script end 
+// (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+
+
+// ✅ 1️⃣ fetch 404/500 pe reject kyu nahi karta? 
+// 404 aur 500 ka matlab hai server ne successfully response bheja, bas response me error status hai.Server tak request pahunchi ✅Server ne reply diya ✅Toh network level pe sab sahi tha, Isliye fetch() ke liye ye successful request hai.Fetch kisi bhi HTTP error pe reject nahi karta, jaise:400 (Bad Request) ,  401 (Unauthorized), 403 (Forbidden), 404 (Not Found), 500 (Server Error),502, 503 etc. Sab pe fetch resolve karega.
+
+// 404 Not Found → Jo resource (page / API / file) tum maang rahe ho wo server pe exist nahi karta.
+// 500 Internal Server Error → Server ke andar kuch toot gaya / crash ho gaya / coding error hai.Request sahi thi, Server process nahi kar paya
+
+// 🔹 fetch kis pe reject karta hai?
+// Jab request server tak pahunch hi nahi paati.
+
+// Fetch only rejects on network failures, not on HTTP errors like 404 or 500, because the server still sends a valid response.
+// Network Error: ❌ Internet band hai,❌ Wrong domain (example: htttps://wrong.com),❌ DNS issue, ❌ Server down hai, ❌ CORS blocked
+// 👉 Browser ko server se response mila hi nahi 👉 Isliye promise reject hota hai 👉 .catch() chalega
