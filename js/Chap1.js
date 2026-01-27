@@ -65,7 +65,6 @@
 
 
 
-
 // =========================================================================
 
 
@@ -83,6 +82,7 @@
 
 // let name = "balram      "
 // console.log(name.length)  // o/p -> 12 ...space bhi gina 
+
 
 
 
@@ -115,6 +115,7 @@
 
 // let age = 22;
 // age = age + "";
+// console.log(age) //-> 22
 // console.log(typeof(age)) //-> string
 
 // let myStr = +"34";
@@ -125,12 +126,32 @@
 
 // let newstr = str1 + str2;
 // console.log(newstr)  -> 2040
-// let newstr2 = +str1 + +str2;
+// let newstr2 = +str1 + +str2;   //-> number ban gye
 // console.log(newstr2) -> 60 
+
+
+//symbol 
+// const uniqueId = Symbol('description');
+// console.log(uniqueId)  //-> Symbol(description)
 
 
 
 // bug -> typeof null -> object     ye null hona chahiye tha but object dikha rha hai so ye bug 
+ 
+// console.log(typeof 22)   //-> number
+
+
+// console.log(typeof(22))  //-> number
+// console.log(typeof(null))  //-> object
+// console.log(typeof("d"))  //-> string
+// console.log(typeof(Symbol('description')))  //-> symbol
+// console.log(typeof(true))  //-> boolean
+// console.log(typeof(22n))  //-> bigint
+// console.log(typeof(undefined))  //-> undefined
+
+// console.log(typeof({}))  //-> object
+// console.log(typeof(["ff",8]))  //-> object
+// console.log(typeof(function(){}))  //-> function
 
 
 
@@ -206,11 +227,10 @@
 
 
 
-
 //for loop
 
-// for(let i=0; i<10;i++){    
-//   console.log(i)
+// for(let i=0; i<10;i++){     // i ka valu 0 hai and jb tak condition true ha chalte rahegi jese hi false hogi loop ruk jaega
+//   console.log(i)           //o/p :->  0 1 2 3 4 5 6 7 8 9    
 // }
 
 // console.log(i)    -> refernce error bcz let -> block scope variable banata hai toh i bahar exist nhi karta 
@@ -239,3 +259,21 @@
 //   console.log(i);
 //   i++;
 // }while(i<10)
+
+
+
+
+// =========================================================
+
+
+// localStorage  (setItem, getItem , removeItem)
+
+// let obj ={
+//     name:"jerry",
+//     surname:"swain"
+// }
+
+// localStorage.setItem("obj",JSON.stringify(obj))     // browser k localstorage me save kardiya stringify karke   ( js object -> json string format )
+// let final=JSON.parse(localStorage.getItem("obj"))  //  localstorage se object get karne k liye parse karke  ( json string format  -> js object )
+// console.log(final)
+// localStorage.removeItem("obj")   // localstorage se object remove karne k liye

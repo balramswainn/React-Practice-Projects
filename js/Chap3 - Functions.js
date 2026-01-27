@@ -63,6 +63,8 @@
 
 //=====================================================
 
+
+
 // hoisting  (only works on function declaration and var declarations)
 
 // hello();   //-> hello world
@@ -71,10 +73,16 @@
 //         console.log("hello world");
 //     }
 
-// console.log(hello);   //-> undefined  aya bcz of var declaration  || let , const rehta toh reference error
-// var hello = "hello world";
-// console.log(hello);
+// console.log(hello1);   //-> undefined  aya bcz of var declaration  || let , const rehta toh reference error
+// var hello1 = "hello world";
+// console.log(hello1);
 
+// All declarations are hoisted, but only var is initialized with undefined and function declarations are fully hoisted. var → undefined, function declaration → full function, let/const → TDZ (uninitialized)
+
+// memory phase me hello1 = undefined hogya tha toh execution phase me hello1 pehle hi call hogya and uski value baadme assign hui isliye undefind baadme call hota toh -> "hello world"
+
+
+ 
 
 //=====================================================
 

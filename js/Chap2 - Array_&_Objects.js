@@ -12,9 +12,8 @@
 // push(); //-> element add karega in the end and length return karega
 // pop();  //-> last element remove and also return karega last element
 
-// unshift(); //-> element add karefga start me and length return karega
+// unshift(); //-> element add karega start me and length return karega
 // shift(); //-> first remove and return krega first wala element 
-
 
 
 // ===============================================================
@@ -22,7 +21,7 @@
 // primitve vs reference data types
 
 // let num1 = 6;
-// let num2 = num1;
+// let num2 = num1;  (yaha pe value copy hui hai reference nhi)
 // console.log( num1 ); //-> 6     
 // console.log( num2 ); //-> 6  👉 num2 ko 6 ki copy mili 👉 Dono independent hain
 // num1++;                       // 👉 Ye internally hota hai: num1 = num1 + 1;
@@ -54,7 +53,7 @@
 // console.log( array1 ); //-> ["item1", "item2"]
 // console.log( array2 ); //-> ["item1", "item2"]
 
-// console.log(array1===array2); //-> true
+// console.log(array1===array2); //-> true     (bcz dono ka reference same hai)
 
 // array1.push("item3");
 
@@ -72,9 +71,14 @@
 
 
 // let array1 = ["item1", "item2"];
+
 // array1 = array1.push("2")   //bcz push length return karta hai toh isne 3 kiya return jo ki array1 me store hogya 
 // console.log(array1)  //-> 3 
 
+// or
+
+// array1.push("2")    // yaha humne reassign nhi kiya array1 me
+// console.log(array1)  //-> ['item1', 'item2', '2']
 
 
 // =================================================================
@@ -119,10 +123,10 @@
 // let obj2 = obj1;
 
 // STACK                  HEAP
-// ┌───────────────┐      ┌──────────────┐
-// │ obj1 : 0x123  │ ───▶ │ { value: 6 } │
-// │ obj2 : 0x123  │ ───▶ │              │
-// └───────────────┘      └──────────────┘
+// ┌───────────────┐       ┌───────────────────────┐
+// │ obj1 : 0x123  │ ───▶ │  0x123 : { value: 6 }  │
+// │ obj2 : 0x123  │ ───▶ │                        │
+// └───────────────┘       └───────────────────────┘
 
 // 👉 Stack me address (reference) hota hai
 // 👉 Heap me actual object hota hai
@@ -141,6 +145,18 @@
 // ✅ “Stack me variables ke values store hote hain, aur objects ke references store hote hain”
 
 
+
+
+// so ye call stack se kese related hai  GEC -> memory creation phase 
+
+// Jab GEC (Global Execution Context) banta hai: Engine variables ke liye memory allocate karta hai aur unko undefined assign karta hai (var ke case me)
+
+// Memory allocate karna matlab: Variable ka name register hota hai, Value store hone ke liye jagah reserve hoti hai
+
+// Actual storage: Primitive → Stack memory,  Object → Heap memory (stack me reference)
+
+// Memory creation phase variables ko register karta hai, aur actual values stack ya heap me store hoti hain.
+// Memory allocation phase prepares variables in the execution context, while stack and heap manage actual value storage.
 
 // ======================================
 
@@ -212,7 +228,7 @@
 
 // let array2 = [].concat(array1,["item3", "item4"]); //->  ['item1', 'item2', 'item3', 'item4']
  
-// spread operator
+// // spread operator
 // let oneMoreArray = ["item3", "item4"]
 // let array2 = [...array1, ...oneMoreArray];   //-> ['item1', 'item2', 'item3', 'item4']
 
@@ -225,7 +241,7 @@
 
 
 // 👉 Spread operator [...array] kyun new array banata hai ?
-// Spread operator array ke elements ko nikal kar ek naya array literal me daal deta hai — isliye naya array banta hai.
+// Spread operator array ke elements ko nikal kar ek naya array literal([]) me daal deta hai — isliye naya array banta hai.
 // Spread operator values ko copy karta hai, container ko nahi — isliye naya array banta hai par inner objects same rehte hain.
 // let a = [10,20,30]
 // let b = [...a];
@@ -243,7 +259,7 @@
 
 // const fruits = ["apple", "mango"]; 
 // fruits.push("banana");
-// console.log(fruits);
+// console.log(fruits);   //->['apple', 'mango', 'banana']
 
 //const variable ko reassign nahi kar sakte, par uske andar ke object/array ko mutate kar sakte ho.
 //ab ye kese hua stack me bas address(reference store hai) and heap memory -> ["apple", "mango"]  so hum change toh heap me kar rhe hai stack me nhi 
@@ -300,6 +316,7 @@
 
 
 // array destructuring 
+
 // const myArray = ["value1", "value2", "value3","value4"];
 // let myvar1 = myArray[0];
 // let myvar2 = myArray[1];
@@ -326,6 +343,7 @@
 
 
 // objects reference type  
+
 // arrays are good but not sufficient 
 // for real world data 
 // objects store key value pairs 
@@ -350,7 +368,7 @@
 // person.gender ="make";
 // or
 // person["person"] = "male";
-// console.log(person);
+// console.log(person);   //-> {name: 'harshit', age: 22, hobbies: Array(3), person: 'male'}
 
 
 // ==============================
@@ -366,7 +384,7 @@
 
 // }
 
-// console.log(person["person hobbies"]);  
+// console.log(person["person hobbies"]);   //-> ['guitar', 'sleeping', 'listening music']
 // console.log(person."person hobbies");  //-> ese likhte toh error(SyntaxError: Unexpected string) ata so correct way bracket notation
 // person[key] = "harshitvashisth@gmail.com";  //-> uper declare kiya hai key
 // console.log(person);
@@ -468,7 +486,6 @@
 
 
 
-
 // ======================================================
 
 // object destructuring
@@ -483,7 +500,7 @@
 // let { bandName, famousSong, ...restProps } = band;
 // console.log(bandName);   //-> led zepplin
 // console.log(restProps);  //-> {year: 1968, anotherFamousSong: 'kashmir'}
-// bandName = "jerry"       // bcz humne let likha hai variable let se ban rha hai 
+// bandName = "jerry"       // bcz humne let likha hai variable let se ban rha hai ( hum reassigned kar rhe hai bandNAme me isiliye const me error aaega)
 // console.log(bandName)  //-> jerry   
 
 // const likhte toh change nhi hota
@@ -516,6 +533,7 @@
 //===============================================================================
 
 // nested destructuring 
+
 // const users = [
 //     {userId: 1,firstName: 'harshit', gender: 'male'},
 //     {userId: 2,firstName: 'mohit', gender: 'male'},
@@ -529,3 +547,5 @@
 // console.log(user1firstName);  //-> harshit 
 // console.log(userId);         //-> 1
 // console.log(user3gender);    //-> male
+
+
