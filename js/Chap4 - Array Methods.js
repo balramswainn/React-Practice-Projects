@@ -13,6 +13,8 @@
 //     console.log(`index is ${index} number is ${number}`);   
 // });
 
+//-> index is 0 number is 4  .....more 3
+
 
 
 // const users = [
@@ -388,6 +390,7 @@
 // const myArray = [1,2,3,4,5,6,7,8];
 // myArray.fill(0,2,5);   // 0 fill karna hai , 2 index se-> isse start karna hai , 5 index -> means 5 k pehle tak hi change hoga 5 nhi
 // console.log(myArray);  //-> [1, 2, 0, 0, 0, 6, 7, 8]
+
 
 
 

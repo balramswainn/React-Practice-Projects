@@ -48,6 +48,7 @@ Node.js is also single-threaded (for running JS code).
 But under the hood, it’s powered by libuv, which gives Node extra abilities:
 File system access, Network requests, Thread pool for heavy I/O
 
+
 🧩 How it works in Node:
 
 Node.js uses:

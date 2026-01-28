@@ -24,7 +24,6 @@
 
 
 
-
 // ===============================================
 
 
@@ -51,10 +50,10 @@
 // numbers.add(4);
 // numbers.add(5);
 // numbers.add(6);
-// console.log(numbers)  //-> Set(6) {1, 2, 3, 4, 5, 6}
+// // console.log(numbers)  //-> Set(6) {1, 2, 3, 4, 5, 6}
 
 // numbers.add(items);
-// console.log(numbers)  //->  Set(7) {1, 2, 3, 4, 5, 6, Array(3)}
+// // console.log(numbers)  //->  Set(7) {1, 2, 3, 4, 5, 6, Array(3)}
 
 // numbers.add(['item1',"item2"])  //js k liye ye dono alag alag hai isiliye add hogya
 // numbers.add(['item1',"item2"])
@@ -65,24 +64,25 @@
 // }else{
 //     console.log("1 is not present")
 // }
-
+//-> 1 is present
 
 // for(let number of numbers){
 //     console.log(number);
-// }
+// } 
+//-> 1  2  3  4  5  6  Array(3)  Array(2)   Array(2)
 
 
 
 // const myArray = [1,2,4,4,5,6,5,6];
 // const uniqueElements = new Set(myArray);
 // console.log(uniqueElements)  //-> Set(5) {1, 2, 4, 5, 6}
+
 // let length = 0;
 // for(let element of uniqueElements){
 //     length++;
 // }
 
-// console.log(length);
-
+// console.log(length);   //-> 5
 
 
 
@@ -135,7 +135,9 @@
 // person.set(1,'one');
 // person.set([1,2,3],'onetwothree');
 // person.set({1: 'one'},'onetwothree');
+
 // console.log(person);  //-> Map(5) {'firstName' => 'Harshit', 'age' => 7, 1 => 'one', Array(3) => 'onetwothree', {…} => 'onetwothree'}
+
 // console.log(person.get(1));  //-> one
 // console.log(person.keys())   //-> MapIterator {'firstName', 'age', 1, Array(3), {…}}
 

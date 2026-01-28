@@ -36,6 +36,7 @@
 // }
 
 
+
 // ============================================================
 
 
@@ -47,6 +48,14 @@
 // const ans = sumThreeNumbers(2,3,4);
 // console.log(ans); //-> 9
 
+// or
+
+// const ans = sumThreeNumbers(2,3); //ek arguement nhi diya
+// console.log(ans); //-> NaN    -> not a number
+
+// 1. extra argument dunga toh prblm nhi hai
+// 2. argument nhi diya ho but parameter diya ho toh prblm nhi if use nhi ho rha ho function me
+// 3. if argument nahi diya ho and parameter diya ho and usse use kar rhe ho toh error aaega NAN
 
 //=============================================================
 
@@ -75,11 +84,11 @@
 
 // console.log(hello1);   //-> undefined  aya bcz of var declaration  || let , const rehta toh reference error
 // var hello1 = "hello world";
-// console.log(hello1);
+// console.log(hello1); //-> hello world
 
 // All declarations are hoisted, but only var is initialized with undefined and function declarations are fully hoisted. var → undefined, function declaration → full function, let/const → TDZ (uninitialized)
 
-// memory phase me hello1 = undefined hogya tha toh execution phase me hello1 pehle hi call hogya and uski value baadme assign hui isliye undefind baadme call hota toh -> "hello world"
+// memory phase me hello1 = undefined hogya tha toh execution phase me hello1 pehle hi call hogya and uski value baadme assign hui isliye undefined baadme call hota toh -> "hello world"
 
 
  
@@ -104,7 +113,7 @@
 //     console.log(addTwo(2,3));
 //     console.log(mul(2,3));
 // }
-// app();   //-> inside app     hello from myFunc     5  6
+// app();   //-> inside app     hello from myFunc     5      6
 
 
 
@@ -123,25 +132,30 @@
     
 
 //     function myFunc(){
-//         // const myVar = "value59";
+//         const myVar = "value59";
 //         const myFunc2 = () =>{
-//             console.log("inside myFunc", myVar);
+//             console.log("inside myFunc", myVar);  // lexical scope :- has reference to its outer lexical environment
 //         }
 //         myFunc2();
 //     }
 
 
-//     console.log(myVar);
+//     console.log(myVar);  // block scope hai const
 //     myFunc();
+//     console.log(myVar);  //-> value 1
 // }
 
 // myApp();
 
 //-> value1
-//-> inside myFunc value1
+//-> inside myFunc value59
+//-> value 1
+
 
 
 // =======================================================
+
+
 
 
 // block scope vs function scope 
@@ -176,7 +190,7 @@
 //     }
 //     console.log(firstName);   //-> harshit
 // }
-
+// console.log(firstName)  //-> firstName is not defined bcz var is function scope
 // myApp();
 
 
@@ -244,6 +258,13 @@
 
 
 // ==========================================================================
+// array destructuring
+
+// let arr= [1,23,34,4]
+
+// const [first,sec]= arr;
+// console.log(first,sec) //-> 1 23
+
 
 // param destructuring 
 
@@ -270,6 +291,9 @@
 
 // printDetails(person);
 
+
+
+
 // ==============================================================
 
 
@@ -287,6 +311,10 @@
 
 
 // myFunc(myFunc2);
+
+//-> hello there I am a func and I can..                 
+//-> inside my func 2
+//-> your name is harshit
 
 
 
