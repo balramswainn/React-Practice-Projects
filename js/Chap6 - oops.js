@@ -80,9 +80,14 @@
 
 // function myFunc(){
 //     console.log("hello worlds");
-// }      
-// myFunc(); // hello worlds
-// window.myFunc(); //hello world    bcz window object k pass -> myFunc() hai
+// }
+
+// var myFunc=()=>{
+//     console.log("d")
+// }
+
+// myFunc(); //-> hello worlds
+// window.myFunc(); //hello world    bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function usse define kiya ho )
 //👉 Jo function / variable globally define hota hai (var ya function se), wo window object ka part ban jata hai.
 // ❌ let / const → window me nahi jata
 
@@ -110,7 +115,6 @@
 // humne  call() me: this nahi diya, arguments nahi diye
 //⚠️ Phir bhi function execute hota hai, isliye output aaya:
 // call() function ko turant execute karta hai.Agar this ya arguments pass na karo, tab bhi function chalega.
-
 
 
 
@@ -144,6 +148,8 @@
 // }
 
 
+
+
 // user1.about();  //-> harshit 8    👉 this = user1
 // user1.about.call(user2)  //-> mohit 9    
 // 👉 Rule: call(x) → function ke andar this = x      this === user2
@@ -169,6 +175,9 @@
 //     age: 9, 
 // }
 
+
+
+
 // about.call(user1,"dd","dd")  //-> harshit 8 dd dd
 // user1.about.call(user1,"dd","dd")  //-> TypeError: Cannot read properties of undefined (reading 'call')
 
@@ -181,6 +190,9 @@
 
 //the JavaScript bind() method explicitly creates and returns a new function. The original function remains unchanged, and the new "bound" function is permanently linked to a specified this value and optional initial arguments.
 //  The primary use of bind() is to control the value of the this keyword inside the function, regardless of how or where the new function is eventually called. This is especially useful for callbacks or event handlers, where the original context might otherwise be lost.
+
+
+
 // ==========================================================================
 
 
@@ -193,17 +205,18 @@
 //     }   
 // }
 
+
 // user1.about();  //-> harshit 8
 
 // function myFunc(){   console.log(this); }
 // myFunc(); //-> window object  rule 👉 Function ko bina kisi object ke call kiya gaya hai, isliye this = window (browser me)
 
 
-
 // //don't do this mistake 
 
 // const myFunc = user1.about;                           
-//                                                   //myFunc = function() {  console.log(this.firstName, this.age) };
+//                                 //myFunc = function() {  console.log(this.firstName, this.age) };
+
 // myFunc()    //-> undefined undefined     //in simple user1.about -> function hai so sirf woh function store hoga myFunc mai but fhir woh fun me this hai uski value kya hogi ? this = current object    but ab koi object hi nhi so this = window  and window me koi firstname and age nhi hai so undefined
 
 
@@ -215,10 +228,12 @@
 
 
 // const ran=user1.about
+// ran()   //-> undefined undefined
 // ran.call(user1)  //-> harshit 8           call k waje se uske andhr user1 likha hai user1 k context me this run hoga
 // user1.about.call(user1) //-> harshit 8     means jo function hai user1 k andhr usse kisi aur object k sath bhi use kar sakte hai
 
-// const ran=user1.about.call(user1)
+// const ran=user1.about.call(user1)  //-> harshit 8
+
 // ran();  //->  TypeError: ran is not a function
 
 // const myFunc = user1.about.bind(user1);     //bcz bind new function create karta hai and bind karega user1 object k sath bcz ye object ka context chala gya tha na 
@@ -236,6 +251,11 @@
 
 // arrow functions 
 
+// const demo = ()=>{
+//     console.log(this)
+// }
+// demo()  //-> Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
 // const user1 = {
 //     firstName : "harshit",
 //     age: 8,
@@ -250,6 +270,9 @@
 // example:-
 // const parent = { firstName: "Parent", age: 40,
 //   child: { about: () => { console.log(this.firstName, this.age); } }
+// };
+// const parent = { firstName: "Parent", age: 40,
+//   child: { about: function(){ console.log(this.firstName, this.age); } }
 // };
 
 // parent.child.about(); // undefined undefined   Kyu?Arrow function sirf function-scope / lexical scope se this leta hai,object se nahi. child ek object hai Object scope this provide nahi karta Arrow function bahar jata hai → global scope Browser me global this = window
@@ -302,7 +325,6 @@
 
 
 
-
 // so har baar har user k liye hum object nhi bana sakte isliye esa koi way chahiye jo object banate rahe so we use constructor but yaha pe usse different way me dekhenge 
 // function (that function create object)
 // 2.) add key value pair 
@@ -333,7 +355,7 @@
 // console.log(about); //-?> harshit is 19 years old.
 
 
-// so yaha pe ek issue hai so harbaar object create hoga toh baar baar ye method  create honge jo ki memory badha rhe hai so to solve niche likha hai 
+// so yaha pe ek issue hai so harbaar object create hoga toh baar baar ye object k andhr jo method hai create honge jo ki memory badha rhe hai so to solve niche likha hai 
 // ====================================================================
 
 
@@ -361,6 +383,9 @@
 // const user1 = createUser('harshit', 'vashsith', 'harshit@gmail.com', 9, "my address");
 // const user2 = createUser('harsh', 'vashsith', 'harshit@gmail.com', 19, "my address");
 // const user3 = createUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
+
+// console.log(user1)  //-> {firstName: 'harshit', lastName: 'vashsith', email: 'harshit@gmail.com', age: 9, address: 'my address', about: ƒ, is18: ƒ}
+
 // console.log(user1.about());  //-> harshit is 9 years old.
 // console.log(user3.about());  //-> mohit is 17 years old.
 
@@ -396,7 +421,7 @@
 // key1 : "value1"
 // key2 : "value2"
 
-// if key add kardenge toh ye obj1 k pass nhi jaega 
+// if same name ka key add kardenge toh ye obj1 k pass nhi jaega 
 // obj2.key2 = "unique";
 // console.log(obj2.key2)  //-> unique
 // console.log(obj2)  //-> {key3: 'value3', key2: 'unique'}
@@ -412,6 +437,10 @@
 // function User() {}
 // User.prototype.sayHi = function () {};
 // prototype = property, Sirf functions (constructor) ke paas hoti hai, Naye objects ke liye blueprint / common store
+
+
+
+
 
 
 // __proto__ kya hai? 👉 Ye har object ke paas hota hai 
@@ -985,23 +1014,23 @@
 // static methods and properties
 // 👉 A static method belongs to the class itself, not to its objects, and can be called directly using the class name without creating an instance.
 
-class Person{
-    constructor(firstName, lastName, age){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-    static classInfo(){
-        return 'this is person class';
-    }
-    static desc = "static property";
+// class Person{
+//     constructor(firstName, lastName, age){
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.age = age;
+//     }
+//     static classInfo(){
+//         return 'this is person class';
+//     }
+//     static desc = "static property";
    
-    eat(){
-        return `${this.firstName} is eating`;
-    }
+//     eat(){
+//         return `${this.firstName} is eating`;
+//     }
 
    
-}
+// }
 
 // const person1 = new Person("harshit", "sharma", 8);
 // console.log(person1.eat());  //-> harshit is eating
@@ -1009,30 +1038,30 @@ class Person{
 // const info = Person.classInfo();
 // console.log(info);  //->this is person class
 
-console.log(Person.desc)  //-> static property
+// console.log(Person.desc)  //-> static property
 
 // console.log(person1.desc);  //-> undefined    bcz static method belongd directly to class , object ko nhi so bina instance create kiya directly object se call hota hai
  
 
 
 
-class Demo{
-    constructor(name,age){
-        this.name = name
-        this.age = age
-    }
+// class Demo{
+//     constructor(name,age){
+//         this.name = name
+//         this.age = age
+//     }
    
-    static demo3(){
-        return `hey ${this.name}`
-    }
-    static demo4(){
-        return `hey without this`
-    }
+//     static demo3(){
+//         return `hey ${this.name}`
+//     }
+//     static demo4(){
+//         return `hey without this`
+//     }
 
 
-}
+// }
 
-const demo1 = new Demo("balram","swain")
+// const demo1 = new Demo("balram","swain")
 
-console.log(Demo.demo3())  //-> hey Demo     ( Static method me this object ko nahi, class ko refer karta hai.)
-console.log(Demo.demo4())  //-> hey without this
+// console.log(Demo.demo3())  //-> hey Demo     ( Static method me this object ko nahi, class ko refer karta hai.)
+// console.log(Demo.demo4())  //-> hey without this
