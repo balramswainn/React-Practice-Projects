@@ -46,7 +46,7 @@
   
 //  Call stack -> GEC -> FEC ( ye nikal jaega )
 
-// now -> const  ans = function printName(){ console.log(firstName, lastName); }  +value of both("harshit", "sharma")
+// now -> const  ans = function printName(){ console.log(firstName, lastName); }  + value of both("harshit", "sharma")
 
 // Global execution context chalega
 // 1. Memory creation phase =  window:{}, this: window , printFullName= function definition , ans = function definition .-> idhr ininitiaized hat gaya

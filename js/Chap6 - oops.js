@@ -405,6 +405,8 @@
 // const obj2 = Object.create(obj1);   //👉 Object.create(obj1) ek naya object banata hai jiska prototype obj1 hota hai (inherit karta hai obj1 se). 👉 obj2 ke paas apni properties nahi hoti, wo missing properties obj1 se lookup karta hai (via prototype).
 // console.log(obj2) //->  {}
 
+
+
 // obj2.key3 = "value3";      //value add hui obj2
 // console.log(obj2)  //->  {key3: 'value3'}
 
@@ -475,7 +477,13 @@
 //     } //ek naya object banata hai jiska prototype obj1 hota hai (inherit karta hai obj1 se). 👉 obj2 ke paas apni properties nahi hoti, wo missing properties obj1 se lookup karta hai (via prototype).
 // }
 // function createUser(firstName, lastName, email, age, address){  
-//     const user = Object.create(userMethods);// {}    //pehle humne khud empty object define  kiya tha ab object.create ek empty object banaega,Object.create() -> iske andhr jo function ya object dalenge __proto__ me uska refernce milega, ab user call hoga toh usme proto hoga jo ki refernce hoga userMethods ka  jisse user -> userMethods ka method access kar paega and ab bas mthods ko access karne k liye -> user.about = userMethods.about;  nhi  linkhna padega  directly access kar paenge
+//     const user = Object.create(userMethods);// {}    
+// 
+//pehle humne khud empty object define  kiya tha ab object.create ek empty object banaega,Object.create() -> iske andhr jo object dalenge __proto__ me uska refernce milega, ab user call hoga toh usme proto hoga jo ki refernce hoga userMethods ka  jisse user -> userMethods ka method access kar paega and ab bas mthods ko access karne k liye -> user.about = userMethods.about;  nhi  linkhna padega  directly access kar paenge
+
+// yaha Object.create( andhr function ) bhi likh sakte hai Ye technically allowed hai, but ye useful nahi hai Kyuki function khud ek object hota hai, to obj.__proto__ us function pe point karega — lekin normally hum methods ka object dete hain, single function nahi.Object.create() ke andar object with methods pass karo, single function nahi.
+
+
 //     user.firstName = firstName;
 //     user.lastName = lastName;
 //     user.email = email;
@@ -574,6 +582,8 @@
 // const user3 = createUser('mohit', 'vashsitha', 'harshit@gmail.com', 17, "my address");
 // console.log(user1);  //-> createUser {firstName: 'harshit', lastName: 'vashsith', email: 'harshit@gmail.com', age: 18, address: 'my address'}
 // console.log(user1.is18());   //-> true
+
+
 
 
 
@@ -925,6 +935,7 @@
 
 
 // console.log(Object.getPrototypeOf(animal1));  //-> {eat: ƒ, isSuperCute: ƒ, isCute: ƒ}
+
 
 
 

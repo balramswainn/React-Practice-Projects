@@ -250,7 +250,7 @@
 // ===================================================
 
 
-// Function declarations are fully hoisted, but function expressions with var hoist only the variable as undefined.
+// Function declarations are fully hoisted, but function expressions with var hoist the variable as undefined.
 
 // console.log(myFunction);  //-> undefined
 
