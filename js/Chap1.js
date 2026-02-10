@@ -162,7 +162,7 @@
 // BigInt  is a built-in JavaScript numeric data type used to represent whole numbers larger than the maximum value that the standard Number type can safely handle, which is Number.MAX_SAFE_INTEGER (2⁵³ - 1, or 9,007,199,254,740,991). 
 
 // let myNumber = BigInt(12);   //-> 12n
-// let sameNumber = 123n;       //-> ese bhi bi int likh sakte hai 
+// let sameNumber = 123n;       //-> ese bhi bigint likh sakte hai 
 // console.log(typeof sameNumber)  -> bigint
 
 // let normalNumber = 10 ;
@@ -227,6 +227,7 @@
 
 
 
+
 //for loop
 
 // for(let i=0; i<10;i++){     // i ka valu 0 hai and jb tak condition true ha chalte rahegi jese hi false hogi loop ruk jaega
@@ -277,3 +278,5 @@
 // let final=JSON.parse(localStorage.getItem("obj"))  //  localstorage se object get karne k liye parse karke  ( json string format  -> js object )
 // console.log(final)
 // localStorage.removeItem("obj")   // localstorage se object remove karne k liye
+
+

@@ -148,6 +148,7 @@
 // myApp();
 
 //-> value1
+//-> error
 //-> inside myFunc value59
 //-> value 1
 

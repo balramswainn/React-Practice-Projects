@@ -86,7 +86,7 @@
 
 
 // reduce  is non-mutating  means og array ko change nhi karega
-// const numbers = [1,2,3,4,5, 10];
+// const numbers = [1,2,3,4,5,10];
 
 // aim : sum of all the numbers in array 
 
@@ -236,7 +236,7 @@
 
 // const userNames = ['harshit', 'abcd', 'mohit', 'nitish', 'aabc', 'ABC', 'Harshit'];
 // userNames.sort();
-// console.log(userNames);   //->  ['ABC', 'Harshit', 'aabc', 'abcd', 'harshit', 'mohit', 'nitish']   capital letter pehle sort hoga bcz unka ascii code kam haia isiliye opehle aaye and small letters ka jyada hai 
+// console.log(userNames);   //->  ['ABC', 'Harshit', 'aabc', 'abcd', 'harshit', 'mohit', 'nitish']   capital letter pehle sort hoga bcz unka ascii code kam hai isiliye  pehle aaye and small letters ka jyada hai 
 
 
 //sort method ka rule  Positive = push back, Negative = pull front

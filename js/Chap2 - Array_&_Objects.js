@@ -371,7 +371,7 @@
 // console.log(person);   //-> {name: 'harshit', age: 22, hobbies: Array(3), person: 'male'}
 
 
-// ==============================
+// ===================================
 
 
 // difference between dot and bracket notaion
