@@ -158,7 +158,7 @@
 // 1️⃣ Global Execution Context (GEC) banata hai
 // 2️⃣ Memory Creation Phase
 //  Memory allocate karta hai:
-//     1. Variables → undefined
+//     1. Variables → undefined (Variables declared with var are initialized as undefined, while let and const remain in the Temporal Dead Zone and cannot be accessed before declaration.let and const declarations are hoisted, but they remain uninitialized.)
 //     2. Functions → poora function definition, memory me store hota ha (only applys to function declaration) baki sab undefined hi store karenge
 
 // Example: console.log(a); var a = 10;
@@ -167,7 +167,7 @@
 // 3️⃣this set karta hai   Browser me: this === window   ;  Node.js me: this === {} // (module object) 
 //  this aaya kaha se? this JavaScript engine provide karta hai, tum define nahi karte. Jab bhi Execution Context banta hai: JS engine automatically add karta hai: this ,Variable Environment, Lexical Environment 
 
-    // Creation Phase me this kaise decide hota hai?
+    // Memory Creation Phase me this kaise decide hota hai?
     // Global Execution Context mai this -> :
     // Browser → window
     // Node → {}
@@ -386,7 +386,7 @@
 // const printName = function(){      // yaha pe ye const and function expression hai isliye memory creation phase me ye uninitialized hogyi fhir execution phase me ye function hoga 
 //     const firstName = "harshit";        //fec -> uninitialized -> harshit
 //         console.log(firstName);
-//         console.log(lastName);   // ab yaha toh lastName define nhi hai toh kaha se laega ye FEC hai iske bahar GEC hai so waha se laega uske lexical environment se aur ye tab tak dekhte raheg jab tak hum GEC tak pahuch nhi jate
+//         console.log(lastName);   // ab yaha toh lastName define nhi hai toh kaha se laega ye FEC hai iske bahar GEC hai so waha se laega uske lexical environment se aur ye tab tak dekhte rahega jab tak hum GEC tak pahuch nhi jate
     
 // }
 // printName();            // yaha function execution context chalega

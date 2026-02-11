@@ -75,7 +75,7 @@
 
 // const mainHeading = document.getElementById("main-heading");
 // console.log(mainHeading.innerText);   //-> Manage your tasks
-// console.log(mainHeading.textContent)  //-> Manage your tasks Hello       (html doc me ek span element dala hai jisme hello hai use display:none kardiya hai)
+// console.log(mainHeading.textContent)  //-> Manage your tasks Hello       (html doc me ek span element dala hai jisme hello hai use display:none kardiya hai but console me show ho rha hai Hello means isse show hoga jo css se hide kiya ho)
 
 // mainHeading.textContent = "This is something else";
 // console.log(mainHeading.textContent);  //->  This is something else

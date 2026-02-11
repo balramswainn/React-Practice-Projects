@@ -21,6 +21,7 @@
 // ans();                       // hello world
 
 
+
 // function printFullName(firstName, lastName){        //------ 1   
 //     function printName(){               //-----2.1
 //         console.log(firstName, lastName);
@@ -35,7 +36,7 @@
 
 // so  Global execution context chalega jisse  
 // 1. Memory creation phase =  window:{}, this: window , printFullName= function definition , ans = uninitalized .
-// 2. Execution phase =  printFullNAme (Kuch bhi execute nahi hota. Function sirf memory me available rehta hai, jab tak usko explicitly call na kiya jaye.)
+// 2. Execution phase =  printFullName (Kuch bhi execute nahi hota. Function sirf memory me available rehta hai, jab tak usko explicitly call na kiya jaye.)
 //                      ans =printFullName("harshit", "sharma")  isme function call hua hai so iska Function Execution Context banega 
 
 // Call stack -> GEC -> FEC

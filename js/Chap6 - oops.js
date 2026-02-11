@@ -28,7 +28,7 @@
 // ❌ function kaha likha hai
 
 // this ye dekhta hai:
-// ✅ function kese call hua hai -> person.abouthis();    dot ke left me person hai  → this = person  ...this = jisne call kiya
+// ✅ function kese call hua hai -> person.abouthis();    dot ke left me person hai  → this = person  ... this = jisne call kiya
 
 
 
@@ -87,7 +87,7 @@
 // }
 
 // myFunc(); //-> hello worlds
-// window.myFunc(); //hello world    bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function usse define kiya ho )
+// window.myFunc(); //hello world    bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function se usse define kiya ho )
 //👉 Jo function / variable globally define hota hai (var ya function se), wo window object ka part ban jata hai.
 // ❌ let / const → window me nahi jata
 
@@ -356,6 +356,8 @@
 
 
 // so yaha pe ek issue hai so harbaar object create hoga toh baar baar ye object k andhr jo method hai create honge jo ki memory badha rhe hai so to solve niche likha hai 
+
+
 // ====================================================================
 
 
@@ -410,8 +412,8 @@
 // obj2.key3 = "value3";      //value add hui obj2
 // console.log(obj2)  //->  {key3: 'value3'}
 
-// obj2 me key2 toh hai nhi toh value kese aayi undefined kyu nhi aayi bcz humne uper ek connection bana liya tha jise obj2 me ye key nhi mili toh woh obj1 me dhundega
 // console.log(obj2.key2)  //-> value2
+// obj2 me key2 toh hai nhi toh value kese aayi undefined kyu nhi aayi bcz humne uper ek connection bana liya tha jise obj2 me ye key nhi mili toh woh obj1 me dhundega
 //so ussse obj2 me nhi mila but js me  -> __proto__  hota hai usme reference hotahai ek object usme dhundte hai ye case me reference obj1 tha
 
 // offical ecmascript documentation 
@@ -476,9 +478,13 @@
 //         return 'toon na na na la la ';
 //     } //ek naya object banata hai jiska prototype obj1 hota hai (inherit karta hai obj1 se). 👉 obj2 ke paas apni properties nahi hoti, wo missing properties obj1 se lookup karta hai (via prototype).
 // }
+
+
+
 // function createUser(firstName, lastName, email, age, address){  
 //     const user = Object.create(userMethods);// {}    
-// 
+
+
 //pehle humne khud empty object define  kiya tha ab object.create ek empty object banaega,Object.create() -> iske andhr jo object dalenge __proto__ me uska refernce milega, ab user call hoga toh usme proto hoga jo ki refernce hoga userMethods ka  jisse user -> userMethods ka method access kar paega and ab bas mthods ko access karne k liye -> user.about = userMethods.about;  nhi  linkhna padega  directly access kar paenge
 
 // yaha Object.create( andhr function ) bhi likh sakte hai Ye technically allowed hai, but ye useful nahi hai Kyuki function khud ek object hota hai, to obj.__proto__ us function pe point karega — lekin normally hum methods ka object dete hain, single function nahi.Object.create() ke andar object with methods pass karo, single function nahi.
@@ -588,7 +594,7 @@
 
 
 // ========================================================================
-// uper hum ->  const user = Object.create(createUser.prototype);     ise hum ek new object bana rhe the  and uske __proto__ ko refernce de rhe the  contructor function k prototype k sath (means Us object ka __proto__ set kar rahe hain → createUser.prototype se) so-> new keyword exactly yahi 2 kaam karta hai (plus 2 aur) :-
+// uper hum ->  const user = Object.create(createUser.prototype);     ise hum ek new object bana rhe the  and user k  __proto__ ko refernce de rhe the  contructor function k prototype k sath (means us object ka __proto__ set kar rahe hain → createUser.prototype se) so-> new keyword exactly yahi 2 kaam karta hai (plus 2 aur) :-
 
 
 
