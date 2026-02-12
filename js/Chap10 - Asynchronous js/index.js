@@ -3,6 +3,8 @@
 // synchronous programming
 // synchronous programming single threaded
 
+
+
 // console.log("script start");
 
 // for (let i = 1; i < 10000; i++) {
@@ -11,6 +13,9 @@
 
 // console.log("script end");
 
+//-> script start
+//-> 9999 inside for loop
+//-> script end
 
 
 
@@ -21,14 +26,14 @@
 // console.log("script start");                      
 
 // const id = setTimeout(() => {    //👉 Returns a timeout ID (here 1), Browser har setTimeout ko unique number (ID) deta hai, Ye ID browser ko batata hai kaunsa timeout hai
-//   console.log("inside setTimeout");
+//   console.log("inside setTimeout");      //ye print nhi hua bcz cancel hogya
 // }, 1000);                                
 
 // for (let i = 1; i < 100; i++) {
 //   console.log("....");
 // }
 // console.log("settimeout id is ", id);
-// console.log("clearing time out");
+// console.log("clearing time out"); 
 // clearTimeout(id);                              //👉 Isi ID ki madad se browser us specific timeout ko cancel karta hai
 // console.log("Script end");
 

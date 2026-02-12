@@ -18,8 +18,8 @@
 // console.log("hello world");
 
 const grandparent = document.querySelector(".grandparent");
-// const parent = document.querySelector(".parent");
-// const child = document.querySelector(".child");
+const parent = document.querySelector(".parent");
+const child = document.querySelector(".child");
 
 
 
@@ -73,8 +73,15 @@ const grandparent = document.querySelector(".grandparent");
 
 
 
-// event delegation
-grandparent.addEventListener("click", (e) => {
-  console.log(e.target);           //Parent pe event lagaya hai, lekin click jis child pe hota hai, e.target usi element ko batata hai.
-  //This is event delegation, where a single event listener is attached to a parent element to handle click events on its child elements using event.target.
-});
+// // event delegation
+// grandparent.addEventListener("click", (e) => {
+  // console.log(e.target);     //->   <div class="child box">Child</div>     
+  ////Parent pe event lagaya hai, lekin click jis child pe hota hai, e.target usi element ko batata hai.
+  ////This is event delegation, where a single event listener is attached to a parent element to handle click events on its child elements using event.target.
+
+
+  //// console.log(e.currentTarget); //-> <div class="grandparent box"></div>       currentTarget
+// });
+
+// target → jis element pe click hua
+// currentTarget → jis element pe listener laga hai

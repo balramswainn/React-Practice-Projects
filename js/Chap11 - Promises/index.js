@@ -2,6 +2,16 @@
 // A promise represents a value that may be available now, later, or never.
 // A promise represents a future value of an async operation.
 
+// we use promise bcz : JavaScript single-threaded hai.Ek time pe ek hi kaam karega. API se data fetch, Database call :- Ye sab time lete hain.Agar JS wait karega 👉 pura app freeze ho jayega. Promise bolta hai: “Abhi value ready nahi hai Future me mil jayegi…Tab tak baaki ka code chalta rahe.”
+
+// We use promise:
+// ❌ Error avoid karne ke liye nahi
+// ✅ Async operation complete hone tak wait karne ke liye 
+
+
+
+
+
 
 // for example need to create fried rice so 
 
@@ -573,6 +583,7 @@ const getPosts = async() =>{                 //async function hamesha Promise re
     const response = await fetch(URL);      //👉 await yahan function ko pause karta hai 👉 Lekin poora JS thread block nahi hota 👉 Sirf async function pause hoti hai
     // 👉 await fetch ke promise ke resolve hone ka wait karta hai,  Matlab: Server response aane tak rukega, Jab response aa jayega tab next line chalegi
     // ❓ Par wait kyu kare? .then() se handle kar sakte the na? yes kar sakte the jese pehle kiya tha fetch().then() but fhir await kyu use kiya bcz 👉 await code ko synchronous jaisa readable bana deta hai 👉 Function ke andar sequential flow milta hai  means await wait karega and jab fetch resolve hoga ( server se response aaega ) tab await aghe function ko chalne dega 
+    //👉 Nahi, har jagah await likhna zaroori nahi. 👉 await tab likhte hain jab tumhe result chahiye immediately.
     if(!response.ok){
         throw new Error("Something went wrong")   //👉 Agar status 200–299 nahi hai, To manually error throw kar rahe ho, Promise reject ho jayega , but manually error throw kyu karna hai?  👉 fetch() 404/500 pe reject nahi karta 👉 Sirf network error pe reject karta hai 👉 Tum manually promise ko reject kar rahe ho 👉 Taaki .catch() chale , We manually throw an error because fetch does not reject on HTTP errors like 404.
     }
