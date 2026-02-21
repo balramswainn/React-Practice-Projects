@@ -4,7 +4,7 @@
 // livescript - js second name
 // javascript - js third name
 
-// internet explorer -> jscript
+// internet explorer -> jscript.
 
 // ECMAScript (ES) is a programming language standard that forms the core of popular scripting languages like JavaScript. It is developed and maintained by Ecma International's Technical Committee 39 (TC39) and published as the ECMA-262 specification. 
 
