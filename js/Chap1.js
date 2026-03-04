@@ -280,3 +280,13 @@
 // localStorage.removeItem("obj")   // localstorage se object remove karne k liye
 
 
+// =====================
+
+// let n=10;
+// console.log(n++) //-> 10
+// console.log(n) //->11
+// console.log(n++) //-> 11
+// console.log(n++) //-> 12
+// console.log(n) //-> 13
+
+// console.log(--n) //->12

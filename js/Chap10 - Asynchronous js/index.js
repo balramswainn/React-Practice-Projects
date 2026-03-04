@@ -203,16 +203,16 @@
 
 
 // asynchronous programming
-const heading1 = document.querySelector(".heading1");
-const heading2 = document.querySelector(".heading2");
-const heading3 = document.querySelector(".heading3");
-const heading4 = document.querySelector(".heading4");
-const heading5 = document.querySelector(".heading5");
-const heading6 = document.querySelector(".heading6");
-const heading7 = document.querySelector(".heading7");
-const heading8 = document.querySelector(".heading8");
-const heading9 = document.querySelector(".heading9");
-const heading10 = document.querySelector(".heading10");
+// const heading1 = document.querySelector(".heading1");
+// const heading2 = document.querySelector(".heading2");
+// const heading3 = document.querySelector(".heading3");
+// const heading4 = document.querySelector(".heading4");
+// const heading5 = document.querySelector(".heading5");
+// const heading6 = document.querySelector(".heading6");
+// const heading7 = document.querySelector(".heading7");
+// const heading8 = document.querySelector(".heading8");
+// const heading9 = document.querySelector(".heading9");
+// const heading10 = document.querySelector(".heading10");
 
 
 //so hum setTimeout alag alag likh sakte the and wese hi kaam karta but usme prblm thi time ka issue kab konsa execute karna hai isme calculation karni padti jo ki sahi nhi hai and complex app me bhi prblm create kar sakti thi so setTimeout k andhr setTimeout likha taki woh execute hone k baad uske andhr wala ho but it will create callback hell

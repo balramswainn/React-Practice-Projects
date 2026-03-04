@@ -339,3 +339,205 @@
 // Higher-Order Functions (HOF)
 // 👉 Jo function ek function ko accept kare ya return kare, usko HOF bolte hain.
 // Map, filter, reduce → ye sab HOF hain.
+
+
+// ======================================
+
+// hoisting 
+
+// 1. function are fully hoisted
+// demo();
+
+// function demo(){
+//   console.log("hey")
+// }
+
+//-> hey
+
+
+
+// 2. 
+// demo();
+
+// const demo=()=>{
+//   console.log("hey")
+// }
+//-> Uncaught ReferenceError: Cannot access 'demo' before initialization
+
+
+
+
+
+// 3. 
+// function one(){
+//   console.log("one")
+//   two();x
+// }
+
+// const two=()=>{
+//   console.log("two")
+// }
+
+// one();
+
+//-> one 
+//-> two
+// JS pura code memory me load karta hai, function one() fully hoist ho jata hai, const two hoist hota hai but TDZ me rehta hai
+
+//one() call ho raha hai after: const two = () => {}
+  
+// Matlab jab two() call ho raha hai:
+// 👉 two already initialize ho chuka hai mtlb Variable ko value assign kar dena.
+// 👉 TDZ khatam ho chuka hai
+// Isliye error nahi aaya.
+
+
+
+
+// 4.
+// function one(){
+//   console.log("one")
+//   two();
+// }
+// one();
+
+// const two=()=>{
+//   console.log("two")
+// }
+
+//-> one
+//-> Uncaught ReferenceError: Cannot access 'two' before initialization
+
+// 👉 yaha two initialize nhi hua tha
+
+
+
+
+
+
+// 5.
+// console.log(one) //-> undefined
+// one(); //-> Uncaught TypeError: one is not a function
+// var one = () =>{
+//   console.log("one")
+// }
+
+
+// console.log(two) //-> undefined
+// var two = "hey"
+
+// so we use arrow function in react bcz 
+// 1. arrow this ka problem solve karta hai Arrow function ka this lexical hota hai. Matlab — wo apna khud ka this nahi banata, balki parent scope ka this use karta hai.
+// 2. Consistency Modern JS (ES6+) ke baad arrow common ho gaya. Code clean lagta hai.
+// 3. Short Syntax Readable + compact.
+// 4. React Pattern , React components mostly: arrow, so ecosystem me arrow default ban gaya.
+
+
+
+
+
+
+// 6.
+// let obj={
+// sample: "hey",
+// demo:()=>{
+//   console.log(this.sample)
+// }
+
+// }
+// obj.demo() //-> undefined
+
+
+// let obj={
+// sample: "hey",
+// demo:function(){
+//   console.log(this.sample)
+// }
+
+// }
+// obj.demo()  //-> hey
+
+
+
+
+
+
+
+// 7.
+// const obj = {
+//   name: "Balram",
+//   normal: function() {
+//     setTimeout(() => {
+//       console.log(this.name);
+//     }, 1000);
+//   }
+// };
+
+// obj.normal(); // Balram
+
+// 1️⃣ obj.normal() call hua
+// Yaha normal ek normal function hai.
+
+// Normal function jab object ke through call hota hai: obj.normal() -> this = obj
+// So inside normal, this.name = "Balram"
+
+
+// obj.normal()
+//    ↓
+// normal() me this = obj
+//    ↓
+// setTimeout arrow function
+//    ↓
+// arrow ka this = parent ka this = obj
+//    ↓
+// console.log(obj.name)
+//    ↓
+// Balram
+
+
+// Agar yaha normal function hota to?
+// setTimeout(function() {
+//   console.log(this.name);
+// }, 1000);
+
+// this = window (browser me)
+// ===================================================
+
+
+// const random=()=>{
+//   return console.log("random")
+// }
+// random() //-> random
+
+
+
+// const random1=()=> console.log("random1")
+// random1() //-> random1
+
+
+
+// const random2=()=>(
+//   console.log("random2")
+// )
+// random2() //-> radnom2
+
+
+
+// const random3=()=>{
+//   return (
+//     console.log("random3")
+//   )
+// }
+// random3()
+
+
+// REACT 
+// onClick={() => {
+//   setSelectedUser(user);
+//   setUnseenMessages(prev => ({ ...prev, [user._id]: 0 }));
+// }}
+
+// Yaha tum: Koi value return nahi kar rahe, Sirf side effects kar rahe ho (state update) , onClick ko koi return value chahiye hi nahi. Isliye return ki zarurat nahi hai.React event handlers: Return value ignore kar dete hain. Unko bas function run karna hota hai.
+
+
+
