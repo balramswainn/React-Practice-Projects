@@ -7,8 +7,11 @@ function App() {
   const [password, setPassword] = useState("")
 
   //useRef hook
-  const passwordRef = useRef(null)
-
+  const passwordRef = useRef(null) //Initially DOM element exist nahi karta, isliye ref ko null se initialize karte hain. After render React automatically set karta hai:
+//passwordRef.current = <input element>
+// So flow: initial render -> passwordRef.current = null
+// after DOM mount -> passwordRef.current = input element
+//useRef = value ya DOM reference store karo bina re-render ke
 
   const passwordGenerator = useCallback(() => {   
     let pass = ""
@@ -24,14 +27,17 @@ function App() {
   }, [length, numberAllowed, charAllowed, setPassword])
 
   //Normally, in React:Every time your component re-renders(Component ke andar koi state change ho,Props change ho,Same component UI me dobara show ho,    Re-render means:When React redraws the UI because state or props changed(without browser refresh).),all functions written inside it are created again (new copies in memory).So if you didn’t use useCallback,passwordGenerator would be a new function every render —even if its logic didn’t change!
-  //When to use useCallback?.....When passing function as prop to a child component,Function heavy/expensive computation karta ho Performance optimize,Function dependency ho kisi useEffect me(means useEffect me function call kiya hai ).............Should we wrap all functions in useCallback?”No. Only those functions that are passed as props to children or used inside useEffect and could cause unnecessary re-renders ,should be wrapped in useCallback. Otherwise it harms performance.
 
-//useCallback is a React hook that memoizes (remembers) a function —meaning React won’t recreate that function every time your component re-renders unless its dependencies change.So it’s mainly used for performance optimization, especially when:You’re passing functions to child components (to avoid unnecessary re-renders)Or you have functions that are expensive to recreate,
+  //When to use useCallback?.....When passing function as prop to a child component,Function heavy/expensive computation karta ho Performance optimize,Function dependency ho kisi useEffect me(means useEffect me function call kiya hai )
+  
+  //Should we wrap all functions in useCallback?”No. Only those functions that are passed as props to children or used inside useEffect and could cause unnecessary re-renders ,should be wrapped in useCallback. Otherwise it harms performance.
 
-//If you don’t use useCallback, the function would be recreated on every render, even if nothing changes — not a big issue here, but it’s a good habit So useCallback ensures React reuses the same function instance until any dependency changes.
+  //useCallback is a React hook that memoizes (remembers) a function —meaning React won’t recreate that function every time your component re-renders unless its dependencies change.So it’s mainly used for performance optimization, especially when:You’re passing functions to child components (to avoid unnecessary re-renders)Or you have functions that are expensive to recreate,
+
+  //If you don’t use useCallback, the function would be recreated on every render, even if nothing changes — not a big issue here, but it’s a good habit So useCallback ensures React reuses the same function instance until any dependency changes.
 
 
-//Why setPassword is also inside useCallback dependency? Because you used it inside the function.React wants you to include everything you use inside a hook’s body.Even though setPassword doesn’t change (React guarantees that),it’s good practice and removes React warnings.
+  //Why setPassword is also inside useCallback dependency? Because you used it inside the function.React wants you to include everything you use inside a hook’s body.Even though setPassword doesn’t change (React guarantees that),it’s good practice and removes React warnings.
  
 
   const copyPasswordToClipboard = useCallback(() => {
@@ -53,7 +59,7 @@ function App() {
 
   //If we didn’t use useCallback Then passwordGenerator would be a new function every render,so your useEffect would keep running infinitely — causing an infinite loop ⚠️ if put inside useEffect so use useCallback when you put a function inside useEffect. 
 
-   //Why setPassword is also inside useCallback dependency? Because you used it inside the function.React wants you to include everything you use inside a hook’s body.Even though setPassword doesn’t change (React guarantees that),it’s good practice and removes React warnings.
+  //Why setPassword is also inside useCallback dependency? Because you used it inside the function.React wants you to include everything you use inside a hook’s body.Even though setPassword doesn’t change (React guarantees that),it’s good practice and removes React warnings.
 
   return (
     

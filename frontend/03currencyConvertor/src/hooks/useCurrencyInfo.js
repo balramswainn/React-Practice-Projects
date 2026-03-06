@@ -3,8 +3,8 @@ import {useEffect, useState} from "react"
 
 
 function useCurrencyInfo(currency){
-    const [data, setData] = useState({})
-     //Always initialize state with a meaningful default. Objects/arrays → useState({}) ya useState([])Strings/numbers → useState(''), useState(0)Async/fetch data (jaise user) → useState(null)
+    const [data, setData] = useState({})  //-> null use karna   chahiye When fetching data from an API, null is often used as the initial state to indicate that the data has not been loaded yet.
+     //Always initialize state with a meaningful default. Objects/arrays → useState({})/useState([]) Strings/numbers → useState(''), useState(0) Async/fetch data (jaise user) → useState(null)
      
     useEffect(() => {
         fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1/currencies/${currency}.json`)  

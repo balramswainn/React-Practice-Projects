@@ -227,7 +227,7 @@ useEffect(() => {
 | no dependency | runs on every render        |
 
 
-3️⃣ useRef :- useRef is used to store a mutable value that does not cause re-render when it changes.It is also commonly used to access DOM elements directly.
+3️⃣ useRef :- useRef is used to store a mutable value that does not cause re-render when it changes.It is also commonly used to access DOM elements directly.useRef = value ya DOM reference store karo bina re-render ke
   const inputRef = useRef();
 
 4️⃣ useMemo :- useMemo is used to memoize expensive calculations so they are not recomputed on every render.

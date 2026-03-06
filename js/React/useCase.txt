@@ -1,0 +1,69 @@
+1. useCallback ->use in fun when used inside useEffect, heavy or expensive computations, passing a function as a prop to a child component
+2. jsx -> we use evaluated expression in jsx 
+  ✔ Allowed: variables, functions , ternary operators, math operations <h1>{2 + 2}</h1>
+  ❌ Not allowed: if , for, while   because they are statements
+  Easy trick : Agar code ko variable me assign kar sakte ho, toh wo expression hai.
+3. useEffect :- no dependency -> runs on every render,  `[]` -> only once (component mount),  `[value]` -> runs when value changes  
+4. Functions written directly in the component run on every render Ye infinite re-render loop create kar sakta hai., while functions inside useEffect run only when the specified dependencies change. means useEffect k bahar open me call kiya toh isliye iske andhr liko ya toh ek listener laga di click pe ye fun chale karke
+5. useRef :- value ya DOM reference store karo bina re-render ke,DOM element access karne ke liye (most common), valu change karni hai but UI me change nhi karna like :- mouse position,scroll position ,websocket instance
+6. We should use the onChange event handler in React on form elements like <input>, <textarea>, and <select>.onChange helps React capture user input and keep the UI and state in sync.
+7. const [data, setData] = useState(null)  When fetching data from an API, null is often used as the initial state to indicate that the data has not been loaded yet.
+
+
+
+
+⭐1 When to use useCallback()
+-> useCallback is used to memoize a function so that the function is not recreated on every render. This helps improve performance in certain situations.
+
+Common cases to use useCallback :- 
+1. When passing a function as a prop to a child component,This prevents unnecessary re-renders of the child component.
+2. When the function performs heavy or expensive computations, Memoizing the function helps avoid unnecessary recreations and improves performance.
+3. When the function is used inside useEffect as a dependency
+
+Explanation of the useEffect case
+If a function is defined inside a component without useCallback, it is recreated on every render.
+React recommends that all variables and functions used inside useEffect should be included in the dependency array.
+
+Example problem:
+If we include that function in the dependency array:
+The function reference changes on every render.
+React thinks the dependency has changed.
+useEffect runs again.
+The state updates again.
+This causes an infinite loop.
+To prevent this, we use useCallback so that the function is recreated only when its dependencies change.
+
+
+⭐2  useRef :- 
+
+useRef tab use karte hai jab koi value store karni ho jo change ho sakti hai but component re-render na kare.Aur DOM element ko direct access karne ke liye bhi use hota hai.
+
+1️⃣ DOM element access karne ke liye (most common)
+const inputRef = useRef(null) 
+
+<input ref={inputRef} />
+<button onClick={() => inputRef.current.focus()}>
+  Focus
+</button>
+Yaha useRef se input element ko directly access kar rahe hai and direct focus kar rahe hain.
+
+Real life use: input focus karna, scroll karna, video play/pause, DOM manipulate karna
+
+2️⃣ Value store karne ke liye bina re-render
+const countRef = useRef(0)
+countRef.current++   //Yaha value change ho gayi but component re-render nahi hua.UI update nahi hoga.
+
+3️⃣ null kyu likhte hai? const passwordRef = useRef(null)
+Initially DOM element exist nahi karta, isliye null se start karte hai. Baad me React khud set karta hai:
+So flow: initial render -> passwordRef.current = null
+After DOM mount -> passwordRef.current = input element
+
+4️⃣ Re-render avoid karna, Kabhi kabhi value change hoti rehti hai but UI change nahi karna hota.
+
+Example: mouse position, scroll position, timer id, websocket instance
+Isliye re-render avoid karte hain.
+
+useRef is similar to useState because both can store values between renders.
+But the key difference is:
+useState → value change hone par component re-render hota hai
+useRef → value change hone par component re-render nahi hota
