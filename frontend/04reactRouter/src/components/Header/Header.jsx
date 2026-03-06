@@ -41,7 +41,7 @@ export default function Header() {
 
                                     //className ko ek function doge, to React Router us function ko call karega aur tumhe ek object pass karega.Us object me ek property hoti hai isActive (true/false), jo batati hai ki ye link active route pe hai ya nahi.
 
-                                    //In a normal HTML application, the <a> tag reloads the entire page whenever we navigate. But React applications are Single Page Applications (SPA). If we use <a>, the browser does a full page refresh, which means React state, context, or Redux store data will be lost.
+                                    //In a normal HTML application, the <a> tag reloads the entire page whenever we navigate. But React applications are Single Page Applications (SPA). If we use <a>, the browser does a full page refresh, which means React state, context, or Redux store data will be lost. so we use Link and NavLink
 
                                     //Link from react-router-dom solves this problem. It updates the URL and renders the correct component without reloading the page, so the app feels much faster and state is preserved.
 

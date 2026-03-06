@@ -243,6 +243,8 @@ const memoizedFunction = useCallback(() => {
   // function logic
 }, [dependencies]);
 
+6. useId :- useId is a React Hook for generating unique IDs that can be passed to accessibility attributes  like htmlFor. const id = useId(), Do not call useId to generate keys in a list. Keys should be generated from your data.
+
 | Hook        | Purpose                       |
 | ----------- | ----------------------------- |
 | useState    | store state                   |
