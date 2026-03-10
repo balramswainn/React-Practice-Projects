@@ -201,6 +201,13 @@ Isliye React me conditional rendering ke liye ye use hota hai:
 Kyuki ternary operator expression hai.
 
 
+
+
+
+
+
+
+
 11. Hooks :- are special functions in React that allow functional components to use state and other React features without writing class components.
 Hooks were introduced in React 16.8.
 Before hooks, only class components could manage state and lifecycle methods. Hooks made it possible to do this inside functional components. 
@@ -252,6 +259,16 @@ const memoizedFunction = useCallback(() => {
 | useRef      | DOM reference / mutable value |
 | useMemo     | memoize values                |
 | useCallback | memoize functions             |
+
+
+
+
+
+
+
+
+
+
 
 
 1️⃣ Why does useEffect run twice in development?
@@ -424,6 +441,8 @@ React converts JSX → React elements → Virtual DOM, compares changes using di
 7️⃣ Use key when rendering lists, Keys help React identify elements efficiently during updates.
 8️⃣ Comments inside JSX, Use {/* comment */}
 9️⃣ Only expressions allowed inside JSX
+
+
 
 
 

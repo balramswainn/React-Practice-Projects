@@ -8,9 +8,10 @@ const UserContextProvider =({children})=>{
 
     // useState({}) Iska matlab hai ki shuru me ek empty object milega.Lekin dikkat ye hai ki tum baad me code me agar check karoge:if(user) { ye hamesha true hoga, kyunki {} truthy hai}             Matlab tumhe pata hi nahi chalega ki user API se load hua hai ya abhi empty hai.Agar null diya hai toh aage null check lagana padega.Yaha pe tumhe user && user.name ya user?.name (optional chaining) use karna padega. Agar tum default empty data dikhana chahte ho (jaise empty list UI me show karni hai) → useState({}) ya useState([])
 
+    // const value={user,setUser}    value={value}   ese bhi likh sakte the, value prop is what you want to share globally.
     return (
-        <UserContext.Provider value={{user,setUser}}>
-            {/*pehle object jsx expression and second object bcz context expect object for multiple values if single value hoti toh value="user" likh sakte the */}
+        <UserContext.Provider value={{user,setUser}}>{/* UserContext.Provider This component provides data to all child components that use UserContext. */}
+            {/*pehla object jsx expression and second is object bcz context expect object for multiple values , if single value hota string value toh value="user" likh sakte the */}
             {children}
         </UserContext.Provider>
     )

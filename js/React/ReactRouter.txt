@@ -1,0 +1,51 @@
+ Explain React Router ?
+-> React Router is a library used for client-side routing in React applications. It allows us to navigate between different components without reloading the page. In React Router v6 we use createBrowserRouter to define routes and RouterProvider to provide the router to the application. For navigation we use Link and NavLink, for nested routing we use Outlet, and for data fetching we can use loaders with the useLoaderData hook.
+
+1. React Router
+-> React Router is a library used for navigation in React applications. It allows us to create multiple pages without reloading the browser (Single Page Application).Example pages: Home, About, Contact, Dashboard ,Instead of loading a new HTML page, React Router changes components based on the URL.
+
+2. createBrowserRouter()
+-> ccreateBrowserRouter is used to define routing configuration using objects in React Router v6. It defines:paths, components, loaders, nested routes.
+
+3. createRoutesFromElements()
+-> createRoutesFromElements allows us to create routes using JSX instead of objects. It converts JSX <Route> elements into route objects.
+
+4. RouterProvider 
+-> RouterProvider is used to connect the router with the React app.RouterProvider provides the router configuration to the entire application.
+
+5. Outlet
+-> Outlet is used for nested routes. It works like a placeholder where child routes render.Outlet is used to render child routes inside a parent layout.
+
+6. Link
+-> Link is used for navigation between pages without reloading the browser. Link is used for client-side navigation instead of the anchor tag.
+
+7. NavLink
+-> NavLink works like Link, but it gives active styling when the route is active. 
+
+8. isActive
+-> isActive is used to check if the route is active. isActive helps to apply styling when the link matches the current URL.
+
+9. Loader
+-> Loader is used to fetch data before the route component renders.
+
+10. useLoaderData()
+-> useLoaderData() is a hook used to access loader data inside the component.useLoaderData is used to read the data returned from the loader function.
+
+11. BrowserRouter
+-> BrowserRouter is the older way of setting up routing. BrowserRouter uses the HTML5 history API to manage routing.
+
+| createBrowserRouter               | BrowserRouter             |
+| --------------------------------- | ------------------------- |
+| New approach (React Router v6.4+) | Older approach            |
+| Supports loaders and actions      | No built-in data fetching |
+| Uses RouterProvider               | Uses Routes               |
+
+12. useNavigate()
+-> Used to navigate programmatically.useNavigate is a React Router v6 hook used to change routes programmatically, such as redirecting a user after a button click or form submission.
+
+13. useParams()
+-> Used to get dynamic URL parameters.
+useParams is a React Router hook that extracts dynamic values from the URL path (e.g., /user/:id). It returns an object of key/value pairs, allowing components to read parameters directly from the URL to display content dynamically. For example, if the URL is /user/123, useParams() returns { id: "123" }.
+
+14. useLocation()
+-> Gives information about current URL.it allows you to access information about the current web address (URL) in your functional components
