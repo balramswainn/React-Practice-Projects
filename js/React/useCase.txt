@@ -13,7 +13,18 @@
 Link from react-router-dom solves this problem. It updates the URL and renders the correct component without reloading the page, so the app feels much faster and state is preserved.
 NavLink is similar to Link, but it also provides an easy way to style the active route by automatically applying an active class or custom styles. This is especially useful for navigation menus to highlight which page the user is currently on.  className={({isActive}) => ` ${isActive ? "text-orange-700" : "text-gray-700" }` }
 
-9.
+9.Jab kisi input ko React state se control karna ho, toh hamesha value ya checked likhna padega.
+// Checkbox/Radio ke liye -> checked={koi_boolean_state}
+// Text/Number input ke liye  -> value={koi_string_state}
+
+Jo elements aise behave karte hain:-
+1. <input type="text"> -> value, 
+2. <input type="checkbox"> -> checked, 
+3. <input type="radio"> -> checked, 
+4. <textarea> -> value,
+5. <select> -> value
+
+Jis bhi input ki value React state mein store ho → us input ko value ya checked se sync karo, warna UI aur state alag ho jaayenge.
 
 
 
