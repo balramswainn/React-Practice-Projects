@@ -26,6 +26,34 @@ Jo elements aise behave karte hain:-
 
 Jis bhi input ki value React state mein store ho → us input ko value ya checked se sync karo, warna UI aur state alag ho jaayenge.
 
+10 .
+Mujhe list dikhani hai?          → Array of Objects [{}, {}, {}]
+Mujhe ID se direct access karna? → Object of Objects { id: {} }
+Mujhe app ki global config rakhni? → Simple Object {}
+
+Same type, multiple items → [{}, {}, {}]
+Different cheezein ek jagah → {}
+ID se fast access chahiye → { id: {} }
+
+// E-commerce — Products list
+const products = [
+    { id: 1, name: "Shoes", price: 999 },
+    { id: 2, name: "Shirt", price: 499 },
+]
+
+// User Profile — single object
+const user = {
+    name: "John",
+    email: "john@gmail.com",
+    role: "admin"
+}
+
+// Redux Store — object of objects
+const store = {
+    auth: { user: {}, isLoggedIn: false },
+    cart: { items: [], total: 0 },
+    products: { list: [], loading: false }
+}
 
 
 
