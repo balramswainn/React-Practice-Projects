@@ -36,7 +36,7 @@ function TodoItem({ todo }) {
               } ${todo.completed ? "line-through" : ""}`}
               value={todoMsg}
               onChange={(e) => setTodoMsg(e.target.value)}
-              readOnly={!isTodoEditable}
+              readOnly={!isTodoEditable} // readOnly true ho toh editable nhi hoga isliye ulta likha ki isTodoEditable true ho toh yaha false dikha and edit kar paye
            
           />
           {/* Edit, Save Button */}
