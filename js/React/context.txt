@@ -1,5 +1,24 @@
 createContext() :- creates a context object that allows data to be shared across components without passing props manually.
-serContext.Provider :- Provider supplies the context value to all child components.
+
+UserContext.Provider :- Provider supplies the context value to all child components.
+
 const UserContextProvider =({children})=>{} :- Ye ek custom wrapper component hota hai jo context ko provide karta hai.
 children ka matlab hota hai jo components iske andar wrap honge.
+
 useContext :- useContext() is used to consume or access the context value inside a component.
+
+
+
+
+
+
+configureStore
+store
+reducer
+initialState
+createSlice
+nanoid 
+reducers
+Provider
+useDispatch
+useSelector
