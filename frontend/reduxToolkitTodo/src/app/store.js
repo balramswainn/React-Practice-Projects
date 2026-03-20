@@ -44,3 +44,35 @@ export const store = configureStore({
 //   todo: { todos: [...] },   // todoSlice ka state
 //   user: { name: "", age: 0 } // userSlice ka state
 // }
+
+
+
+
+
+
+
+
+// ✅ 1. Feature-based structure (Recommended / Modern)
+// src/
+//  ├ app/
+//  │   └ store.js
+//  ├ features/
+//  │   └ todo/
+//  │       └ todoSlice.js
+
+// 👉 Isko bolte hain feature-based architecture
+
+// ✔️ Use when:
+
+// Project bada hai
+
+// Multiple features hain (auth, cart, user, etc.)
+
+// Scalable app banana hai
+
+// ✅ 2. Store-based structure (Old / Simple)
+// src/
+//  ├ store/
+//  │   ├ index.js
+//  │   ├ todoSlice.js
+//  │   ├ userSlice.js
