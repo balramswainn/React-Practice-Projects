@@ -22,3 +22,23 @@ reducers
 Provider
 useDispatch
 useSelector
+
+
+
+🔹 Context API (Manual Immutability)
+Uses React’s useState or useReducer
+You must manually create a new state when updating data
+Direct mutation is not allowed
+Requires spreading or copying (...state) to update
+
+✅ Example idea: “In Context, we manually ensure immutability by creating new objects or arrays whenever we update state.”
+
+
+
+🔹 Redux Toolkit (Immer-powered)
+Uses Immer internally
+Lets you write code that looks like mutation
+Actually converts it into safe immutable updates behind the scenes
+Cleaner and less boilerplate
+
+✅ Example idea: “In Redux Toolkit, we can write mutation-like code, but Immer ensures the state remains immutable internally.”

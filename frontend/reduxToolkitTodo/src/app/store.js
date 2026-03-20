@@ -76,3 +76,10 @@ export const store = configureStore({
 //  │   ├ index.js
 //  │   ├ todoSlice.js
 //  │   ├ userSlice.js
+
+// Simple projects ke liye easy hai Sab ek jagah:
+
+
+
+
+

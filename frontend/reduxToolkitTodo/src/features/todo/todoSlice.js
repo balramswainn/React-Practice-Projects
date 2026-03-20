@@ -28,6 +28,10 @@ export const todoSlice = createSlice({
             state.todos=state.todos.map((todo)=> todo.id === action.payload.id ? {...todo,text:action.payload.text} : todo)
             //yaha pura object araha hai, dispatch(updateTodo({ id: todo.id, text: editText })); isiliye  action.payload.text likhn a jaruri hai to identify the correct todo
         }
+        // ✅ Redux me replace version
+        //  updateTodo: (state, action) => { 
+        //     state.todos = state.todos.map((todo) => todo.id === action.payload.id ? action.payload  : todo )  // 👈 pura replace
+        // }  // yaha pura todo hi replace hojata but hume bas text change karna tha so woh use kiya ye nhi
     }
 })
 
@@ -95,3 +99,40 @@ export default todoSlice.reducer
 // utils/ → Helper functions (date formatting, validation, constants).
 
 // assets/ → Static files (images, fonts, icons).
+
+
+
+
+
+
+
+// 🔹 Context API (Manual kaam)
+// 👉 Context me tumko khud sab handle karna padta hai
+// Matlab: State update karna hai → khud new object banana padega, Purana state directly change nahi kar sakte ❌
+// Simple line: 👉 “Context me tum khud copy bana ke update karte ho”
+
+// setTodos(prev =>
+//   prev.map(todo =>
+//     todo.id === id
+//       ? { ...todo, text: "new" }  // 👈 khud copy banayi
+//       : todo
+//   )
+// )
+
+// 👉 Yaha tum: copy bana rahe ho, manually update kar rahe ho
+
+
+
+
+// 🔹 Redux Toolkit (Automatic kaam)
+// 👉 Redux Toolkit me ek library use hoti hai: Immer 👉 Ye tumhara kaam easy kar deta hai
+
+// Tum aise likhte ho: todo.text = "new" 😳 Lagta hai direct change kar rahe ho BUT ❗
+// 👉 Actually background me: copy banti hai, safe update hota hai
+
+// Simple line: 👉 “Redux Toolkit me tum direct change jaisa likhte ho, but andar se safe copy ban jati hai”
+
+
+
+// 👉 Context = manual update (khud copy banao)
+// 👉 Redux Toolkit = automatic update (Immer copy bana deta hai)
