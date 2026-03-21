@@ -12,18 +12,6 @@ useContext :- useContext() is used to consume or access the context value inside
 
 
 
-configureStore
-store
-reducer
-initialState
-createSlice
-nanoid 
-reducers
-Provider
-useDispatch
-useSelector
-
-
 
 🔹 Context API (Manual Immutability)
 Uses React’s useState or useReducer
@@ -42,3 +30,54 @@ Actually converts it into safe immutable updates behind the scenes
 Cleaner and less boilerplate
 
 ✅ Example idea: “In Redux Toolkit, we can write mutation-like code, but Immer ensures the state remains immutable internally.”
+
+
+===========================
+
+
+
+react-redux   vs redux toolit RTK
+configureStore
+store
+reducer
+initialState
+createSlice
+nanoid 
+reducers
+Provider
+useDispatch
+useSelector
+
+
+🔹 React-Redux vs Redux Toolkit (RTK)
+
+React-Redux :- React-Redux is a library that connects React components to the Redux store
+It Provides hooks like: useDispatch, useSelector, Provider
+It does not manage state, it just helps React interact with Redux
+👉 One-liner: “React-Redux is the binding layer between React and Redux.”
+
+
+Redux Toolkit (RTK) :- Redux Toolkit (RTK) is the official, recommended way to write Redux logic with less boilerplate. RTK simplifies setup and uses Immer for safe state updates.
+👉 One-liner: “Redux Toolkit simplifies Redux by providing built-in utilities like createSlice and configureStore.”
+
+
+🔹 configureStore :- A function from RTK used to create the Redux store. It automatically sets up DevTools and middleware. Replaces the old createStore method.
+
+
+🔹 store : “The store holds the entire state of the application.”It holds state, reducers, and handles dispatching actions.
+
+🔹 reducer : A reducer is a function that updates state based on actions and It takes current state and action, and returns a new state.
+
+🔹 initialState : The default starting value of a slice or store.  Defines the initial structure of your state.
+
+🔹 createSlice : A function from RTK to create reducers and actions together. It reduces boilerplate by combining logic in one place. 
+
+🔹 nanoid : “nanoid is used to generate unique IDs for items like todos.”
+
+🔹 reducers (inside createSlice) : A collection of functions inside a slice that define how state changes.Each function corresponds to an action.
+
+🔹 Provider : A component from React-Redux that makes the store available to all components.Wraps the root of the app.
+
+🔹 useDispatch : “useDispatch is used to dispatch actions to update the state.”
+
+🔹 useSelector : “useSelector is used to access state from the Redux store.”
