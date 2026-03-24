@@ -16,7 +16,7 @@ function App() {
       if (userData) {
         dispatch(login({userData}))     // userData:{details users ka in object}
       } else {
-        dispatch(logout())           // use login nhi hai toh logout kardo
+        dispatch(logout())           // user login nhi hai toh logout kardo
       }
     })
     .finally(() => setLoading(false))       // finally run hoga hi kuch bhi ho   ...loading ko false kardiya 

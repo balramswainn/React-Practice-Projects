@@ -5,7 +5,7 @@ const initialState = {
     userData: null              // abhi koi userdata nhi hai isiliye null
 }
 
-const authSlice = createSlice({
+const authSlice = createSlice({   // this slice is for user authentication 
     name: "auth",
     initialState,
     reducers: {

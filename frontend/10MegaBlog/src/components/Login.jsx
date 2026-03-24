@@ -15,9 +15,9 @@ function Login() {
     const login = async(data) => {
         setError("")
         try {
-            const session = await authService.login(data)
+            const session = await authService.login(data)  // isee login hoga 
             if (session) {
-                const userData = await authService.getCurrentUser()
+                const userData = await authService.getCurrentUser()  // login k hone k baad user ka info dikhane k liye usse redux mai state ko dena padega isiliye 
                 if(userData) dispatch(authLogin({userData}));     //useData ek object k andhr hai so waha hum payload={ useData } 
                 navigate("/")
             }
