@@ -24,7 +24,7 @@ export default function Protected({children, authentication = true}) {  //childr
         } else if(!authentication && authStatus !== authentication){
             navigate("/")
         }
-        setLoader(false)
+        setLoader(false)  // dono true ho ya dono false direct yaha aaega 
     }, [authStatus, navigate, authentication])
 
   return loader ? <h1>Loading...</h1> : <>{children}</>  //Pehli baar app load hoti hai — authStatus check hone me time lagta hai Tab tak Loading dikhao Check ho gaya — setLoader(false) — children render karo
