@@ -10,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true)   //appwrite se data fetch karenge toh aane ko time lagta hai ho sakta hai network request me time lag jaye isiliye ye state banaya hai so conditional rendering ho sake true hai toh loader chalu ho jaye 
   const dispatch = useDispatch()
 
-  useEffect(() => {                 // bcz jese hi application load ho toh ye run kare ki login ho ya nhi ho
+  useEffect(() => {                 // bcz jese hi application load ho toh ye run kare ki user login hai ya nhi hai
     authService.getCurrentUser()         // auth me ye method banaya tha currentuser dene k liye mila toh .then
     .then((userData) => {
       if (userData) {
@@ -36,3 +36,4 @@ function App() {
 }
 
 export default App
+

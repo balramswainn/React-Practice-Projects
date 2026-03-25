@@ -126,6 +126,41 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
+// if authenticate ho toh baki pagesa ka access milega  if nhi ho toh nhi ho toh bas  login and signup dikehga
+// Login/Signup sirf logged out users ke liye, baaki routes sirf logged in users ke liye.
+
+
+// authentication={true}  → Login karo pehle, tab aao
+// authentication={false} → Login ho chuke ho? Yahan mat aao
+
+{/* <AuthLayout authentication> */}  //authentication alone (no value)  
+// Ye shorthand hai authentication={true} ka Matlab — login hona zaroori hai is route pe jaane ke liye, Agar logged out ho → /login pe redirect
+
+
+//authentication={false}
+{/* <AuthLayout authentication={false}> */}
+// - Matlab — **already logged in ho toh mat aao**
+// - Agar logged in ho → `/` pe redirect
+// - Login/Signup pages ke liye use hota hai 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Core React
 // react & react-dom — The UI library itself. React builds the component tree; react-dom renders it to the browser DOM.

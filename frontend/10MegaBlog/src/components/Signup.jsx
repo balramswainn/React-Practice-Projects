@@ -12,17 +12,17 @@ function Signup() {
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
 
-    const create = async(data) => {
-        setError("")
+    const create = async(data) => {  //data — react-hook-form se aata hai { name, email, password }
+        setError("")  //Pehle se koi error show ho raha ho toh clear kardo
         try {
-            const userData = await authService.createAccount(data)
+            const userData = await authService.createAccount(data) //Appwrite me naya account create karta hai
             if (userData) {
-                const userData = await authService.getCurrentUser()
-                if(userData) dispatch(login(userData));
-                navigate("/")
+                const userData = await authService.getCurrentUser() //logged in user ki details hai
+                if(userData) dispatch(login(userData)); //Appwrite se current user ki details li , Redux store me save kardo — app ko pata chale user logged in hai
+                navigate("/") //Signup successful — home page pe bhejo
             }
         } catch (error) {
-            setError(error.message)
+            setError(error.message) 
         }
     }
 

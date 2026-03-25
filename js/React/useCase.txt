@@ -55,6 +55,8 @@ const store = {
     products: { list: [], loading: false }
 }
 
+11. function Input({className,label,type="text",...props},ref){} => rest parameter hamesha last me hi aana chahiye — yeh JavaScript ka rule hai....props baaki saari properties collect karta hai jo explicitly destructure nahi ki gayi. Agar beech me daalo, JS ko pata nahi chalega ki "baaki" kahan se kahan tak hai — isliye syntax error aata hai.
+
 
 
 

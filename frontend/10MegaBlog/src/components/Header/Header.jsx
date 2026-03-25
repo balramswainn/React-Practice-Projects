@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status)
+  const authStatus = useSelector((state) => state.auth.status)   // example state.todos tha yaha -> state.auth.status status pe target kiya hai uska state chahiye tha
   const navigate = useNavigate()
 
   const navItems = [                     // production grade app me baar baar koi add nhi karta hai ese array k andhr object bana detehai   if naya page ya button aya toh object add kardo  navigation bar me add hojaegi
@@ -17,7 +17,7 @@ function Header() {
     {
       name: "Login",
       slug: "/login",
-      active: !authStatus,
+      active: !authStatus,          // hume by default if user login nhi hai toh menu mai login and logout show karna hai  isiliye auth.status = false yaha -> !authStatus true so jo true hoga woh show hoga  login karne k baad ye show nhi hoga
   },
   {
       name: "Signup",
@@ -52,7 +52,7 @@ function Header() {
             item.active ? (
               <li key={item.name}>       {/*jo html element repeat ho rhi hai uspe key lagao*/}
                 <button
-                onClick={() => navigate(item.slug)}
+                onClick={() => navigate(item.slug)}  // jispe click karega ye naivgate waha leke jaega 
                 className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
                 >{item.name}</button>
               </li>

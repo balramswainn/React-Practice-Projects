@@ -46,19 +46,26 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
+
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className='mt-8'>
+
+        <form onSubmit={handleSubmit(login)} className='mt-8'>  {/* form jab bhi submit hoga waha handlesubmit  hi use hoga ye ek method hai jisme hum apna method dete hai ki mai istarah se form handle karunga and form jab submit hoga ab ye event hai jo call hoga it is imp bcz jitne bhi input field yaha pe denge waha hum ye register ko use karenge react-hook-form se jo import kiya so automatic jo value waha likhi hai unka state hume manage nhi karna padega yahase apne aap ye valye pick karega and handlesubmit hote time sari value lelega */}
+
+         {/* handleSubmit — react-hook-form ka method hai, Ye pehle validation check karta hai, Sab valid ho toh tumhara login function call karta hai, Aur saari form values automatically pass karta hai login(data) me */}
+
             <div className='space-y-5'>
                 <Input
                 label="Email: "
                 placeholder="Enter your email"
                 type="email"
-                {...register("email", {
+                {...register("email", {      // register Ye input ko react-hook-form ke saath connect karta hai,  Spread {...} isliye kiya kyunki register return karta hai: { name: "email", onChange: fn, onBlur: fn, ref: fn } // ← isliye Input me forwardRef use kiya tha!,  Ye sab props automatically <Input> ko mil jaate hain,  Tumhe manually state banana nahi padta — form khud track karta hai
+
                     required: true,
                     validate: {
                         matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                         "Email address must be a valid address",
-                    }
+                    } //`value` — jo user ne type kiya ,   Regex se check karta hai valid email hai ya nahi,  Agar invalid ho toh error message return hota hai , required: true` — empty nahi hona chahiye
+
                 })}
                 />
                 <Input
