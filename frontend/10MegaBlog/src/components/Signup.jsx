@@ -18,7 +18,7 @@ function Signup() {
             const userData = await authService.createAccount(data) //Appwrite me naya account create karta hai
             if (userData) {
                 const userData = await authService.getCurrentUser() //logged in user ki details hai
-                if(userData) dispatch(login(userData)); //Appwrite se current user ki details li , Redux store me save kardo — app ko pata chale user logged in hai
+                if(userData) dispatch(login({userData})); //Appwrite se current user ki details li , Redux store me save kardo — app ko pata chale user logged in hai
                 navigate("/") //Signup successful — home page pe bhejo
             }
         } catch (error) {

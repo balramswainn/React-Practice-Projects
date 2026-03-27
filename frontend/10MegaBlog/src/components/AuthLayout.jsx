@@ -21,7 +21,7 @@ export default function Protected({children, authentication = true}) {  //childr
 
         if(authentication && authStatus !== authentication){  
             navigate("/login")
-        } else if(!authentication && authStatus !== authentication){
+        } else if(!authentication && authStatus !== authentication){   
             navigate("/")
         }
         setLoader(false)  // dono true ho ya dono false direct yaha aaega 
@@ -30,49 +30,75 @@ export default function Protected({children, authentication = true}) {  //childr
   return loader ? <h1>Loading...</h1> : <>{children}</>  //Pehli baar app load hoti hai — authStatus check hone me time lagta hai Tab tak Loading dikhao Check ho gaya — setLoader(false) — children render karo
 }
 
+//Importand authentication koi value hold karke nhi rakh rha hai jese route pe define hai woh value rehta hai 
+// ye use kar rha hai bcz url pe click karke page load na kar paye protected route protected rahe
 
 
-// *Case 1: `authentication=true` (protected route) + user logged out
-
-// authentication = true
-// authStatus = false -> user logged out hai 
-// true && false !== true  ✅
-// → "/login" pe bhejo
-
-// loggein user ne logout kiya so authstatus -> false and authentication -> true isiliye login pe bhejo
+// By default authentication = true , authstatus = false(bcz login nhi kiya)
 
 
+// case 1 : new user -> register -> authstatus->true       so now  useEffect run hoga bcz dependency me diya hai 
 
+// authenticatiom = true, authStatus = true
 
+// if(authentication && authStatus !== authentication)    
+//     true && true !== true 
+//     true && false 
+// -> else if pe jaega 
 
-// *Case 2: `authentication=false` (login/signup page) + user already logged in
-
-// authentication = false
-// authStatus = true
-// !false && true !== false  ✅
-// → "/" pe bhejo
-
-// new user register kiya authstatus true hua and authentication false bcz new user hai so -> home page pe 
-//  authentication=false isliye hai kyunki login/signup page pe already logged in user ko nahi aana chahiye, new user ka koi lena dena nahi. Agar koi logged in user manually /signup URL pe jaaye toh usse home pe bhejo.
+// else if(!authentication && authStatus !== authentication)
+//     !true && true !== true
+//     false && false
+// setLoader pe jaega jo loader hata dega and usse jo page chahiye render karega means register karte hi app k andhr ja sakta hai 
 
 
 
 
+// case 2: user logout -> authstatus = false , authentication = true ...but user url me add-post,edit-post,all-post daltahai tab
 
-// *Case 3: Sab sahi hai — kuch mat karo, children render karo
+// authenticatiom = true, authStatus = false
 
-// authentication = true, authStatus = true  → match, no redirect
-// authentication = false, authStatus = false → match, no redirect
-
-// Jab authentication aur authStatus dono match karte hain — koi redirect nahi, bas children render karo
-
-// Case 3a:
-// User logged in hai → /all-posts pe jaata hai authentication=true, authStatus=true → match ✅
-// → AllPosts dikhao
+// if(authentication && authStatus !== authentication)    
+//     true && false !== true 
+//     true && true 
+// -> navigate("/login")   login pe chale jaega 
 
 
-// Case 3b:
-// User logged out hai → /login pe jaata hai authentication=false, authStatus=false → match ✅
-// → Login page dikhao
+
+
+// case 3: user logout hi hai and login pe click karta hai but us route pe   <AuthLayout authentication={false}>  mention hai 
+
+// authentication = false, authStatus= false 
+
+// -> sab condition false hoga toh 
+// setLoader pe jaega and login page render ho jaega 
+
+
+
+
+// case 4:  user logged in hai and wants to access the login and signup page 
+
+// authentication = false , authStatus = true
+
+// else if(!authentication && authStatus !== authentication){   
+//           !false && true !== false
+//           true && true 
+
+// home page render hoga but woh login and signup pe nhi ja paega if jana hai toh usse logout karna padega jisse authstatu = false hojaye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
