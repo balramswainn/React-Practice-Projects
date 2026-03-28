@@ -14,7 +14,7 @@ export default function RTE({name, control, label, defaultValue =""}) {
     render={({field: {onChange}}) => (
         <Editor
         initialValue={defaultValue}
-        init={{
+        init={{                              //initialize hote hi kya kya value chahiye
             initialValue: defaultValue,
             height: 500,
             menubar: true,
