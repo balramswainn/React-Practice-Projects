@@ -148,7 +148,6 @@
 // myApp();
 
 //-> value1
-//-> error
 //-> inside myFunc value59
 //-> value 1
 
@@ -371,7 +370,7 @@
 // 3. 
 // function one(){
 //   console.log("one")
-//   two();x
+//   two(); 
 // }
 
 // const two=()=>{
@@ -519,7 +518,7 @@
 // const random2=()=>(
 //   console.log("random2")
 // )
-// random2() //-> radnom2
+// random2() //-> random2
 
 
 
@@ -528,7 +527,15 @@
 //     console.log("random3")
 //   )
 // }
-// random3()
+// random3() //-> random3
+
+
+
+// const random=()=>(
+//   return "random"
+// )
+// console.log(random())  //->Uncaught SyntaxError: Unexpected token 'return' 
+
 
 
 // REACT 

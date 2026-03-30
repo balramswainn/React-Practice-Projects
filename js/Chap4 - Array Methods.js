@@ -228,7 +228,7 @@
 // 5, 9, 400, 1200, 3000 (expected)
 
 // const numbers = [5,9,1200, 400, 3000]
-// numbers.sort();       // pehle string me convert karta hai fhir sort kart hai
+// numbers.sort();       // pehle string me convert karta hai fhir sort karta hai
 // console.log(numbers)  //-> [1200, 3000, 400, 5, 9]
 
 // ["5", "9", "1210", "410", "3000"]        imp: 1210 -> 1 -> 49 (bas first digit ka hi dekhega ascii code )
