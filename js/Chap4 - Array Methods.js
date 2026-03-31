@@ -241,8 +241,13 @@
 
 //sort method ka rule  Positive = push back, Negative = pull front
 // flow ko change karne k liye (a-b)-> ascending (b-a)descending use karte hai 
-//for example (a-b) (5-9) = -4  so -> 5 aghe aaega  -> 5,9
-//            (b-a) (9-5) =  4  so -> 5 piche jaega -> 9,5
+//for example (a-b) (5-9) = -4  so -> 5 piche aaega  -> 5,9 ( negative aya toh same rahega ) positive aya toh first digit ko aghe leke jaenge 
+//            (b-a) (9-5) =  4  so -> 5 aghe jaega -> 9,5 ( negative aya toh same rahega ) positive aya toh first digit ko aghe leke jaenge
+
+// [5,9] a-b -> 5-9 -> -4 = [5,9]         b-a -> 9-5 ->  4 = [9,5]
+// [9,5] a-b -> 9-5 -> 4  = [5,9]         b-a -> 5-9 -> -4 = [9,5]
+
+
 
 // const numbers = [5,9,1200, 410, 3000];
 // numbers.sort((a,b)=> b-a);
@@ -301,7 +306,7 @@
 //     }
 // });
 
-// console.log(users);
+// console.log(users);  //[{g},{h},{m},{n}]  short from me likha bas
 
 
 
@@ -395,7 +400,12 @@
 
 
 //===================================================================
+// const arr = [2,34,54,6]
 
+// console.log(arr.slice(1,3)) //-> [34,54]
+// console.log(arr) //-> [2,34,54,6] 
+// console.log(arr.slice(0)) //-> [2,34,54,6]
+// console.log(arr.slice(1)) //-> [34,54,6]
 
 
 // splice method   is mutating  means og array ko change  karega

@@ -1,3 +1,75 @@
+// import conf from '../conf/conf.js';
+// import { Client, Account, ID } from "appwrite";
+
+
+// export class AuthService {
+//     client = new Client();
+//     account;
+
+//     constructor() {
+//         this.client
+//             .setEndpoint(conf.appwriteUrl)
+//             .setProject(conf.appwriteProjectId);
+//         this.account = new Account(this.client);
+            
+//     }
+
+//     async createAccount({email, password, name}) {   //account create karne k liye
+//         try {
+//             const userAccount = await this.account.create(ID.unique(), email, password, name);
+//             if (userAccount) {
+//                 // call another method
+//                 return this.login({email, password});  //useraccount ban gaya toh login  wala fun run hoga 
+//             } else {
+//                return  userAccount;
+//             }
+//         } catch (error) {
+//             throw error;
+//         }
+//     }
+
+//     async login({email, password}) {
+//         try {
+//             return await this.account.createEmailSession(email, password);  //email and password leke login karva de
+//         } catch (error) {
+//             throw error;
+//         }
+//     }
+
+//     async getCurrentUser() {
+//         try {
+//             return await this.account.get();
+//         } catch (error) {
+//             console.log("Appwrite serive :: getCurrentUser :: error", error);
+//         }
+
+//         return null;
+//     }
+
+//     async logout() {
+
+//         try {
+//             await this.account.deleteSessions();  //sab delete hojaye user ka
+//         } catch (error) {
+//             console.log("Appwrite serive :: logout :: error", error);
+//         }
+//     }
+// }
+
+// const authService = new AuthService();
+
+// export default authService
+
+
+// // pehle export default AuthService tha ---class bana ke export kiya so jo bhi ye class ko use karega ek new object banana padega tabhi sare method use kar paega 
+// // so abhi  const authService = new AuthService(); directly object bana k hi export kardiya ab object authService ko hi import kardo usme sare method lage hue honge
+
+
+
+
+
+// claude ne diya it is working
+
 import conf from '../conf/conf.js';
 import { Client, Account, ID } from "appwrite";
 
@@ -11,17 +83,15 @@ export class AuthService {
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
-            
     }
 
-    async createAccount({email, password, name}) {   //account create karne k liye
+    async createAccount({email, password, name}) {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
-                // call another method
-                return this.login({email, password});  //useraccount ban gaya toh login  wala fun run hoga 
+                return this.login({email, password});
             } else {
-               return  userAccount;
+                return userAccount;
             }
         } catch (error) {
             throw error;
@@ -30,7 +100,8 @@ export class AuthService {
 
     async login({email, password}) {
         try {
-            return await this.account.createEmailSession(email, password);  //email and password leke login karva de
+            // ✅ Fixed: createEmailSession → createEmailPasswordSession (Appwrite SDK v13+)
+            return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
             throw error;
         }
@@ -40,26 +111,22 @@ export class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.log("Appwrite serive :: getCurrentUser :: error", error);
+            // ✅ Fixed: 401 is expected for guests, don't treat as real error
+            if (error?.code === 401) return null;
+            console.log("Appwrite service :: getCurrentUser :: error", error);
         }
-
         return null;
     }
 
     async logout() {
-
         try {
-            await this.account.deleteSessions();  //sab delete hojaye user ka
+            await this.account.deleteSessions();
         } catch (error) {
-            console.log("Appwrite serive :: logout :: error", error);
+            console.log("Appwrite service :: logout :: error", error);
         }
     }
 }
 
 const authService = new AuthService();
 
-export default authService
-
-
-// pehle export default AuthService tha ---class bana ke export kiya so jo bhi ye class ko use karega ek new object banana padega tabhi sare method use kar paega 
-// so abhi  const authService = new AuthService(); directly object bana k hi export kardiya ab object authService ko hi import kardo usme sare method lage hue honge
+export default authService;
