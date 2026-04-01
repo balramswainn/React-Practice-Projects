@@ -66,7 +66,19 @@
 // ==============================================================================
 
 
+// methods ese bhi likh sakte hai
+// const obj ={
+//     name:"hey",
+//     demo(){
+//         return "demo working"
+//     },
+//     demoarrow:()=>{
+//         return "arrow working "
+//     }
+// }
+// console.log(obj.demo()) //demo working 
 
+//==================================================
 
 
 
@@ -82,14 +94,35 @@
 //     console.log("hello worlds");
 // }
 
-// var myFunc=()=>{
-//     console.log("d")
+// var fun=()=>{
+//     console.log("demo")
 // }
 
 // myFunc(); //-> hello worlds
-// window.myFunc(); //hello world    bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function se usse define kiya ho )
+// window.myFunc() //-> hello wordls
+// fun(); //-> demo
+// window.fun(); //demo   bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function se usse define kiya ho )
 //👉 Jo function / variable globally define hota hai (var ya function se), wo window object ka part ban jata hai.
+
 // ❌ let / const → window me nahi jata
+
+// let letdemo=function(){
+//     console.log("let demo")
+// }
+// let letdemo=()=>{
+//     console.log(" let demo")
+// }
+// letdemo(); //-> let demo
+// window.letdemo();  //-> Uncaught TypeError: window.letdemo is not a function
+
+
+// const constdemo=()=>{
+//     console.log(this)
+// }
+// constdemo() //-> window object
+// window.constdemo() //-> TypeError: window.constdemo is not a function
+
+
 
 
 // "use strict";
@@ -97,7 +130,7 @@
 //     console.log(this);  
 // }
 // myFunc();  //-> //undefined ....bcz we used "use strict"  if strict nhi hota toh window object milta 
-
+// window.myFunc()  //window object 
 
 
 

@@ -75,14 +75,26 @@
 
 // const myArray = [1,2,4,4,5,6,5,6];
 // const uniqueElements = new Set(myArray);
+// // const unique2 = new Set(...myArray); //-> Uncaught TypeError: number 1 is not iterable ...spread karenge toh work nhi karega new Set me spread nhi karsakte
 // console.log(uniqueElements)  //-> Set(5) {1, 2, 4, 5, 6}
+
+// const random=[...myArray]
+// const unique2 = new Set(random); 
+// console.log(unique2) //-> Set(5) {1, 2, 4, 5, 6}
 
 // let length = 0;
 // for(let element of uniqueElements){
 //     length++;
+//     console.log(element) //-> 1 2 3 4 5 6 
 // }
 
 // console.log(length);   //-> 5
+
+
+// let one = [2,4,9,6,8,6]
+// const random = new Set([...one])
+// console.log(random)  //-> Set(5) {2, 4, 9, 6, 8}
+
 
 
 
