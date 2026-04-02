@@ -102,7 +102,7 @@
 // window.myFunc() //-> hello wordls
 // fun(); //-> demo
 // window.fun(); //demo   bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function se usse define kiya ho )
-//👉 Jo function / variable globally define hota hai (var ya function se), wo window object ka part ban jata hai.
+//👉 Jo   function / variable    globally define hota hai (var ya function se), wo window object ka part ban jata hai.
 
 // ❌ let / const → window me nahi jata
 
@@ -121,8 +121,6 @@
 // }
 // constdemo() //-> window object
 // window.constdemo() //-> TypeError: window.constdemo is not a function
-
-
 
 
 // "use strict";
@@ -209,8 +207,6 @@
 // }
 
 
-
-
 // about.call(user1,"dd","dd")  //-> harshit 8 dd dd
 // user1.about.call(user1,"dd","dd")  //-> TypeError: Cannot read properties of undefined (reading 'call')
 
@@ -238,7 +234,6 @@
 //     }   
 // }
 
-
 // user1.about();  //-> harshit 8
 
 // function myFunc(){   console.log(this); }
@@ -258,8 +253,6 @@
 
 
 
-
-
 // const ran=user1.about
 // ran()   //-> undefined undefined
 // ran.call(user1)  //-> harshit 8           call k waje se uske andhr user1 likha hai user1 k context me this run hoga
@@ -272,6 +265,21 @@
 // const myFunc = user1.about.bind(user1);     //bcz bind new function create karta hai and bind karega user1 object k sath bcz ye object ka context chala gya tha na 
 // myFunc();   //-> harshit 8
 
+
+
+
+
+// const fun ={
+//     name : "jerry",
+//     demo(){
+//         console.log("worked")
+//         return "hey "
+//     }
+// }
+// // fun.demo() //-> worked 
+// // console.log(fun.demo()) //-> worked   hey 
+// let final=fun.demo(); //-> worked
+// console.log(final) //-> hey
 
 
 
