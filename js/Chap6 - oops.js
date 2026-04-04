@@ -1027,7 +1027,7 @@
 //         this.lastName = lastName;
 //         this.age = age;
 //     }
-//     myNameDemo(){    //demo  normal method
+//     myNameDemo(){    //demo  normal method hai
 //         return `${this.firstName} ${this.lastName}`
 //     }
 //     get fullName(){
