@@ -100,7 +100,7 @@
 
 
 
-// get and set attrubutes
+// get and set attributes
 
 // const link = document.querySelector("a");  
 // console.log(link)                                     //-> <a href="#home">Home</a>
