@@ -47,7 +47,12 @@ const child = document.querySelector(".child");
 //   true
 // );
 
-
+// o/p-
+//child pe click kiya isliye child tak print hua ,,, parent pe karta toh bas parent tak print hota 
+// capture !!!! document.body
+// capture !!!! grandparent
+// capture !!!! parent
+// capture !!!! child
 
 
 
@@ -68,6 +73,12 @@ const child = document.querySelector(".child");
 //   console.log("bubble document.body");
 // });
 
+
+// o/p:-     ye bhi same jaha se click kiya waha se parent tak jaega 
+// bubble child
+// bubble parent
+// bubble grandparent
+// bubble document.body
 
 
 

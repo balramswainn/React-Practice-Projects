@@ -307,7 +307,7 @@
 
 // todoList.innerHTML = "<li>New Todo 2 </li>"
 // console.log(todoList)                                      //-> <ul class="todo-list"> <li>New Todo 2 </li> </ul>
-// todoList.innerHTML += "<li>New Todo </li>";              //jo pehli html elemts thi woh and aghe jo add kareunga
+// todoList.innerHTML += "<li>New Todo </li>";              //jo pehli html elemts thi woh and aghe jo add karunga
 // todoList.innerHTML += "<li>teach students </li>";
 // console.log(todoList)                                      //-> <ul class="todo-list"> <li>New Todo 2 </li><li>New Todo </li><li>teach students </li> </ul>
 // console.log(todoList.innerHTML)     //-> <li>New Todo 2 </li><li>New Todo </li><li>teach students </li>
@@ -377,10 +377,6 @@
 // const todoList = document.querySelector(".todo-list");
 // todoList.after(newTodoItem);      //-> <ul class="todo-list"></ul>    iska baad print hoga  ->  Teach students
 // todoList.before(newTodoItem);     //-> <ul class="todo-list"></ul>    iska baad print hoga  -> Teach students
-
-
-
-
 
 
 // ========================================================
@@ -684,8 +680,8 @@
 
 // 1. code run -> GEC 
 // 2. so buttons memory phase me hai allButtons = NodeList(3) [button#one, button#two, button#three] 
-// 3. so hume listen karna hai , user jab button click karega but js ye kaam nhi karegi bcz its a single threaded hai js ko aur bhi code execute karni hai so js browser se help letahai and bolega user jab click karega muje callback function dedena and Browser k pass api hoti hai jo provide karti hai extra features  humne lagaya hai na  button.addEventListener jo js ko callback dega jab button click hoga ... so js aghe ka code run karega 
-// 4. so now user button click kiya toh directly call stack nhi jata sab button callback queue me jata hai and wait karte hai jab call stack empty hoga tab event loop call stack se btns ko call stack me move karega (GEC chal rha hota hai jab GEC khtm tab bhejega pehle btn1 ko fhir woh execute hoga then btn2 ko )
+// 3. so hume listen karna hai , user jab button click karega but js ye kaam nhi karegi bcz its a single threaded hai, js ko aur bhi code execute karni hai so js browser se help leta hai and bolega user jab click karega muje callback function dedena and Browser k pass api hoti hai jo provide karti hai extra features  humne lagaya hai na  button.addEventListener jo js ko callback dega jab button click hoga ... so js aghe ka code run karega 
+// 4. so now user button click kiya toh directly call stack nhi jata sab button callback queue me jata hai and wait karte hai jab call stack empty hoga tab event loop call stack se btns ko call stack me move karega (GEC chal rha hota hai jab GEC khtm fhir tab bhejega pehle btn1 ko fhir woh execute hoga then btn2 ko )
 
 //                          ┌────────────────────┐
 //                          │      Web APIs      │
