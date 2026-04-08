@@ -68,7 +68,7 @@
 
 
 
-//Technically, older browsers allowed strings like:
+// Technically, older browsers allowed strings like:
 // setTimeout("console.log('hey')", 1000);     //But this is not recommended (it behaves like eval).
 
 
@@ -82,7 +82,7 @@
 // console.log("script start")
 // setInterval(() => {
 //   // console.log(total);
-//   // console.log(Math.random());
+//   console.log(Math.random());
 // }, 500);
 // console.log("script end");
 
@@ -90,24 +90,223 @@
 // so ye bhi same hi work karega browser wait karega jese hi 500ms hoga broswer isse callback queue me bhej dega and jese hi empty hoga call stack ye chalega and this is setIterval so har 500ms fhir ye function run hoga ese hi itne time intervals par 
 // and now if time 0ms pe set karde so fhir bhi ye print hoga bcz tab woh jese hi callstack me script likh k free hoga means pura code chal jaega ye print karega 
 
+// GEC → sirf register karta hai
+// code execution phase main -> js engine bhej deta hai -> web api k pass -> setInterval KO 
+// web api ->Jab 500ms complete ho jate hain,Timer complete → Web API callback ko Callback Queue (Task Queue) mein daal deta hai
+// Event loop continuously check karta hai:Call Stack empty hai ya nahi -> Call Stack empty ✅ → toh queue se callback uthake stack mein daal deta hai → execute
+
+
 // and if callback function me complex functionality ho toh jo time diya hai usse jyada bhi lag sakta hai , so yaha pe diya 500ms but jyada time le rha hai
 // ex:-
 
 // console.log("script start")
 // setInterval(()=>{
-//   // let total=0;
-//   // for(let i=0; i<1000000000;i++){
-//   //   total += i
-//   // }
-//   // console.log(total)
+//   let total=0;
+//   for(let i=0; i<1000000000;i++){
+//     total += i
+//   }
+//   console.log(total)                 //thoda delay ho rha hai 
 //   console.log(Math.random())
 // },500)
-// console.log("script end");
+// console.log("script end");     
+
+
+
+// 👉 Code execution phase mein JS engine(JavaScript Engine (like V8) + Browser Runtime milke ) hi decide karta hai ki kaun sa function Web API ko bhejna hai, aur phir usse browser ko delegate kar deta hai.
+// Jab tum JavaScript Execution Context ke code execution phase mein ho, tab kuch specific functions hote hain jo Web APIs ko diye jaate hain:
+// 👉 Common examples:
+// setTimeout
+// setInterval
+// fetch ✔️ fetch Promise return karta hai btu 👉 Fetch API khud ek Web API hai
+// XMLHttpRequest
+// addEventListener (DOM events)
+// geolocation
+
+// 👉 Ye sab browser-provided APIs hain (JS engine ka part nahi).
+
+// Step-by-step flow:
+// Code execution phase chal raha hai , JS engine line dekhta hai: 
+
+// setInterval(callback, 500)
+// JS engine ko pata hai:
+// 👉 setInterval ek Web API function hai
+// 👉 JS engine kya karta hai?
+// Callback function + timer info
+// Browser ke Web API environment ko handover kar deta hai
+
+
+
+// 🔹 1. fetch Web API ke paas kyun jaata hai? 
+// ✔️ fetch Promise return karta hai but 👉 Fetch API khud ek Web API hai 
+// JS engine dekhta hai → ye Web API hai -> Browser ko bolta hai → "bhai network request tu kar" -> Browser request bhejta hai (background mein)
+
+// 🔹 2. Promise kaha rehta hai? 👉 Promise JavaScript environment (memory) mein hi rehta hai ❌ Web API mein nahi 
+// Web API → kaam karta hai (network, timer etc.) Promise → JS side pe state maintain karta hai
+
+// 🔹 3. Jab response aata hai tab kya hota hai? Jab request complete hoti hai:
+// Browser (Web API) response le aata hai -> Promise ko resolve karta hai -> .then() callback ko Microtask Queue mein daal diya jata hai
+
+// | Type                                 | Queue           |
+// | ------------------------------------ | --------------- |
+// | setTimeout / setInterval             | Callback Queue  |
+// | Promise / then / catch / async-await | Microtask Queue |
+
+
+// 🔥 🔹 1. Microtask Queue vs Callback Queue (Table)
+// | Feature          | Microtask Queue 🚀               | Callback Queue (Task Queue) 🕒 |
+// | ---------------- | -------------------------------- | ------------------------------ |
+// | Priority         | 🔥 High (pehle execute hota hai) | Low                            |
+// | Kab run hota hai | Call stack empty hote hi         | Microtasks ke baad             |
+// | Use hota hai     | Promises / fast async            | Timers / events                |
+
+ 
+// 🔹 2. Kaun-kaun Microtask Queue mein jaata hai?
+// | चीज                 | जाता hai? | Notes                |
+// | ------------------- | --------- | -------------------- |
+// | `Promise.then()`    | ✅         | most common          |
+// | `Promise.catch()`   | ✅         |                      |
+// | `Promise.finally()` | ✅         |                      |
+// | `async/await`       | ✅         | internally promise   |
+// | `queueMicrotask()`  | ✅         | direct microtask API |
+// | `MutationObserver`  | ✅         | DOM change observer  |
+
+
+// 🔹 3. Kaun-kaun Callback Queue (Task Queue) mein jaata hai?
+// | चीज                   | जाता hai? | Notes             |
+// | --------------------- | --------- | ----------------- |
+// | `setTimeout`          | ✅         | timer             |
+// | `setInterval`         | ✅         | repeat timer      |
+// | `setImmediate` (Node) | ✅         | Node.js           |
+// | `addEventListener`    | ✅         | click, scroll etc |
+// | `XMLHttpRequest`      | ✅         | old AJAX          |
+// | UI events             | ✅         | user interaction  |
+
+
+// 👉 Sirf fetch aisa case hai:
+
+// Web API bhi use karta hai
+// aur result Microtask Queue me deta hai
+// 👉 fetch ➡️ Web API → Promise resolve → Microtask Queue
+// 👉 setTimeout ➡️ Web API → Callback Queue
+// 👉 Promise ➡️ Direct → Microtask Queue
+
+
+// 🔥 🔹 6. Golden Rule (Yaad rakhna)
+
+// 👉 Rule #1:
+// Sab microtasks pehle execute honge
+
+// 👉 Rule #2:
+// Phir ek callback queue task execute hoga
+
+// Microtasks = “jab tak khatam na ho tab tak chalte rahenge”
+// Callback tasks = “line mein ek-ek karke chance milega”
+
+
+// 🔹 1. Sabse pehle ek important term: “Tick” / “Cycle”
+
+// Event loop ek loop hai jo baar-baar ye steps karta hai:
+
+// 👉 Ek cycle (tick) ka structure:
+// Call Stack execute karo
+// Microtask Queue ko FULL empty karo 🔥
+// Callback Queue se sirf 1 task uthao
+// Phir dubara loop start
+
+// ex:-
+// 1.
+// Promise.resolve().then(() => console.log("A"));
+// Promise.resolve().then(() => console.log("B"));
+
+// setTimeout(() => console.log("C"), 0);
+
+// o/p :-  a b c
+
+
+// 2.
+// 👉 Microtasks ke andar aur microtasks add ho sakte hain 😈
+
+// Promise.resolve().then(() => {
+//   console.log("A");
+
+//   Promise.resolve().then(() => {
+//     console.log("B");
+//   });
+// });
+
+// setTimeout(() => console.log("C"), 0);
+
+// Step-by-step:
+// Microtask queue: A
+// A execute hua: "A" print
+// NEW microtask (B) add ho gaya
+// Event loop kya karega? 👉 Rule follow karega → queue empty karo 
+// B bhi run hoga
+
+// o/p : - A B C
+
+
+// 3. 
+// setTimeout(() => console.log("T1"), 0);
+// setTimeout(() => console.log("T2"), 0);
+
+// Promise.resolve().then(() => console.log("P1"));
+
+// o/p :- P1  T1 T2
+// event loop ->microtask empty kiya -> callbacke se ek utahaya fhir micro check kiya empty hai toh callback se fhir utahaya
+
+// 4. 
+// Promise.resolve().then(() => console.log("P1"));
+// setTimeout(() => console.log("T1"), 0);
+// setTimeout(() => console.log("T2"), 0);
+
+// Promise.resolve().then(() => console.log("P2"));
+// o/p :- P1 P2   T1 T2
+
+
+// 5.
+// Promise.resolve().then(() => console.log("P1"));
+// setTimeout(() => console.log("T1"), 0);
+// console.log("only one")
+// setTimeout(() => console.log("T2"), 0);
+
+// Promise.resolve().then(() => console.log("P2"));
+// O/P :- only one  P1 P2  T1 T2
+
+
+// ✔️ Promises (microtasks) = fast + predictable
+// chaining break na ho
+// .then().then() immediately run ho
+
+// ✔️ Timers (callback queue) = lower priority
+// UI block na ho
+// fairness maintain ho
 
 
 
 
 
+// 🔥 🔹 6. Real World Impact
+
+// 👉 Agar microtasks continuously add hote rahe:
+
+// function loop() {
+//   Promise.resolve().then(loop);
+// }
+// loop();
+
+// ❗ Result:
+// Callback queue kabhi run hi nahi karega
+// UI freeze ho sakta hai
+
+// 👉 Isko kehte hain:
+// Microtask Starvation
+
+
+
+
+
+// ===============================================
 
 // for this ek naya folder banaya gaya hai setInterval naam se
 // intervalidId = id jaega jo clearInterval me kaam aaega  
