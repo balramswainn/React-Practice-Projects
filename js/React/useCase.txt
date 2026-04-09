@@ -1,12 +1,18 @@
 1. useCallback ->use in fun when used inside useEffect, heavy or expensive computations, passing a function as a prop to a child component
+
 2. jsx -> we use evaluated expression in jsx 
   ✔ Allowed: variables, functions , ternary operators, math operations <h1>{2 + 2}</h1>
   ❌ Not allowed: if , for, while   because they are statements
   Easy trick : Agar code ko variable me assign kar sakte ho, toh wo expression hai.
-3. useEffect :- no dependency -> runs on every render,  `[]` -> only once (component mount),  `[value]` -> runs when value changes  
+
+3. useEffect :- no dependency -> runs on every render,  `[]` -> only once (component mount),  `[value]` -> runs when value changes
+
 4. Functions written directly in the component run on every render Ye infinite re-render loop create kar sakta hai., while functions inside useEffect run only when the specified dependencies change. means useEffect k bahar open me call kiya toh isliye iske andhr liko ya toh ek listener laga di click pe ye fun chale karke
+
 5. useRef :- value ya DOM reference store karo bina re-render ke,DOM element access karne ke liye (most common), valu change karni hai but UI me change nhi karna like :- mouse position,scroll position ,websocket instance
+
 6. We should use the onChange event handler in React on form elements like <input>, <textarea>, and <select>.onChange helps React capture user input and keep the UI and state in sync.
+
 7. const [data, setData] = useState(null)  When fetching data from an API, null is often used as the initial state to indicate that the data has not been loaded yet. but if hume pata hai {} hai toh woh dalo warna null dala toh null check lagana padega
 
 8. In a normal HTML application, the <a> tag reloads the entire page whenever we navigate. But React applications are Single Page Applications (SPA). If we use <a>, the browser does a full page refresh, which means React state, context, or Redux store data will be lost. so we use Link and NavLink for navigation.
@@ -56,6 +62,35 @@ const store = {
 }
 
 11. function Input({className,label,type="text",...props},ref){} => rest parameter hamesha last me hi aana chahiye — yeh JavaScript ka rule hai....props baaki saari properties collect karta hai jo explicitly destructure nahi ki gayi. Agar beech me daalo, JS ko pata nahi chalega ki "baaki" kahan se kahan tak hai — isliye syntax error aata hai.
+
+12. ❌ Galat tarika (direct src link) <img src="./images/pic.png" />
+👉 Problem: Build ke time path break ho sakta hai, React properly track nahi karta
+
+✅ Sahi tarika (import use karo)
+import pic from "./images/pic.png";  ✔️ Bundler samajh pata hai
+
+function App() {
+  return <img src={pic} alt="pic" />;
+}
+
+🔥 Ek aur option (public folder) Agar image public folder me hai:
+
+<img src="/pic.png" />
+👉 Yaha import ki zarurat nahi hoti
+
+
+👉 src/assets ya component ke andar → import karo
+👉 public/ folder → direct path use kar sakte ho
+
+
+
+
+
+
+
+
+
+
 
 
 
