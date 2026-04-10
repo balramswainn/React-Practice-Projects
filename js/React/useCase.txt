@@ -84,7 +84,20 @@ function App() {
 
 
 
+13. 
+<MyComponent priority={5} />
 
+function MyComponent({...props})
+  return <p>Priority: {props.priority}</p> 
+}
+
+function MyComponent(props){
+  return <p>Priority: {props.priority}</p>
+}
+
+function MyComponent({priority}){
+  return <p>Priority: {priority} </p>
+}
 
 
 

@@ -84,3 +84,12 @@ It's very important to understand, that storeOrder still only takes one paramete
 The function would still be called like this:
 
 storeOrder({id: 5, currency: 'USD', amount: 15.99}); // one argument / value!
+
+
+
+
+
+
+==========================================================
+
+
