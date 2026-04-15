@@ -79,3 +79,47 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+// import Input from './Input';
+
+// function App() {
+//   return (
+//     <div id="content">
+//       <Input type="text" placeholder="Your name" />
+//       <Input richText placeholder="Your message" />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// export default function Input({richText,...props}) {
+
+//   return (
+//       <>
+//       {richText ? <textarea {...props} ></textarea> : <input  {...props} />}
+      
+//       </>
+//       )
+// }
+
+
+// 🔍 Simple samajh: <Input type="text" placeholder="Your name" />
+
+// Toh Input component ke andar props object aisa hota hai:
+// {
+//   type: "text",
+//   placeholder: "Your name"
+// }
+
+// Aur jab tum use spread karte ho: <input {...props} />
+
+// Toh React internally ise convert karta hai:
+// <input type="text" placeholder="Your name" />
