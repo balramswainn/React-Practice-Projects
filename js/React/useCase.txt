@@ -102,6 +102,42 @@ function MyComponent({priority}){
 
 
 
+<MyComponent> component ko ese bhi call karsakte hai </MyComponent> 
+function MyComponent(props){
+  return <p>{props.chidlren}</p>  //children ko ese bhi likh sakte hai
+}
+function MyComponent({chidlren}){
+  return <p>{chidlren}</p>  //children ko ese bhi likh sakte hai
+}
+
+
+
+14. 
+
+import Input from './Input';
+
+function App() {
+  return (
+    <div id="content">
+      <Input type="text" placeholder="Your name" />
+      <Input richText placeholder="Your message" />
+    </div>
+  );
+}
+
+export default App;
+
+export default function Input({richText,...props}) {
+  return (
+      <>
+      {richText ? <textarea {...props} ></textarea> : <input  {...props} />}
+      </>
+      )
+}
+
+
+
+
 
 
 
