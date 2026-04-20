@@ -27,10 +27,11 @@
 // num1++;                       // 👉 Ye internally hota hai: num1 = num1 + 1;
 // console.log("after incrementing num1") 
 // console.log( num1 ); //-> 7 
-// console.log( num2); //-> 6 
+// console.log( num2);  //-> 6 
 
 // now why 6?
-//Because numbers are primitive data types in JavaScript, assigning one variable to another copies the value, not the reference. Therefore, incrementing num1 does not affect num2. 👉 Ye value type hote hain 👉 Direct value store hoti hai, reference nahi.  Isliye num1++ ka num2 pe koi effect nahi hota.
+// Because numbers are primitive data types in JavaScript, assigning one variable to another copies the value, not the reference. Therefore, incrementing num1 does not affect num2. 👉 Ye value type hote hain 👉 Direct value store hoti hai, reference nahi.  Isliye num1++ ka num2 pe koi effect nahi hota.
+
 
 // let num1 = 6;
 // num1++;
@@ -40,8 +41,8 @@
 // console.log(num1)  //->8
 // console.log(num2)  //->7   bcz num1++ badhane k baad assign kiya num2 me 
 // num2++
-// console.log(num2) //-> 8
-// console.log(num1) //-> 8   ye nhi change hoga 
+// console.log(num2)  //-> 8
+// console.log(num1)  //-> 8   ye nhi change hoga 
 
 
 
@@ -318,6 +319,7 @@
 // array destructuring 
 
 // const myArray = ["value1", "value2", "value3","value4"];
+
 // let myvar1 = myArray[0];
 // let myvar2 = myArray[1];
 // console.log("value of myvar1", myvar1);  //->  value1
