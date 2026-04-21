@@ -548,3 +548,150 @@
 
 
 
+
+// ------------------------------
+
+
+
+
+// const addTwoPromises = async function(promise1, promise2) {
+//   return Promise.all([promise1,promise2])
+//     .then(value => value.reduce((acc,val) => acc+val,0))
+// };
+// async function automatically Promise return karti hai already ek Promise return ho raha hai toh await ki zarurat nahi
+ 
+
+// const addTwoPromises = async function(p1, p2) {
+//   const values = await Promise.all([p1, p2]);
+//   return values.reduce((a, b) => a + b, 0);
+// };
+
+// | Situation                         | Use      |
+// | --------------------------------- | -------- |
+// | Direct promise return kar rahe ho | `return` |
+// | Value nikalni hai promise se      | `await`  |
+
+
+
+// const [value1, value2] = await Promise.all([promise1, promise2]);
+// return value1 + value2;
+
+// Promise.all dono promises ko parallel run karta hai
+// Jab dono resolve → [value1, value2]
+// await us array ko nikal leta hai
+// destructuring se values mil gayi
+// sum return
+
+// const values = Promise.all(...) // ❌ values = Promise (not array)   await nhi hai 
+// const values = await Promise.all(...) // ✅ values = [2,5]
+
+
+// -----------------
+
+// async function sleep(millis) {
+//     await new Promise(resolve => setTimeout(resolve, millis));
+// }
+// o/p :- Promise<undefined>
+
+// function sleep(millis) {
+//   return new Promise(resolve => setTimeout(resolve, millis));
+// }
+// o/p :- Promise<void>  // same behaviour
+
+
+// 1️⃣ Function call hota hai  -> sleep(2000)
+// 👉 Immediately return hota hai: Promise { <pending> }
+// ✔️ Matlab function rukta nahi bahar se
+// ✔️ Wo turant Promise return kar deta hai
+
+// 2️⃣ Function ke andar kya ho raha hai
+// await new Promise(...)
+// 👉 Yaha: function ka andar wala execution pause hota hai
+// pura function nahi rukta, sirf uska execution suspend hota hai
+
+// 3️⃣ Jab timer complete  -> setTimeout(resolve, millis)
+// 👉 resolve call hota hai
+// 👉 await complete hota hai
+// 👉 function aage badhta hai
+
+
+// 4️⃣ Function ke end pe kya hota hai?
+// 👉 Tumne return nahi likha
+// 👉 Matlab internally: return undefined;
+// 👉 Async function hone ki wajah se:    return Promise.resolve(undefined);
+
+// 🔥 Final Reality: sleep(2000) 👉 return karta hai: Promise { <pending> } 👉 2 sec baad: Promise { resolved: undefined }
+
+
+
+// async function test() {
+//   return 5;
+// }
+// o/p :- test()  // 👉 Promise { 5 }        async function jo bhi return kare — wo automatically Promise ban jata hai
+// return 5; JavaScript internally isko convert karta hai: 
+// return Promise.resolve(5);
+
+// 🔹 Value kaise nikale?
+// 1.  test().then(val => console.log(val)); // 5
+
+// 2. 
+// const val = await test();
+// console.log(val); // 5
+
+
+// async function demo() {
+//   return Promise.resolve(10);
+// }
+// o/p:- Promise { 10 }       👉 Double promise nahi banega — JS smart hai 😄
+
+
+// 🔥 Kab await zaruri hota hai? 👉 Jab tumhe value use karni ho:
+
+// async function sum() {
+//   const a = await Promise.resolve(2);
+//   const b = await Promise.resolve(3);
+//   return a + b;
+// }
+
+
+
+// async function test() {
+//   console.log("A");
+//   await Promise.resolve();       //👉 await function ko block nahi karta, sirf pause karke baaki code ko aage chalne deta hai
+//   console.log("B");
+// }
+
+// test();
+// console.log("C");
+
+
+// o/p :- A C B
+
+
+// 1️⃣ test() call hua -> console.log("A");
+// 2️⃣ await Promise.resolve()
+
+// 👉 Yaha important game start hota hai:
+
+// Promise.resolve() already resolved hai
+// BUT await usko microtask queue me daal deta hai
+// Function ka baaki part pause ho jata hai console.log("B"); ➡️ baad me chalega
+
+// 3️⃣ Next line execute hogi 
+// 👉 C print ho gaya
+
+// 4️⃣ Microtask queue execute hoti hai
+// 👉 Ab JS wapas aata hai paused function pe
+// console.log("B");
+// 👉 B print ho gaya
+
+
+// if await nhi hota toh Promise.resolve() → ignore ho gaya (koi wait nahi)
+// o/p ABC
+
+
+
+
+
+
+

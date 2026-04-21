@@ -85,7 +85,7 @@ function App() {
 
 
 13. 
-<MyComponent priority={5} />
+<MyComponent priority={5} />    // yaha props bhi wese pass karne padenge if map karke component call kar rhe ho tog pass ele kar rhe ho toh work nhi karega fhir component me ele.title esa karna padega
 
 function MyComponent({...props})
   return <p>Priority: {props.priority}</p> 
@@ -136,12 +136,7 @@ export default function Input({richText,...props}) {
 }
 
 
-
-
-
-
-
-
+15.
 
 
 ⭐1 When to use useCallback()
