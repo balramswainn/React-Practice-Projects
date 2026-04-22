@@ -85,7 +85,7 @@ function App() {
 
 
 13. 
-<MyComponent priority={5} />    // yaha props bhi wese pass karne padenge if map karke component call kar rhe ho tog pass ele kar rhe ho toh work nhi karega fhir component me ele.title esa karna padega
+<MyComponent priority={5} />    // yaha props bhi wese pass karne padenge if map karke component call kar rhe ho toh pass ele={ele} kar rhe ho toh work nhi karega fhir component me ele.title esa karna padega means multiple props pass ho rhe hai woh kaam karega niche jo example
 
 function MyComponent({...props})
   return <p>Priority: {props.priority}</p> 
@@ -103,6 +103,7 @@ function MyComponent({priority}){
 
 
 <MyComponent> component ko ese bhi call karsakte hai </MyComponent> 
+
 function MyComponent(props){
   return <p>{props.chidlren}</p>  //children ko ese bhi likh sakte hai
 }
@@ -127,16 +128,24 @@ function App() {
 
 export default App;
 
-export default function Input({richText,...props}) {
+export default function Input({richText,...props}) {      ...props me sirf wahi aata hai jo destructure nahi -> props → { placeholder: "Your message" }
   return (
       <>
-      {richText ? <textarea {...props} ></textarea> : <input  {...props} />}
+      {richText ? <textarea {...props} ></textarea> : <input  {...props} />}  
       </>
       )
 }
 
 
 15.
+
+
+
+
+
+
+
+
 
 
 ⭐1 When to use useCallback()
