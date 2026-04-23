@@ -27,7 +27,7 @@
 // console.log(ans);     //-> -1 bcz 4 array me nhi hai
 
 
-// or
+// or ->
 
 // function findTarget(array,target){
 //    return array.findIndex((ele)=>{
