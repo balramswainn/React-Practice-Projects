@@ -85,10 +85,11 @@ function App() {
 
 
 13. 
-<MyComponent priority={5} />    // yaha props bhi wese pass karne padenge if map karke component call kar rhe ho toh pass ele={ele} kar rhe ho toh work nhi karega fhir component me ele.title esa karna padega means multiple props pass ho rhe hai woh kaam karega niche jo example
+<MyComponent priority={5} demo='text' />    // yaha props bhi wese pass karne padenge if map karke component call kar rhe ho toh pass ele={ele} kar rhe ho toh work nhi karega fhir component me ele.title esa karna padega means multiple props pass ho rhe hai woh kaam karega niche jo example
 
 function MyComponent({...props})
   return <p>Priority: {props.priority}</p> 
+  return <p>Priority: {props.demo}</p> 
 }
 
 function MyComponent(props){
@@ -139,6 +140,17 @@ export default function Input({richText,...props}) {      ...props me sirf wahi 
 
 15.
 
+ {obj.map((ele,index)=>{
+      return <Random ele={ele} key={index}/>
+ })}
+ 
+ const Random = ({...props}) => {
+  return (
+    <>
+      <h1>{props.ele.name} </h1>
+    </>
+  )
+}
 
 
 
