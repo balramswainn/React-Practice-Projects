@@ -11,7 +11,7 @@
 // ES6 : 2015
 // ES6 : ES2015  
 
-// Babel is most commonly known as a JavaScript compiler that converts modern JS code (like ES6+) into older, compatible versions for broader browser support
+// Babel is most commonly known as a JavaScript compiler that converts modern JS code (like ES6+) into older, compatible versions for broader browser support.
 
 // keyword is a reserved word with a special meaning that cannot be used as an identifier (like a variable or function name). Examples include const, function, and if. 
 
