@@ -21,9 +21,28 @@
 
 // "use strict" enables strict mode in JavaScript Strict mode enforces stricter parsing and error handling on your code, which helps you write cleaner, safer, and more robust JavaScript by catching common mistakes and disallowing "unsafe" or poorly thought-out features of the language. 
 
+// 1. Undeclared Variables Ko Allow Nahi Karta :
+//  "use strict";
+// x = 10; // ❌ ReferenceError
 
+// 2. Duplicate Parameters Allow Nahi
+// "use strict";
+// function add(a, a) { // ❌ Error }
 
+// 3. Delete Restrictions
+// "use strict";
+// let name = "Balram";
+// delete name; // ❌ Error
 
+// 4. this Ka Safer Behavior
+// "use strict";
+// function test() {
+//   console.log(this);
+// }
+// test();  //->  undefined....window -> hota without use strict
+
+// Modern JS modules (import/export) automatically strict mode me hote hain. // Automatically strict mode :- export const name = "Balram";
+// Isliye React, Next.js, Node ES Modules me mostly "use strict" manually nahi likhna padta.
 
 
 // ==============================================
@@ -289,4 +308,6 @@
 // console.log(n++) //-> 12
 // console.log(n) //-> 13
 
-// console.log(--n) //->12
+// console.log(n--) //-> 13
+// console.log(n)   //-> 12
+// console.log(--n) //-> 11

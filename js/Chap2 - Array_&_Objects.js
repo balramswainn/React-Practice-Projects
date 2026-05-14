@@ -373,6 +373,11 @@
 // console.log(person);   //-> {name: 'harshit', age: 22, hobbies: Array(3), person: 'male'}
 
 
+
+// let obj={};
+// obj.name="jerry"
+// console.log(obj.name)   //-> {name:"jerry"}
+
 // ===================================
 
 
