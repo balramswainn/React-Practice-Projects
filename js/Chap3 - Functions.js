@@ -259,7 +259,35 @@
 
 
 
+// function addAll(...numbers){       👉 Saare arguments ko ek array me collect karta hai.
+//     let total = 0;
+//   console.log(numbers)  //-> [[4,5,4,2,10]] Matlab nested array
+//     for(let number of numbers){
+//         total = total + number;      //total = 0 + [4,5,4,2,10]     Array string me convert ho jata hai
+//     }
+//     return total;
+// }
+
+// const ans = addAll([4,5,4,2,10]);
+// console.log(ans);   //-> 04,5,4,2,10
+
+
+// const arr = [4,5,4,2,10];
+// const ans = addAll(...arr);        // addAll(4,5,4,2,10)
+// console.log(ans);
+
+// | Operator     | Purpose                           |
+// | ------------ | --------------------------------- |
+// | Rest `...`   | Multiple values collect karta hai |
+// | Spread `...` | Array ko values me todta hai      |
+
+
+
 // ==========================================================================
+
+
+
+
 // array destructuring
 
 // let arr= [1,23,34,4]
@@ -498,7 +526,8 @@
 
 // Agar yaha normal function hota to?
 // setTimeout(function() {
-//   console.log(this.name);
+//   console.log(this.name); //-> blank
+//   console.log(this);
 // }, 1000);
 
 // this = window (browser me)
@@ -560,6 +589,13 @@
 //   return Promise.all([promise1,promise2])
 //     .then(value => value.reduce((acc,val) => acc+val,0))
 // };
+
+// console.log(addTwoPromises(2,2))  //-> 
+// Promise {<pending>}
+// [[Prototype]]: Promise
+// [[PromiseState]] : "fulfilled"
+// [[PromiseResult]] :  4
+
 // async function automatically Promise return karti hai already ek Promise return ho raha hai toh await ki zarurat nahi
  
 
@@ -638,7 +674,24 @@
 
 // 2. 
 // const val = await test();
-// console.log(val); // 5
+// console.log(val); // error aaega await async function k andhr hi chalega 
+ 
+
+//->  
+
+// async function test() {
+//   return 5;
+// }
+
+// async function main() {
+//   const val = await test();
+//   console.log(val);
+// }
+
+// main(); //-> 5
+
+
+
 
 
 // async function demo() {

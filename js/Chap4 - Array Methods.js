@@ -241,8 +241,8 @@
 
 //sort method ka rule  Positive = push back, Negative = pull front
 // flow ko change karne k liye (a-b)-> ascending (b-a)descending use karte hai 
-//for example (a-b) (5-9) = -4  so -> 5 piche aaega  -> 5,9 ( negative aya toh same rahega ) positive aya toh first digit ko aghe leke jaenge 
-//            (b-a) (9-5) =  4  so -> 5 aghe jaega -> 9,5 ( negative aya toh same rahega ) positive aya toh first digit ko aghe leke jaenge
+//for example (a-b) (5-9) = -4  so -> 5 pull front  -> 5,9 ( negative aya toh pull front, positive aya toh push back ) 
+//            (b-a) (9-5) =  4  so -> 5 pull front  -> 9,5  ( negative aya toh push back , positive aya toh pull front) 
 
 // [5,9] a-b -> 5-9 -> -4 = [5,9]         b-a -> 9-5 ->  4 = [9,5]
 // [9,5] a-b -> 9-5 -> 4  = [5,9]         b-a -> 5-9 -> -4 = [9,5]
@@ -415,7 +415,7 @@
 
 // delete
 // const deletedItem = myArray.splice(1, 2);
-// console.log("delted item", deletedItem);      //-> delted item (2) ['item2', 'item3']
+// console.log("deleted item", deletedItem);      //-> delted item (2) ['item2', 'item3']
 // console.log(myArray);  //-> ['item1']
 
 // insert 
