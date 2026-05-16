@@ -86,7 +86,7 @@
 
 // console.log(this) //-> Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 // console.log(window); //-> Window {window: Window, self: Window, document: document, name: '', location: Location, …}
-// console.log(this === window)  //-> true       current object window hai 
+// console.log(this === window)  //-> true       current object window hai (if ye object k andhr kisi function me hota toh false hota ... and arrow function k andhr hota toh true)
 
 
 
@@ -99,7 +99,7 @@
 // }
 
 // myFunc(); //-> hello worlds
-// window.myFunc() //-> hello wordls
+// window.myFunc() //-> hello worlds
 // fun(); //-> demo
 // window.fun(); //demo   bcz window object k pass -> myFunc() hai   (this will not work in let and const if FE and arrow function se usse define kiya ho )
 //👉 Jo   function / variable    globally define hota hai (var ya function se), wo window object ka part ban jata hai.
@@ -127,8 +127,12 @@
 // function myFunc(){
 //     console.log(this);  
 // }
+// let demo=()=>{
+//   console.log(this)
+// }
 // myFunc();  //-> //undefined ....bcz we used "use strict"  if strict nhi hota toh window object milta 
 // window.myFunc()  //window object 
+// demo() //-> window
 
 
 
