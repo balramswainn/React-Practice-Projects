@@ -635,7 +635,8 @@
 // console.log(user1.is18());   //-> true
 
 
-
+// function -> ke pass apna prototype hai jisme key-value pairs likh sakte hai and access kar sakte hai ab jo bhi function hai prototype me dal ke use kar rhe hai
+// object -> iska proto k wajah se hum easily woh function wala prototype access kar pa rhe hai . const user = Object.create(createUser.prototype)
 
 
 // ========================================================================

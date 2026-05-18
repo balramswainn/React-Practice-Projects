@@ -49,7 +49,7 @@
 
 // now -> const  ans = function printName(){ console.log(firstName, lastName); }  + value of both("harshit", "sharma")
 
-// Global execution context chalega
+// Global execution context chalega (uper wala hi continue)
 // 1. Memory creation phase =  window:{}, this: window , printFullName= function definition , ans = function definition .-> idhr ininitiaized hat gaya
 // 2. Execution phase =  printFullNAme , ans() -> ye call hua iska ab alag se FEC banega 
 

@@ -7,6 +7,3 @@ export default UserContext; //Exports the context so it can be used in other fil
 
 
 
-
-
-

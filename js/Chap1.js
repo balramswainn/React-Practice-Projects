@@ -311,3 +311,17 @@
 // console.log(n--) //-> 13
 // console.log(n)   //-> 12
 // console.log(--n) //-> 11
+
+
+
+// console.log(010)  //-> 8  octal (base 8) maana jata tha
+// console.log(00001 === 1) //->true
+
+// ------------
+
+// "use strict"
+// console.log(010)    //-> Uncaught SyntaxError: Octal literals are not allowed in strict mode. 
+// console.log(00001 === 1) //-> Uncaught SyntaxError: Octal literals are not allowed in strict mode. 
+// const obj2= new Demo2("jerry2",22,02);  //-> argument me bhi if 0 pehle likhoge toh error
+// console.log(0o10) //-> 8  isme error nhi aaega
+
