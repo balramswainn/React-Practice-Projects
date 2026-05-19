@@ -15,7 +15,7 @@
 
 //-> script start
 //-> 9999 inside for loop
-//-> script end
+//-> script ends
 
 
 
