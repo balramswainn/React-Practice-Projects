@@ -29,8 +29,154 @@
 // value : " error message what we want"
 
 
+// =======================================
+
+// ways to create promise in js :- new Promise ((resolve,reject)) , Promise.all(), fetch, then, async, await ?
+
+// Ye sab mix ho gaya hai because kuch cheeze:
+
+// Promise banati hain
+// kuch Promise handle karti hain
+// kuch Promise ke multiple operations handle karti hain
+// kuch Promise ka modern syntax hain
+
+// Sabko ek proper flow me samjho 👇
 
 
+// 1. Actual promise creation:
+
+// const p = new Promise((resolve, reject) => {
+//   let success = true;
+
+//   if(success){
+//     resolve("Data mil gaya");
+//   }else{
+//     reject("Error aya");
+//   }
+// });
+// Yahi REAL promise creation hai.
+
+
+
+// 2. .then() Kya Hai?
+
+// Promise handle karne ke liye.
+
+// const p = Promise.resolve(10);
+
+// p.then((data)=>{
+//   console.log(data);  //->10
+// });
+
+// then(): success value pakadta hai
+
+
+
+// 3. .catch()
+
+// Error handle karta hai.
+// const p = Promise.reject("Failed");
+
+// p.catch((err)=>{
+//   console.log(err);  //-> Failed
+// });
+
+
+// 4. fetch()
+
+// fetch() promise create karta hai automatically.
+// fetch("https://jsonplaceholder.typicode.com/users")
+//   .then((res)=>res.json())
+//   .then((data)=>console.log(data))
+
+//   fetch() ->  returns Promise -> .then() handles success
+
+
+
+// 6. async
+
+// async function automatically Promise return karta hai.
+// async function test(){
+//   return "Hello";
+// }
+
+// console.log(test());  //-> Promise { "Hello" }
+// // Internally: return Promise.resolve("Hello")
+
+
+
+// 7. await
+
+// Promise resolve hone ka wait karta hai.
+
+// ONLY inside async.
+// async function test(){
+//   const data = await Promise.resolve(10);
+
+//   console.log(data);
+// }
+
+// test(); Output: 10
+
+
+
+// 8. Promise.all()
+
+// Multiple promises together handle karta hai.
+
+// Example
+// const p1 = Promise.resolve(1);
+// const p2 = Promise.resolve(2);
+// const p3 = Promise.resolve(3);
+
+// Promise.all([p1,p2,p3])
+// .then((data)=>{
+//   console.log(data);
+// });
+
+// Output: [1,2,3]  Agar ek bhi fail hua: Promise.all FAIL ho jayega
+
+
+
+// 9. Promise.race()
+
+// Jo promise pehle complete hoga wahi result.
+
+// Promise.race([p1,p2])
+
+
+// 10. Promise.allSettled()
+
+// Sabka result deta hai.
+// Even failed ones.
+
+// Promise.allSettled([p1,p2])
+
+
+// 11. Promise.any()
+
+// Jo first successful promise hoga uska result.
+
+
+
+// Ye Promise Create Nahi Karte
+
+// ❌ then
+// ❌ await
+// ❌ Promise.all
+
+// Ye existing promises ko HANDLE karte hain.
+
+
+// Real Promise Creators
+
+// ✅ new Promise()
+// ✅ fetch()
+// ✅ async function
+// ✅ many browser APIs
+
+
+// =============================
 
 
 

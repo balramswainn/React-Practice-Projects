@@ -117,7 +117,7 @@
 // 👉 Common examples:
 // setTimeout
 // setInterval
-// fetch ✔️ fetch Promise return karta hai btu 👉 Fetch API khud ek Web API hai
+// fetch ✔️ fetch Promise return karta hai but 👉 Fetch API khud ek Web API hai
 // XMLHttpRequest
 // addEventListener (DOM events)
 // geolocation
@@ -253,7 +253,7 @@
 // Promise.resolve().then(() => console.log("P1"));
 
 // o/p :- P1  T1 T2
-// event loop ->microtask empty kiya -> callbacke se ek utahaya fhir micro check kiya empty hai toh callback se fhir utahaya
+// event loop ->microtask empty kiya -> callback se ek utahaya fhir micro check kiya empty hai toh callback se fhir uthaya
 
 // 4. 
 // Promise.resolve().then(() => console.log("P1"));
