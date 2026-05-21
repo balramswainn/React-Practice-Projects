@@ -1,0 +1,7 @@
+navbar:- height mat de padding se sambhal , width bhi mat de bcz div pehle hi pura width le leta hai 
+img ko bas width do
+| Image Type        | Best Practice                   |
+| ----------------- | ------------------------------- |
+| Logo/Icon/Profile | direct width on img (w-3,w-5)   |
+| Banner/Hero/Card  | `w-full` + parent controls size |
+
