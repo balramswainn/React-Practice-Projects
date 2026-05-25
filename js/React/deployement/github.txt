@@ -1,0 +1,83 @@
+Step 1 — Package install
+
+Terminal:  npm install gh-pages --save-dev
+
+
+
+Step 2 — package.json
+Add: "homepage":"https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME"
+
+Example: "homepage":"https://balram.github.io/myapp"
+
+
+
+
+
+Step 3 — scripts add karo
+
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+
+
+
+
+Step 4 — Vite config
+
+vite.config.js
+
+export default defineConfig({
+  plugins:[react()],
+  base:'/REPO_NAME/'
+})
+
+Example:  base:'/myapp/'
+
+VERY IMPORTANT ⚠️
+
+
+
+Step 5 — Deploy
+npm run deploy
+
+
+Step 6 — GitHub settings
+Repo → Settings → Pages
+Select: Branch: gh-pages
+Save.
+
+
+Then website live:
+https://username.github.io/repo-name/
+
+
+====================================================
+
+
+
+Step 1
+Code change karo.
+
+Step 2
+GitHub pe push karo:
+
+git add .
+git commit -m "updated website"
+git push origin main
+
+
+Step 3
+Phir deploy:
+npm run deploy
+Bas 😄
+
+Important
+npm run deploy
+kya karta hai:
+
+latest build banata hai
+gh-pages branch update karta hai
+live website update ho jati hai
