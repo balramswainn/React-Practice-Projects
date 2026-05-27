@@ -490,3 +490,40 @@
 
 // let obj = Object.assign({},arr)  //-> {0: 1, 1: 2, 2: 3, 3: 4, 4: 9}
 // console.log(obj)
+
+
+
+
+// =====================
+
+// const key = String(args);
+
+// 1. Ye [2,3] → "2,3" Kaise Bana? 
+// String([2,3])
+// Internally Kya Hota Hai? JavaScript jab array ko string me convert karta hai, toh wo automatically:
+// array.toString()  call karta hai.
+
+
+// String([]) -> ""
+
+// Important Problem
+// Objects ke saath issue hota hai:
+// String([{name:"balram"}]) => "[object Object]" Ye useful nahi hai. bcz ye har object call ko same "[object Object]" bana dega so use 
+// JSON.stringify(args) -> '[{"name":"balram"}]'
+
+
+// so we use  
+// const key = JSON.stringify(args);  
+// [2,3]  -> "[2,3]"
+// Difference Dekho
+// | Method                  | Output    |
+// | ----------------------- | --------- |
+// | `String([2,3])`         | "2,3"     |
+// | `JSON.stringify([2,3])` | "[2,3]"   |
+
+
+// Why Better?
+// Because objects bhi properly stringify hote hain.
+// Example: JSON.stringify([{name:"balram"}])
+// Output: '[{"name":"balram"}]'
+// Proper readable unique key.
