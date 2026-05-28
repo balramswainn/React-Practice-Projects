@@ -771,3 +771,5 @@ console.log("script end ");
 // Fetch only rejects on network failures, not on HTTP errors like 404 or 500, because the server still sends a valid response.
 // Network Error: ❌ Internet band hai,❌ Wrong domain (example: htttps://wrong.com),❌ DNS issue, ❌ Server down hai, ❌ CORS blocked
 // 👉 Browser ko server se response mila hi nahi 👉 Isliye promise reject hota hai 👉 .catch() chalega
+
+

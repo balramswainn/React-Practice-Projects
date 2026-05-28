@@ -325,3 +325,143 @@
 // const obj2= new Demo2("jerry2",22,02);  //-> argument me bhi if 0 pehle likhoge toh error
 // console.log(0o10) //-> 8  isme error nhi aaega
 
+
+
+// ========================
+
+// function one(){
+//   setTimeout(()=>{console.log("first")})
+// }
+// function two(){
+//   setTimeout(()=>( console.log("sec")))
+// }
+// function three(){
+//   setTimeout(()=>{
+//     return (
+//       console.log("third"))
+//   })
+// }
+
+// one();
+// two();
+// three();
+
+
+// ======================
+
+// syntax error  
+// Parentheses () Single expression ke liye:
+// Multiple statements ke liye: Curly Braces {}
+
+// function two(callback){
+//   setTimeout(()=>(
+//   console.log("sec"); 
+//   callback();
+//   ),2000)
+// }
+
+// function three(callback){
+//   setTimeout(()=>{
+//     return (
+//       console.log("third")
+//       callback();
+//       )
+//   },3000)
+// }
+
+
+
+// ==========================
+// callback hell
+
+
+// function one(callback){
+//   setTimeout(()=>{
+//     console.log("first")
+//     callback();
+//   },1000)
+// }
+// function two(callback){
+//   setTimeout(()=>{
+//   console.log("sec"); 
+//   callback();
+//   },2000)
+// }
+// function three(callback){
+//   setTimeout(()=>{
+//       console.log("third")
+//       callback();
+//   },2000)
+// }
+
+// one(()=>{
+//   two(()=>{
+//     three(()=>{
+//       console.log("finished");
+//     })
+//   })
+// });
+
+// Output:
+
+// first
+// sec
+// third
+// finished
+
+
+
+// with promises
+
+// function one(){
+//   return new Promise((resolve,reject)=>{
+//       setTimeout(()=>{
+//       resolve("one")
+//   },1000)
+//   })
+// }
+// function two(){
+//   return new Promise((resolve,reject)=>{
+//       setTimeout(()=>{
+//       resolve("two")
+//   },1000)
+//   })
+// }
+
+
+// one().then((res)=>{console.log(res); return two(); })
+//      .then((res)=> console.log(res))
+
+
+
+
+
+// async function test(){
+//    const data = fetch("url");
+//    console.log(data);
+// }
+
+// test();
+// Output:
+// Promise { pending }
+// Haan ✅ await nahi lagaya toh usually Promise object (often pending state me) print hoga, actual resolved value nahi.
+
+
+
+// await:
+// ❌ pure JavaScript ko nahi rokta
+// ✅ sirf current async function ko pause karta hai
+// async function test(){
+//    console.log("A");
+//    await fetch("url");
+//    console.log("B");
+// }
+// console.log("Start");
+// test();
+// console.log("End");
+
+// o/p:- 
+// Start
+// A
+// End
+// (B baad me)
