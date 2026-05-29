@@ -1,0 +1,87 @@
+React/Vite Assets Best Practices
+1. src/assets
+
+Use for:
+Logo
+Icons
+Component-specific images
+Small/medium UI assets
+
+Structure:
+src/
+ ├─ assets/
+ │   ├─ logo.svg
+ │   └─ hero.png
+
+ Usage:
+import heroImg from "../assets/hero.png";
+<img src={heroImg} />
+
+Benefits
+Vite/Webpack optimize karte hain
+Unused assets bundle me nahi aate
+Hashing automatically hoti hai
+Refactor safe hai
+Production ready
+
+Industry me React projects me ye zyada common hai.
+
+
+
+1. src/assets me large files rakhne ka problem kya hai?
+Ab build ke time:
+
+Vite us file ko process karega
+Hash generate karega
+Bundle me include karega
+Build time increase ho sakta hai
+
+50 MB ki video ke liye ye unnecessary hai. Isliye large static files ke liye:
+public/assets/videos/hero-video.mp4
+
+better hota hai.
+
+
+===============================================================
+
+2. public/assets
+
+Kab Use Karte Hain?
+Bahut badi videos
+Thousands of images
+Static files
+favicon
+robots.txt
+sitemap.xml
+3D models
+Files jinko import nahi karna
+
+Structure:
+public/
+ └─ assets/
+      ├─ images/
+      └─ videos/
+
+Usage:
+<img src="/assets/images/hero.jpg" />
+<video src="/assets/videos/hero.mp4" />
+
+Benefits:
+Direct URL access
+No bundling
+Better for large media
+
+
+
+=======================================
+
+Important Rule
+
+❌ Public asset ko import mat karo:
+import hero from "/assets/images/hero.jpg";
+
+Agar public me hai toh:✅
+const hero = "/assets/images/hero.jpg";
+
+ya directly:
+<img src="/assets/images/hero.jpg" />
