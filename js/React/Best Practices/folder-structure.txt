@@ -69,7 +69,7 @@ Usage:
 Benefits:
 Direct URL access
 No bundling
-Better for large media
+Better for large medias
 
 
 
