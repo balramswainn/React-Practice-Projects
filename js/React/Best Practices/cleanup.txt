@@ -1,0 +1,66 @@
+What is a cleanup function in React?
+A cleanup function in React is a function returned from useEffect that runs before the component unmounts or before the effect runs again. It is used to remove side effects such as event listeners, timers, subscriptions, or WebSocket connections to prevent memory leaks and unnecessary executions.
+
+
+useEffect(() => {
+  const handleResize = () => {
+    console.log(window.innerWidth);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {         //ye cleanup hai
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
+
+In this example, an event listener is attached when the component mounts. When the component unmounts, the cleanup function removes the listener. Without cleanup, the listener would remain active in memory and continue responding to resize events, which can cause memory leaks and performance issues.
+A cleanup function is the function returned from useEffect. It is used to clean up side effects like event listeners, intervals, timers, and subscriptions when a component unmounts or before the effect re-runs, helping prevent memory leaks.
+
+
+
+memory leak: In React, a memory leak occurs when a component retains references to objects or background tasks after it unmounts, preventing the browser's JavaScript garbage collector from reclaiming that memory. This gradually drains available RAM, slowing down your application and causing browser tabs to crash.
+
+Jo cheez ab use nahi ho rahi uski memory free nahi hui. Component remove ho gaya, Lekin event listener abhi bhi active hai
+Toh unnecessary memory use ho rahi hai.
+
+
+
+1. Kya cleanup me wahi cheez dalni hoti hai jo start ki thi?
+Haan, usually jo setup kiya hai uska opposite cleanup me karte hain. ex :- uper dekh removeEventListener
+React ke liye useEffect ke andar return ka special meaning hai: "Ye cleanup function hai" Normal return nahi hai.
+
+Har Function Ke Liye Cleanup? ❌ Nahi. Sirf un cheezon ke liye jo background me chalti rehti hain ya subscription create karti hain.
+
+Event Listener :- window.addEventListener(...)
+Cleanup: window.removeEventListener(...)
+
+Interval : const id = setInterval(...)
+Cleanup: clearInterval(id)
+
+Timeout : const id = setTimeout(...)
+Cleanup: clearTimeout(id)
+
+WebSocket : const socket = new WebSocket(...)
+Cleanup: socket.close()
+
+Cleanup NOT Needed
+useEffect(() => {
+  fetchData();
+}, []);
+Ye sirf ek baar function call kar raha hai.Koi listener ya interval create nahi hua.Normally cleanup ki zarurat nahi.
+
+and Important :-> page change hone pe ya Component unmount ho tab cleanup chalega means if page change nhi hua toh cleanup nhi chalega and ye function browser handle karega useEffect bas start karta hai 
+
+Component Mount-> window.addEventListener('resize', handleVideoSrcSet); -> Ab browser ke paas listener register ho gaya. -> User Resize Karta Hai -> React kuch nahi karta. -> Browser khud listener call karta hai: handleVideoSrcSet() -> page change :- cleanup chal gya
+
+
+
+
+
+
+
+2. Without Cleanup Kya Hoga?
+Tumne listener lagaya: window.addEventListener("resize", handleVideoSrcSet);
+Ab browser bol raha hai: "Jab bhi resize hoga, main handleVideoSrcSet call karunga." means isse lagaya hero page k liye buy if user koi aur page pe jaega still ye function call hoga jo ki unnecessary hai Performance kharab. and memory leaks hoga
