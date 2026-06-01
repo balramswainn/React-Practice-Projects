@@ -64,3 +64,24 @@ Component Mount-> window.addEventListener('resize', handleVideoSrcSet); -> Ab br
 2. Without Cleanup Kya Hoga?
 Tumne listener lagaya: window.addEventListener("resize", handleVideoSrcSet);
 Ab browser bol raha hai: "Jab bhi resize hoga, main handleVideoSrcSet call karunga." means isse lagaya hero page k liye buy if user koi aur page pe jaega still ye function call hoga jo ki unnecessary hai Performance kharab. and memory leaks hoga
+
+
+
+
+
+useGSAP(() => {
+    gsap.to('#hero', { opacity: 1, delay: 2 })   // #hero element ko opacity 0 → 1 karo, 2 sec delay ke baad
+    gsap.to('#cta', { opacity: 1, y: -50, delay: 2 })  // #cta element ko opacity 0 → 1 karo + upar 50px move karo, 2 sec delay ke baad
+    gsap.to('.link', { opacity: 1, y: 0, duration: 1, stagger: 0.25 })
+     // stagger .link class wale saare elements ko animate karta hai — but ek saath nahi, ek ke baad ek. stagger: 0.25 matlab har element 0.25 second baad apna animation shuru karta hai.
+  }, []) //Pehle se opacity-0 hona chahiye CSS mein  invisible → visible
+
+useGSAP — GSAP ka official React hook, auto cleanup karta hai
+useGSAP(() => { ... }, [])
+
+useEffect — manually cleanup karna padta hai
+useEffect(() => {
+  const anim = gsap.to(...)
+  return () => anim.kill() // ← manually karna padta
+}, [])
+useGSAP better hai kyunki memory leaks automatically handle karta hai. ✅
