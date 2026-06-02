@@ -4,14 +4,25 @@ function App() {
   const [length, setLength] = useState(8)
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false)
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("") 
+  //React state me: String, Number, Boolean, Array, Object..sab store kar sakte ho.
+// const [video, setVideo] = useState({ isEnd: false  startPlay: false ,isPlaying: false,});
+// Update kaise karenge? -> setVideo(prev => ({ ...prev, isPlaying: true }));  ...prev nhi likhta toh pura object replace hojata bas {isPlaying: true} rehta
+
 
   //useRef hook
-  const passwordRef = useRef(null) //Initially DOM element exist nahi karta, isliye ref ko null se initialize karte hain. After render React automatically set karta hai:
+  const passwordRef = useRef(null) //Initially DOM element exist nahi karta, isliye ref ko null se initialize karte hain. 
+  // so passwordRef= { current :null}
+  // After render React automatically set karta hai:
 //passwordRef.current = <input element>
 // So flow: initial render -> passwordRef.current = null
 // after DOM mount -> passwordRef.current = input element
 //useRef = value ya DOM reference store karo bina re-render ke
+
+// Rule 1: single DOM Element ko reference karna hai  :- const inputRef = useRef(null); Kyuki starting render pe input exist hi nahi karta.
+// Rule 2: Ek value store karni hai jo rerender na karaye :- const countRef = useRef(0); 0,null,"" UI update nahi hoga. Kyuki ref change hone pe rerender nahi hota.
+// Rule 3: Multiple DOM Elements store karne hain  :- const videoRef = useRef([]);
+// useRef({}) 👉 "Mujhe key-value form me multiple references ya data store karna hai."
 
   const passwordGenerator = useCallback(() => {   
     let pass = ""
@@ -41,8 +52,8 @@ function App() {
  
 
   const copyPasswordToClipboard = useCallback(() => {
-    passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, 999);
+    passwordRef.current?.select();             // isiliye null check lagana pada bcz passwordRef ={ current:null } rehta toh error deta 
+    passwordRef.current?.setSelectionRange(0, 999);  // passwordRef.current = <input element>  
     window.navigator.clipboard.writeText(password)
   }, [password])
 
