@@ -68,7 +68,6 @@ Ab browser bol raha hai: "Jab bhi resize hoga, main handleVideoSrcSet call karun
 
 
 
-
 useGSAP(() => {
     gsap.to('#hero', { opacity: 1, delay: 2 })   // #hero element ko opacity 0 → 1 karo, 2 sec delay ke baad
     gsap.to('#cta', { opacity: 1, y: -50, delay: 2 })  // #cta element ko opacity 0 → 1 karo + upar 50px move karo, 2 sec delay ke baad
