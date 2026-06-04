@@ -154,9 +154,11 @@ export default function Input({richText,...props}) {      ...props me sirf wahi 
 
 16.
 
+Difference bas initial value ka hai:
+useRef(null)      // current = null
+useRef()          // current = undefined
 
-
-
+best practice -> null do Baad me React ref attach karega toh dono same tarah behave karenge. ✅
 
 
 
