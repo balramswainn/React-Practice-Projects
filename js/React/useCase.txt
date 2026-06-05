@@ -160,6 +160,17 @@ useRef()          // current = undefined
 
 best practice -> null do Baad me React ref attach karega toh dono same tarah behave karenge. ✅
 
+useRef me kuch bhi store kar sakte ho.
+
+Example:
+
+const countRef = useRef(0);
+const userRef = useRef({name: "Balram"});
+const intervalRef = useRef();
+const divRef = useRef(null);
+
+Bas DOM elements store karna iska common use case hai.
+
 
 
 
