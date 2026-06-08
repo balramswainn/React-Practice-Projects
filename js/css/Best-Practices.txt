@@ -1,0 +1,79 @@
+1. rem - 16px
+for - margin, padding 
+
+2. section - width:100% , w-full
+
+<section class="w-full">
+  <div class="max-w-7xl mx-auto px-4">
+     content
+  </div>
+</section>
+
+Let content decide height. Height automatically grow hogi.
+When to use h-screen -> Hero section 
+
+3. height: 100%; ->Parent ki height jitni.
+
+<div>                             // class="h-screen or h-72 tab iske according woh % lega 
+   <div class="h-full">  won't work.Parent ki height hi nahi hai.
+   </div>
+</div>
+
+
+
+4. Small Card / Box
+
+Never :-  <div class="w-[350px] h-[250px]">  unless exact design.
+
+Better :- <div class="max-w-sm p-6"> or  <div class="w-full max-w-md">           max-w-sm = max-width: 28rem /* 448px */;
+
+
+
+ <div className='bg-red-950 w-full flex p-5'>   //child me w-full nhi dete toh bas jitna hello hai utna width le rha tha
+        <div class=" w-full max-w-sm border-2 border-white mx-auto">
+          Hello
+         </div>
+          <div class=" w-full max-w-sm border-2 border-white mx-auto">
+          Hello
+         </div>
+          <div class=" w-full max-w-sm border-2 border-white mx-auto">
+          Hello
+         </div>
+      </div>
+
+
+
+
+
+
+
+5. Navbar
+ <header class="h-16"> or <header class="h-16">
+
+ Most developers prefer: <header class="py-4"> Content decides height.
+
+
+6. Images 
+<img class="w-full h-auto"> or <img class="w-full object-cover">
+
+
+
+7. Responsive Typography
+
+<h1 class="text-3xl md:text-5xl lg:text-6xl">
+<section class="py-12 md:py-20">
+
+
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    
+    <h2 class="text-3xl font-bold mb-8">
+      Title
+    </h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      Cards
+    </div>
+
+  </div>
+</section>

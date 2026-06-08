@@ -4,10 +4,10 @@ Terminal:  npm install gh-pages --save-dev
 
 
 
-Step 2 — package.json
+Step 2 — package.json  
 Add: "homepage":"https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME"
 
-Example: "homepage":"https://balram.github.io/myapp"
+Example: "homepage":"https://balram.github.io/myapp",     after name at the start
 
 
 
@@ -61,19 +61,18 @@ https://username.github.io/repo-name/
 Step 1
 Code change karo.
 
-Step 2
-GitHub pe push karo:
 
+Step 2
+Phir deploy:
+npm run deploy
+
+step 3 
+code check karo proper hai toh 
 git add .
 git commit -m "updated website"
 git push origin main
 
-
-Step 3
-Phir deploy:
-npm run deploy
-Bas 😄
-
+bcz ye personal project hai isiliye we can deploy first in github pages to check koi error toh nhi bcz pehle push kardiya toh galat code push ho jaega 
 Important
 npm run deploy
 kya karta hai:
@@ -81,3 +80,28 @@ kya karta hai:
 latest build banata hai
 gh-pages branch update karta hai
 live website update ho jati hai
+
+
+
+
+
+
+but int professional :-
+
+Code change
+↓
+npm run build
+↓
+npm run preview
+↓
+Local testing
+↓
+Git add
+Git commit
+Git push
+↓
+Deploy
+
+Kyuki production me deploy karke bug discover karna mehenga pad sakta hai.
+
+
