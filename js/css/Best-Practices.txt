@@ -1,3 +1,24 @@
+px - fixed
+%  - depending on parent 
+vw - viewport width ( depending on screen width)
+vh - viewport height ( depending on screen height)
+
+vmax - viewport maximum ( jo viewport bada hai uske according size ya chota hoga )
+vmin - viewport minimum ( jo viewport chota hai uske according) 
+
+rem - root-em - accroding to the root(16px)
+em - When used for font-size: 1em for child, it is equal to the font size of the parent element.
+
+ch - character
+lh 
+
+height: 10vw -> bhi de sakte hai
+
+
+
+
+
+
 1. rem - 16px
 for - margin, padding 
 
@@ -28,9 +49,10 @@ Never :-  <div class="w-[350px] h-[250px]">  unless exact design.
 Better :- <div class="max-w-sm p-6"> or  <div class="w-full max-w-md">           max-w-sm = max-width: 28rem /* 448px */;
 
 
+child me w-full nhi dete toh bas jitna hello hai utna width le rha tha bcz flex hai parent mai if nhi hota flex parent mai toh max-w-sm jitna width leta 
 
- <div className='bg-red-950 w-full flex p-5'>   //child me w-full nhi dete toh bas jitna hello hai utna width le rha tha
-        <div class=" w-full max-w-sm border-2 border-white mx-auto">
+ <div className='bg-red-950 w-full flex p-5'>   
+        <div class=" w-full max-w-sm border-2 border-white mx-auto"> //
           Hello
          </div>
           <div class=" w-full max-w-sm border-2 border-white mx-auto">
@@ -42,9 +64,111 @@ Better :- <div class="max-w-sm p-6"> or  <div class="w-full max-w-md">          
       </div>
 
 
+Card ko height mat do jab tak zarurat na ho. 90% cases me industry me card ki height content se decide hoti hai.
+.card {   Card ki height automatically content ke hisab se badhegi.
+  width: 100%;
+  max-width: 25rem;
+  padding: 1.5rem;
+}
+
+
+==================================================================
+
+Kab height deni chahiye?
+1. Equal Height Cards
+.card {
+  min-height: 20rem;  //Minimum 20rem rakho, lekin content agar zyada hai toh grow kar jao.
+}
+
+Problems:-
+1. But hume chahiye sabka height same ho if content kiska jyada bhi hogya toh sabka height same hi rahega esa chaiye
+<div class="parent">
+  <div class="card">Short text</div>
+  <div class="card">Medium text</div>
+  <div class="card">Very long content...</div>
+  <div class="card">Short text</div>
+</div>
+
+.parent{
+  display:flex;
+  justify-content:center;
+  align-items:center; 
+  height:100vh;        
+}
+
+.card{
+  width:200px;    //height nhi diya bcz we want content ka height jitna ho utna dikhe
+}
+
+o/p:-  sab content k hisab se height le liye but sab chote bade hogye 
+
+reason :- align-items:center; Flexbox me default hota hai: Flexbox me default hota hai: align-items: stretch; Sab flex items cross-axis me equal height le lenge. but humne align-items:center so  Ab browser bolta hai:  Stretch mat karo.Har item ki height uske content ke hisab se rakho.Aur center me align kar do. Isliye har card alag height ka dikh raha hai.
+
+2. 
+.parent{
+  height:100vh;   
+  display:flex;
+  justify-content:center;
+                          align-items: stretch;  //by default hota hai ye
+}
+
+.card{
+  width:200px;    //height nhi diya bcz we want content ka height jitna ho utna dikhe
+}
+
+o/p:- sab card equal height pr hai but kuch jyada hi height le liya reason: parent pe height:100vh;   
+remove that height and content ko padding de ya content cards ko decide karne de height but still if want height do toh there is a way
+
+ek parent element bana and usko height de de
+<div class="top">
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+</div>
+
+// to do
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  flex: 1;
+}
 
 
 
+Aur sirf jab exact fixed size mandatory ho (image frame, banner, slider, etc.) tab:
+height: 20rem;
+
+
+
+2. Hero Card
+.hero-card {
+  height: 60vh;
+}
+
+Yaha viewport ke hisab se height chahiye.
+
+
+3. Image Container
+.image-box {
+  height: 15rem;  Image ko exactly same frame me dikhana hai.
+}
+
+Fixed image ratio maintain karne ke liye.
+
+4.Slider
+.slider {
+  height: 30rem;
+}
+
+Sab slides same size honi chahiye.
+
+in simple :- if content kal grow hoga input aaega extra so -> min-height 
+if content same ( image, slider, hero image) -> height:
+
+-=----------------------------------
 
 
 5. Navbar
