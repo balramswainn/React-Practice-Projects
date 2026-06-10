@@ -142,10 +142,11 @@ ek parent element bana and usko height de de
 
 .card{
   width:200px;    
+  /* min-height:20rem; */  if jab cards niche jaye viewport kam karne pe  and tume same height chaiye tab ye use karo
 }
-(bas jo imp hai wohi likhahai padding,color dedena if want to see )
+(bas jo imp hai wohi likha hai padding,color dedena if want to see )
 o/p:- parent barobar bich me aya and card proper hai barobar height le rhe hai 
-
+problem :- mene flex wrap lagaya uske wajah se jab viewport chota ho toh card niche ajaye proper aarahe hai but prblm ye hai ki same height k nhi jo niche gye so hume min-height:20rem lagana hoga.
 
 
 
@@ -162,20 +163,40 @@ o/p:- parent barobar bich me aya and card proper hai barobar height le rhe hai
   width:200px;    
   flex:1;
 }
+o/p :- perfect but flex:1 lagau toh ajeeb behave karte hai sabse pehle toh viewport kam karu toh pura card shrink ho jata hai fhir jo card niche jata woh pura width hi leleta hai 
 
+Cards stretch karte hain, Shrink karte hain, Last row me ek hi card bache toh poori width le leta hai Ye normal behavior hai.
 
+sab me prblm wohi hai so use grid  isme bhi same prblm hai but complex ui k liye better
+Grid tab recommend karta jab tum responsive columns chahte: Desktop → 4 columns
+Tablet → 2 columns
+Mobile → 1 column
 
+without media queries.
+.parent{
+  width:100%;
+  background-color: rgb(31,30,30);
+  padding:4rem;
 
+  display:grid;
 
-// to do
-.cards {
-  display: flex;
-  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px,1fr)
+  );
+
+  gap:1.5rem;
 }
 
-.card {
-  flex: 1;
+.child{
+   border:2px solid white;
+  padding:1.5rem;
+  width:200px;
+  border-radius:20px;
+  min-height:20rem; 
 }
+
+=======================================
 
 
 
