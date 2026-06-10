@@ -97,12 +97,12 @@ Problems:-
 }
 
 .card{
-  width:200px;    //height nhi diya bcz we want content ka height jitna ho utna dikhe
+  width:200px;    //height nhi diya bcz we want content according  height jitna ho utna dikhe
 }
 
 o/p:-  sab content k hisab se height le liye but sab chote bade hogye 
 
-reason :- align-items:center; Flexbox me default hota hai: Flexbox me default hota hai: align-items: stretch; Sab flex items cross-axis me equal height le lenge. but humne align-items:center so  Ab browser bolta hai:  Stretch mat karo.Har item ki height uske content ke hisab se rakho.Aur center me align kar do. Isliye har card alag height ka dikh raha hai.
+reason :- align-items:center; Flexbox me default hota hai: align-items: stretch; Sab flex items cross-axis me equal height le lenge. but humne likha align-items:center so  Ab browser bolta hai:  Stretch mat karo.Har item ki height uske content ke hisab se rakho.Aur center me align kar do. Isliye har card alag height ka dikh raha hai.
 
 2. 
 .parent{
@@ -117,7 +117,8 @@ reason :- align-items:center; Flexbox me default hota hai: Flexbox me default ho
 }
 
 o/p:- sab card equal height pr hai but kuch jyada hi height le liya reason: parent pe height:100vh;   
-remove that height and content ko padding de ya content cards ko decide karne de height but still if want height do toh there is a way
+remove that height and content ko padding de ya content cards ko decide karne de height and it will show proper 
+ but still if want height do toh there is a way aur ek parent bana and usko height de:-
 
 ek parent element bana and usko height de de
 <div class="top">
@@ -125,6 +126,46 @@ ek parent element bana and usko height de de
     <div class="child"></div>
   </div>
 </div>
+
+.top{
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parent{
+  width:100%;
+  display: flex;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+}
+
+.card{
+  width:200px;    
+}
+(bas jo imp hai wohi likhahai padding,color dedena if want to see )
+o/p:- parent barobar bich me aya and card proper hai barobar height le rhe hai 
+
+
+
+
+3. 
+
+.parent{
+  width:100%;
+  display: flex;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+}
+
+.card{
+  width:200px;    
+  flex:1;
+}
+
+
+
+
 
 // to do
 .cards {
