@@ -6,12 +6,15 @@
 
 // internet explorer -> jscript.
 
-// ECMAScript (ES) is a programming language standard that forms the core of popular scripting languages like JavaScript. It is developed and maintained by Ecma International's Technical Committee 39 (TC39) and published as the ECMA-262 specification. 
+// ECMAScript is the official standard of JavaScript managed by Ecma International. It defines how JavaScript should work and what  rules, syntax, and features that JavaScript follows. New JavaScript features like let, const, arrow functions, and classes are introduced through new ECMAScript versions.
+// It serves as the foundational rulebook and core standard that languages like JavaScript, JScript, and ActionScript are based upon, ensuring that code runs consistently across all web browsers and environments.
+//  It is developed and maintained by Ecma International's Technical Committee 39 (TC39) and published as the ECMA-262 specification. 
 
 // ES6 : 2015
 // ES6 : ES2015  
 
-// Babel is most commonly known as a JavaScript compiler that converts modern JS code (like ES6+) into older, compatible versions for broader browser support.
+
+// Babel is a JavaScript compiler that converts modern JavaScript code into older JavaScript code so it can run in older browsers.We use Babel to ensure that modern JavaScript features(like ES6+) work across older browsers that do not support them.
 
 // keyword is a reserved word with a special meaning that cannot be used as an identifier (like a variable or function name). Examples include const, function, and if. 
 
@@ -20,6 +23,8 @@
 // string is a primitive data type used to represent and manipulate a sequence of characters, essentially textual data. Strings are immutable, meaning their contents cannot be changed after creation, and any method that seems to modify a string actually returns a new one. 
 
 // "use strict" enables strict mode in JavaScript Strict mode enforces stricter parsing and error handling on your code, which helps you write cleaner, safer, and more robust JavaScript by catching common mistakes and disallowing "unsafe" or poorly thought-out features of the language. 
+
+// use strict" enables strict mode in JavaScript, which helps catch common coding mistakes and makes the code more secure.Prevents accidental global variables .Makes code more secure and easier to debug.
 
 // 1. Undeclared Variables Ko Allow Nahi Karta :
 //  "use strict";
