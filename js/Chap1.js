@@ -110,8 +110,18 @@
 
 
 
+
+// Strings are immutable, which means their contents cannot be changed after creation. However, variables holding strings can be reassigned to a new string value. Reassignment changes the variable's reference, not the original string itself.
+
+
 // strings are immutable in JavaScript means that once a string value is created, its content cannot be changed. 
 // ex:
+// let str = "Hello";
+
+// str[0] = "Y";
+// console.log(str) //-> Hello
+
+
 
 // let name = "jerry"
 // console.log(name.toUpperCase())   // -> JERRY
@@ -152,6 +162,41 @@
 // console.log(newstr)  -> 2040
 // let newstr2 = +str1 + +str2;   //-> number ban gye
 // console.log(newstr2) -> 60 
+
+// ========================================
+
+// (null > 0) -> false
+// (null == 0) -> false
+// (null >= 0) -> true  comparison operator convert null to number
+
+// true -> 1
+// false-> 0
+// null -> 0
+// ""   -> 0
+// '5'  -> 5
+// 'abc'-> NaN
+// undefined -> NaN
+
+// "a-b" -> NaN
+// ' 1'+2+2 -> '122'
+//   8 +'5' -> '85'
+//  '5'+ 8  -> '58'
+//   8 -'5' -> 3
+//  '5'- 8  -> -3
+//  '5'-'8' -> 3
+
+//  '1'--'1' ->  2
+//  '1'++'1' -> '1'+ 1 -> '1' + '1'->'11'  (so pehle +1 -> number ban gya fhir '1' + k wajah se fhir "1" string)
+//  '1'-+'1' -> '1'- 1 -> 1 - 1 -> 0
+//  '1'+-'1' -> '1'+ (-1) -> '1+ '-1' -> '1-1'
+
+// "10"+true -> 10true
+// "5"+null -> 5null
+// "5"+{} -> 5[object object]
+// true-false-> 1
+// '5'-true -> 4  
+
+
 
 
 //symbol 
@@ -328,10 +373,9 @@
 // console.log(010)    //-> Uncaught SyntaxError: Octal literals are not allowed in strict mode. 
 // console.log(00001 === 1) //-> Uncaught SyntaxError: Octal literals are not allowed in strict mode. 
 // const obj2= new Demo2("jerry2",22,02);  //-> argument me bhi if 0 pehle likhoge toh error
-// console.log(0o10) //-> 8  isme error nhi aaega
+// console.log(0o10) //-> 8  isme error nhi aaega   ....Modern JavaScript: mai octal likhne ka official tarika hai.
 
-
-
+// console.log(0010) // 10  Modern JavaScript (strict mode aur most environments) me: simply decimal 10 treat hota hai.
 // ========================
 
 // function one(){
