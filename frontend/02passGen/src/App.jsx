@@ -31,7 +31,7 @@ function App() {
     if (charAllowed) str += "!@#$%^&*-_+=[]{}~`"
 
     for (let i = 1; i <= length; i++) {
-      let char = Math.floor(Math.random() * str.length + 1)
+      let char = Math.floor(Math.random() * str.length)
       pass += str.charAt(char) 
     }
     setPassword(pass)
@@ -95,7 +95,7 @@ function App() {
       <div className='flex items-center gap-x-1'>
         <input 
         type="range"
-        min={6}
+        min={0}
         max={100}
         value={length}
          className='cursor-pointer'

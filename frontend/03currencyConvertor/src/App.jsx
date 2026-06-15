@@ -53,7 +53,7 @@ function App() {
                             currencyOptions={options}
                             onCurrencyChange={(currency) => setFrom(currency)}
                             selectCurrency={from}
-                            onAmountChange={(amount) => setAmount(amount)}
+                            onAmountChange={(amount) => setAmount(amount)}  // means onAmountChange as a prop ja rha hai child component mai toh ye function uske andhr hai so waha jake if onAmountChange(500) kardiya toh yaha value setAmount me ajaega it like waha function call kar rh hai argument pass kar rha hai 
                         />
                     </div>
                     <div className="relative w-full h-0.5">

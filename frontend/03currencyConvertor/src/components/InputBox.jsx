@@ -26,7 +26,7 @@ function InputBox({
                     placeholder="Amount"
                     disabled={amountDisable}
                     value={amount}
-                    onChange={(e) => onAmountChange && onAmountChange(Number(e.target.value))}
+                    onChange={(e) => onAmountChange && onAmountChange(Number(e.target.value))}   //Agar onAmountChange undefined hua aur tum direct call kar do:to error aayega:TypeError: onAmountChange is not a function .....Agar onAmountChange truthy hai to function call karo, warna kuch mat karo.
                 />
             </div>
             <div className="w-1/2 flex flex-wrap justify-end text-right">

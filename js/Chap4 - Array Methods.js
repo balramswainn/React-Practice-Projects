@@ -338,7 +338,7 @@
 // =========================================================
 
 
-// every method   (sab elelement condition satisfy karega toh hi true return karega)
+// every method   (sab element condition satisfy karega toh hi true return karega)
 
 // const numbers = [2,4,6,9,10];
 // const ans = numbers.every((number)=>number%2===0);

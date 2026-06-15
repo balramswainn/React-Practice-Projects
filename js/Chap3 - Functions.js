@@ -142,7 +142,7 @@
 //     }
 
 
-//     console.log(myVar);  // block scope hai const
+//     console.log(myVar);  value1  // block scope hai const
 //     myFunc();
 //     console.log(myVar);  //-> value 1
 // }
@@ -259,7 +259,7 @@
 
 
 
-// function addAll(...numbers){       👉 Saare arguments ko ek array me collect karta hai.
+// function addAll(...numbers){       //👉 Saare arguments ko ek array me collect karta hai.
 //     let total = 0;
 //   console.log(numbers)  //-> [[4,5,4,2,10]] Matlab nested array
 //     for(let number of numbers){
@@ -269,12 +269,13 @@
 // }
 
 // const ans = addAll([4,5,4,2,10]);
-// console.log(ans);   //-> 04,5,4,2,10
+// console.log(ans);   //-> '04,5,4,2,10'
 
 
 // const arr = [4,5,4,2,10];
 // const ans = addAll(...arr);        // addAll(4,5,4,2,10)
 // console.log(ans);
+//-> [4, 5, 4, 2, 10]   25
 
 // | Operator     | Purpose                           |
 // | ------------ | --------------------------------- |
@@ -517,7 +518,8 @@
 //    ↓
 // setTimeout arrow function
 //    ↓
-// arrow ka this = parent ka this = obj
+// arrow ka this = parent ka this = obj 
+// Arrow functions do not have their own this. They inherit this from their surrounding (lexical) scope.
 //    ↓
 // console.log(obj.name)
 //    ↓
@@ -526,11 +528,65 @@
 
 // Agar yaha normal function hota to?
 // setTimeout(function() {
-//   console.log(this.name); //-> blank
+//   console.log(this.name); //-> blank 
 //   console.log(this);
 // }, 1000);
 
 // this = window (browser me)
+
+
+
+
+// With "use strict"
+// "use strict";
+
+// function test() {
+//   console.log(this);
+// }
+// test(); //-> undefined   Yaha strict mode accidental global access ko rokta hai.
+// In strict mode, when a regular function is called without an object, this becomes undefined instead of the global object.
+
+
+// "use strict"
+// const obj = {
+//   name: "Balram",
+
+//   normalFunc() {
+//     function inner() {
+//       console.log(this.name);
+//       console.log(this)  // undefined
+//     }
+
+//     inner();
+//   },
+// };
+
+// obj.normalFunc(); //->undefined  Kyuki inner() ek normal function hai, uska apna this hota hai.
+
+// without use strict :- blank and window{}
+
+
+
+
+
+// arrow fun ...with or without use strict will behave same 
+// const obj = {
+//   name: "Balram",
+
+//   normalFunc() {
+//     const arrow = () => {
+//       console.log(this.name); //->Balram
+//       console.log(this)  //->{name: 'Balram', normalFunc: ƒ}
+//     };
+
+//     arrow();
+//   },
+// };
+
+// obj.normalFunc();
+
+
+
 // ===================================================
 
 
@@ -582,8 +638,25 @@
 
 // ------------------------------
 
+//wrong 
+// const addTwoPromises =async function(p1,p2){
+//   let value=await Promise.all(p1,p2)
+//  return [...value].reduce((a, b) => a + b, 0);
+// }
+
+// Promise.all() hamesha ek iterable expect karta hai, aur practically hum mostly array pass karte hain.
+//  Promise.all(iterable) iterable ho sakta hai:
+// Array ✅ // Set ✅  // String ✅ (technically iterable hai)  // Map ✅  // Custom iterable ✅
+// Common Usage:- 
+// Promise.all([
+//   Promise.resolve(1),
+//   Promise.resolve(2)
+// ]);
+
+// Promise.all() expects a single iterable as its argument. Most commonly, we pass an array of promises. It waits for all promises to resolve and returns an array of their resolved values.
 
 
+// Lekin promises ke case me normally array use hota hai.
 
 // const addTwoPromises = async function(promise1, promise2) {
 //   return Promise.all([promise1,promise2])
