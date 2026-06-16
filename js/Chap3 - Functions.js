@@ -585,7 +585,21 @@
 
 // obj.normalFunc();
 
+// function declaration -> this -> window 
+// arrow function  -> this -> window 
+// object k andr function -> this -> object
+// object k andr arrow function -> this -> window
+// object k andr function uske andhr arrow function -> this -> object .....bcz arrow ka parent fun ka this = obj
+// object k andr function uske andhr function -> this -> window .....bcz function ka this = window 
 
+
+// "use strict"
+// function declaration -> this -> undefined
+// arrow function  -> this -> window 
+// object k andr function -> this -> object
+// object k andr arrow function -> this -> window
+// object k andr function uske andhr arrow function -> this -> object .....bcz arrow ka parent fun ka this = obj
+// object k andr function uske andhr function -> this -> window .....bcz function ka this = window 
 
 // ===================================================
 
@@ -816,7 +830,6 @@
 
 // if await nhi hota toh Promise.resolve() → ignore ho gaya (koi wait nahi)
 // o/p ABC
-
 
 
 

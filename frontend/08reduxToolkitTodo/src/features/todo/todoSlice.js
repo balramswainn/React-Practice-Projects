@@ -26,7 +26,7 @@ export const todoSlice = createSlice({
         },
          updateTodo:(state,action)=>{
             state.todos=state.todos.map((todo)=> todo.id === action.payload.id ? {...todo,text:action.payload.text} : todo)
-            //yaha pura object araha hai, dispatch(updateTodo({ id: todo.id, text: editText })); isiliye  action.payload.text likhn a jaruri hai to identify the correct todo
+            //yaha pura object araha hai, dispatch(updateTodo({ id: todo.id, text: editText })); isiliye  action.payload.text likhna jaruri hai to identify the correct todo
         }
         // ✅ Redux me replace version
         //  updateTodo: (state, action) => { 

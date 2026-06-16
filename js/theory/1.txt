@@ -1,0 +1,24 @@
+1. Explain how the DOM works in a web page and how you manipulate it using JavaScript.
+
+Answer: The DOM, or Document Object Model, is a tree-like structure that represents the HTML elements on a page. You can access and modify these nodes using JavaScript methods like getElementById, querySelector, and others to change content, structure, or styles dynamically.
+
+
+2. What is a promise in JavaScript, and how does it help handle asynchronous operations?
+
+Answer: A promise is an object that represents the eventual outcome of an asynchronous operation. It allows you to handle success or failure using .then() and .catch(), providing a clean way to work with asynchronous code without deeply nested callbacks.
+
+
+3. Explain the event loop and how it handles asynchronous code.
+Answer: The event loop continuously monitors the call stack and the task queues (like the microtask queue and the callback queue). Once the call stack is empty, it picks tasks from the queues and executes them, allowing asynchronous code to move forward without blocking the main thread.
+
+
+4. What is the difference between synchronous and asynchronous code?
+Answer: Synchronous code executes one operation at a time, blocking further execution until it finishes. Asynchronous code, on the other hand, allows other operations to proceed while waiting for tasks—promises and async/await help coordinate these asynchronous operations.
+
+
+5. What is the "this" keyword in JavaScript, and how is its value determined?
+Answer: The "this" keyword refers to the context in which a function is called. It depends on the call site—if it’s a method, "this" refers to the object calling it; globally, it may refer to the global object or undefined in strict mode.
+
+
+6. What is a debounce function, and why is it useful?
+Answer: A debounce function limits how often a function is executed by delaying it until a specified period passes without further events. This is helpful for optimizing performance—like when responding to rapid user inputs—by preventing unnecessary calls.

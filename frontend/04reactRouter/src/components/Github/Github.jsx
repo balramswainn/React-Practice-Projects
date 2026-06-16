@@ -31,7 +31,7 @@
 // function Github() {
 //   const [data, setData] = useState({})
 
-//   useEffect(() => {        //useEffect ka callback async function nahi hona chahiye.useEffect ka callback async function nahi hona chahiye.
+//   useEffect(() => {        //useEffect ka callback async function nahi hona chahiye.
 //     const fetchData = async () => {
 //       const response = await fetch('https://api.github.com/users/hiteshchoudhary')
 //       const json = await response.json()
@@ -83,15 +83,6 @@ export const githubInfoLoader = async () => {
     // const res = await response.json()   // response.json() k pehle await likhna hota hai bcz wo promise return karta hai
     // return res;
 }
-
-
-
-
-
-
-
-
-
 
 
 
