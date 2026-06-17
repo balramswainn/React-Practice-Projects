@@ -114,6 +114,23 @@ function MyComponent({chidlren}){
 
 
 
+{CORE_CONCEPTS.map((conceptItem) => (
+              <CoreConcept key={conceptItem.title} {...conceptItem} /> 
+            ))}
+
+export default function CoreConcept({ image, title, description }) {
+  return (
+    <li>
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </li>
+  );
+}
+
+  ye internally ban jata hai: <CoreConcept   title={conceptItem.title}   image={conceptItem.image}  description={conceptItem.description} />
+ Isliye child component me directly mil jata hai: function CoreConcept({ image, title, description })
+
 14. 
 
 import Input from './Input';
