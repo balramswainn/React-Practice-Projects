@@ -15,6 +15,7 @@
 // }
 
 
+
 // person.abouthis();   //-> {firstName: 'harsh', age: 8, abouthis: ƒ}
 // console.log(person)  //-> {firstName: 'harsh', age: 8, abouthis: ƒ}
 
