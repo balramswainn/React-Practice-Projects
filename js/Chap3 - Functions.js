@@ -591,6 +591,7 @@
 // object k andr arrow function -> this -> window
 // object k andr function uske andhr arrow function -> this -> object .....bcz arrow ka parent fun ka this = obj
 // object k andr function uske andhr function -> this -> window .....bcz function ka this = window 
+// object k andr this bina function k toh -> window
 
 
 // "use strict"

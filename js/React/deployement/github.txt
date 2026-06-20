@@ -7,7 +7,7 @@ Terminal:  npm install gh-pages --save-dev
 Step 2 — package.json  
 Add: "homepage":"https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME"
 
-Example: "homepage":"https://balram.github.io/myapp",     after name at the start
+Example: "homepage":"https://balramswainn.github.io/myapp",     after name at the start
 
 
 
@@ -56,7 +56,7 @@ https://username.github.io/repo-name/
 
 ====================================================
 
-
+1-> code change local me check then add,commit,push -> deploy
 
 Step 1
 Code change karo.
