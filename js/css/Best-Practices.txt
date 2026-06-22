@@ -262,3 +262,290 @@ if content same ( image, slider, hero image) -> height:
 
   </div>
 </section>
+
+
+============================================================
+
+
+Interview/Real Project me sabse zyada use hone wale
+.class
+#id
+*
+element
+.parent child
+.parent > child
+:hover
+:focus
+:first-child
+:last-child
+:nth-child()
+::before
+::after
+[attr]
+
+
+
+1.Multiple Selectors (,)
+
+ h1,p,div {
+  margin: 0;
+}
+
+2. Descendant Selector (Space) Parent ke andar jitne bhi matching child hain.
+
+.parent p {
+  color: red;
+}
+
+<div class="parent">
+  <p>Selected</p>
+  <div>
+    <p>Ye bhi selected</p>
+  </div>
+</div>
+
+
+
+.container .box p {
+}
+
+👉 .container
+→ uske andar .box
+→ uske andar p
+
+
+
+
+
+3.  Direct Child Selector (>) Sirf direct child.
+
+.parent > p {
+  color: red;
+}
+
+<div class="parent">
+  <p>Selected</p>
+  <div>
+    <p>Select nahi hoga</p>
+  </div>
+</div>
+
+
+
+4. Adjacent Sibling Selector (+) Next sibling.
+
+h1 + p {
+  color: red;
+}
+<h1>Title</h1>
+<p>Selected</p>
+
+<p>Select nahi hoga</p>
+
+
+
+5. General Sibling Selector (~)  Uske baad wale sab matching siblings.
+
+h1 ~ p {
+  color: red;
+}
+<h1>Title</h1>
+
+<p>Selected</p>
+<p>Selected</p>
+<p>Selected</p>
+
+
+
+6. Multiple Classes  Jiske paas dono classes hain. bas usse hi select hoga
+
+.btn.primary {
+  background: blue;
+}
+<button class="btn primary">Click</button>
+
+
+
+7. Attribute Selector
+
+Attribute ke basis par.
+
+input[type="text"] {
+  border: 1px solid red;
+}
+<input type="text">
+
+
+
+8. Pseudo Classes (:) State ke basis par.
+
+button:hover {
+  background: red;
+}
+
+input:focus {
+  border: blue;
+}
+
+li:first-child {
+  color: red;
+}
+
+li:last-child {
+  color: blue;
+}
+
+li:nth-child(2) {
+  color: green;
+}
+
+
+
+9. Pseudo Elements (::) Element ka part.
+
+p::first-letter {
+  font-size: 40px;
+}
+
+p::before {
+  content: "🔥";
+}
+
+p::after {
+  content: "✅";
+}
+
+
+
+
+=========================
+
+
+
+#div1 {
+  background-image: url(img_tree.gif), url(img_flwr.gif), url(paper.gif);
+  background-position: left top, right bottom, left top;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: contain, 150px, auto,cover ;
+}
+
+background shorthand me 7 properties aa sakti hain:
+
+background: red url("image.jpg") center/cover no-repeat fixed padding-box border-box;
+
+
+
+background-color: red;
+
+background-image: url("image.jpg");
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+background-origin: padding-box;
+background-clip: border-box;
+
+
+Important Rule:- 
+background-size ko shorthand me likhte waqt position ke baad / lagta hai:
+
+background: url("img.jpg") center/cover no-repeat;
+
+
+
+Interview aur projects me 99% time tum yehi dekhoge:
+
+background: url("img.jpg") center/cover no-repeat;
+ya
+background: #111;
+ya
+background: linear-gradient(to right, #000, #333);
+
+
+
+===========================================
+
+
+Box Shadow 👉 Pure element (div, button, card, image) par shadow lagata hai.
+Element ke box ke bahar shadow lagata hai.
+
+Syntax
+box-shadow: x-offset y-offset blur spread color;
+
+Example
+box-shadow: 0 4px 10px  5px rgba(0,0,0,0.3);
+0 → left/right
+4px → top/bottom
+10px → blur
+5px -> spread
+rgba(...) → color
+
+
+text-shadow: x-offset y-offset blur color; 👉 Sirf text par shadow lagata hai.
+text-shadow: 2px 2px 5px gray;
+
+
+box-shadow: x y blur spread color;
+text-shadow: x y blur color;
+✅ box-shadow me spread aur inset hota hai.
+❌ text-shadow me spread aur inset nahi hota.
+
+
+
+
+===================
+what we cant set inline element ? ( height, width, margin-top,bottom )
+
+width and height: These properties are completely ignored; the element's size is strictly determined by its content.margin-top and margin-bottom: Vertical margins have absolutely no effect and will not push surrounding elements away.padding-top and padding-bottom (Layout impact): While vertical padding visually appears, it does not alter the document flow and will bleed into or overlap adjacent lines of text.transform: Properties like rotate(), scale(), or translate() do not apply to standard inline elements.
+
+"To apply these properties while keeping the element in line with text, you must change its display property to display: inline-block or display: block."
+
+===================
+
+<ul>
+  <li><a href="/">Home</a></li>
+</ul>
+
+
+
+<header>
+  <nav>...</nav>
+</header>
+
+<main>
+  <section id="hero">...</section>
+
+  <section id="about">...</section>
+
+  <section id="services">...</section>
+
+  <section id="slider">...</section>
+
+  <section id="testimonials">...</section>
+
+  <section id="contact">...</section>
+</main>
+
+<footer>
+  ...
+</footer>
+
+
+
+About → <section>
+Services → <section>
+Slider/Carousel → usually <section> (agar poora content block hai)
+Testimonials → <section>
+Contact → <section>
+Blog posts list → <section> ke andar <article>
+Single independent card/post → <article>
+
+Simple rule:
+
+👉 Page ke major blocks = <section>
+👉 Independent content (blog, news, card jo standalone ho) = <article>
+👉 Top area = <header>
+👉 Navigation = <nav>
+👉 Main content wrapper = <main>
+👉 Bottom area = <footer>.
