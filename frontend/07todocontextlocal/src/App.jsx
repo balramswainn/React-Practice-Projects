@@ -8,7 +8,7 @@ function App() {
   const [todos, setTodos] = useState([])
 
   const addTodo = (todo) => {
-    setTodos((prev) => [{id: Date.now(), ...todo}, ...prev] )
+    setTodos((prev) => [ {id: Date.now(), ...todo}, ...prev] )   // spread ka order matter karta hai new todo pehle aaye isliye spread baadme kiya ...prev , but {id: Date.now(), ...todo}   object me spread pehle karo Kyuki baad wala overwrite karta hai. Isliye agar tum chahte ho ki tumhara generated id final rahe: {...todo, id: Date.now()} Ye better hai. ✅ but abhi k liye {id: Date.now(), ...todo} ye work kar rha hai bcz id hai hi nhi ...todo me bas -> todo,completed hai
   }
 
   const updateTodo = (id, todo) => {
@@ -26,6 +26,8 @@ function App() {
       prevTodo.id === id ? { ...prevTodo, 
         completed: !prevTodo.completed } : prevTodo))
   }
+
+
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("todos"))

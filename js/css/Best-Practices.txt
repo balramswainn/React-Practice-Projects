@@ -14,24 +14,49 @@ lh
 
 height: 10vw -> bhi de sakte hai
 
+======================================================================
+Real world
 
+Navbar:
+<header>
+  <nav className="max-w-7xl mx-auto px-4">
 
+Hero:
+<section className="max-w-7xl mx-auto px-4">
+
+About:
+<section className="max-w-7xl mx-auto px-4">
+
+Parent container width control karega, children naturally uske andar fit ho jayenge.
+
+Rule:
+👉 Page layout ki width = parent container se control karo.
+👉 Child ko width tab do jab uska specific size chahiye (card, image, button, sidebar, etc.). ✅
+
+w-full kyu nahi?
+Agar: <section className="w-full"> aur screen 1920px ki hai, to content bhi 1920px tak fail jayega.
+Title ...............................................................
+Bahut lamba text ....................................................
+Read karna mushkil ho jata hai. ❌
+
+sab bich me rahenge koi spread nhi hoga if bada screen hua toh Screen = 1920px , Container = max 1280px
+Content center me rahega aur readable lagega. ✅
 
 
 
 1. rem - 16px
 for - margin, padding 
 
-2. section - width:100% , w-full
+2. 
 
-<section class="w-full">
-  <div class="max-w-7xl mx-auto px-4">
-     content
-  </div>
-</section>
+<main>
+  <section>
+    <div className="max-w-7xl mx-auto px-4">...</div>
+  </section>
+</main>
 
 Let content decide height. Height automatically grow hogi.
-When to use h-screen -> Hero section 
+When to use h-screen -> Hero section -> min-h-screen
 
 3. height: 100%; ->Parent ki height jitni.
 
@@ -118,7 +143,7 @@ reason :- align-items:center;....... Flexbox me default hota hai: align-items: s
 
 o/p:- sab card equal height pr hai but kuch jyada hi height le liya reason: parent pe height:100vh;   
 remove that height and content ko padding de ya content cards ko decide karne de height and it will show proper 
- but still if want height toh there is a way aur ek parent bana and usko height de:-
+ but still if want height toh there is a way aur ek parent bana->top and usko height de:-
 
 ek parent element bana and usko height de de
 <div class="top">
