@@ -15,8 +15,18 @@ export const TodoContext = createContext({   //dummy value  object use kiya bcz 
 })
 
 
+// export const useTodo = () => {
+//     return useContext(TodoContext)
+// }
+
 export const useTodo = () => {
-    return useContext(TodoContext)
+     const context = useContext(TodoContext);
+
+  if (!context) {
+    throw new Error("useTodo must be used inside TodoProvider");
+  }
+
+  return context;
 }
 
 export const TodoProvider = TodoContext.Provider
@@ -68,3 +78,30 @@ export const TodoProvider = TodoContext.Provider
 
 // // Agar array karte toh kaise likhte? ❌ Awkward hota
 // createContext([todos, addTodo, deleteTodo]) // koi naam nahi, confusing
+
+
+
+// createContext me kuch na likho to? Bilkul.
+
+// const TodoContext = createContext(); ye bhi valid hai.
+
+// Lekin agar Provider ke bahar galti se useContext(TodoContext) use kar diya, to value undefined milegi.
+
+// isiliye provider se wrap karo sab component ko app.js mai but still error catch karne k liye ye likho if provider se wrap karna bhul gya toh
+
+// export const useTodo = () => {
+//      const context = useContext(TodoContext);
+
+//   if (!context) {
+//     throw new Error("useTodo must be used inside TodoProvider");
+//   }
+
+//   return context;
+// }
+
+
+
+// Best practice
+// 👉 Provider wrap hai to default value dena zaruri nahi.
+
+// 👉 Industry me createContext(undefined) + custom hook me error throw karna zyada preferred pattern hai.

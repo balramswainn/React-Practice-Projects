@@ -67,10 +67,36 @@ function TodoItem({ todo }) {
 export default TodoItem;
 
 
+// question  :- todo.todo k liye state banaya but toggle.completed k liye nhi usko state me kyu nhi rakha bas todo k liye state kyu ?
+
+// -->  State sirf ek jagah honi chahiye (Single Source of Truth). app me todo.completed ki original state Context me hai. waha humne iska state define kiya hai true hai ya false  , Ab TodoItem ka kaam sirf us value ko dikhana hai. checked={todo.completed} Ab user click karta hai -> toggleComplete(todo.id) Ye Context ki state change karta hai. Context re-render karega. TodoItem ko naya prop milega todo.completed = true Aur checkbox khud update ho jayega.  
+
+// To agar tum local state bhi banaoge const [checked,setChecked]=useState(todo.completed) to ab 2 jagah same data store ho gaya. Context -> Local State Ye unnecessary hai.
+
+// 2. Fir todo.todo me state kyu banayi? so if mai value={todo.todo} deta hai onChange={(e)=> updateTodo(todo.id,{...todo,todo:e.target.value})} pe update kardeta toh jese jese me kuch bhi likhu har letter ya keypress pe context update hota rehta  
+// L
+// Le
+// Lea
+// Lear
+// Learn
+// Learn R
+// ...
+
+// ❌ Nahi. Hum chahte hain User jitna marzi type kare. Jab Save dabaye tab update ho. so isiliye state banaya jo help karega jab  Original value edit kare ya update and wo temporary copy banagea jisse humne update k andhr dala jo click hone k baad hi update ho
+
+// use og value jab 
+// todo.completed 👉 Original value hi dikhani hai.
+
+// use useState jab copy chahiye 
+// todo.todo 👉 Original value edit karne ke liye temporary copy chahiye.
 
 
 
+// Jo value tum kisi existing data se nikal sakte ho uske liye alag state mat banao.
 
+// Kya ye value already kahi exist karti hai? -> Yes
+// Kya mujhe sirf display karni hai? ->  Yes -> state mat banao
+// Ya mujhe iski temporary copy bana ke user se edit karwana hai? -> yes -> state banao
 
 
 

@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("todos"))
 
-    if (todos && todos.length > 0) {
+    if (todos && todos.length > 0) {  //Problem tab aayegi jab todos undefined ya null ho. todos = undefined Cannot read properties of undefined (reading 'length') isiliye todos exist karta hai? ✅ Fir todos.length check karo. ✅
       setTodos(todos)
     }
   }, [])
