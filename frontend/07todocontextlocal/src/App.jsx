@@ -33,7 +33,7 @@ function App() {
     const todos = JSON.parse(localStorage.getItem("todos"))
 
     if (todos && todos.length > 0) {  //Problem tab aayegi jab todos undefined ya null ho. todos = undefined Cannot read properties of undefined (reading 'length') isiliye todos exist karta hai? ✅ Fir todos.length check karo. ✅
-      // id(!todos) return ye bhi use kar sakte the but ye empty [] array allow kardega but chalega prblm nhi
+      // id(!todos) return ye bhi use kar sakte the but ye empty [] array allow kardega but chalega prblm nhi.
       setTodos(todos)
     }
   }, [])
