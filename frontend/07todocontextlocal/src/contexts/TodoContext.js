@@ -1,6 +1,6 @@
 import {createContext, useContext} from "react"
 
-export const TodoContext = createContext({   //dummy value  object use kiya bcz Yahan multiple cheezein pass karni thi — todos bhi, functions bhi.
+export const TodoContext = createContext({   //dummy value  object use kiya bcz Yahan multiple cheezein pass karni thi — todos bhi, functions bhi..
     todos: [
         {
             id: 1,
