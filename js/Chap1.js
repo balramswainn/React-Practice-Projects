@@ -167,7 +167,7 @@
 
 // (null > 0) -> false
 // (null == 0) -> false
-// (null >= 0) -> true  comparison operator convert null to number
+// (null >= 0) -> 0 >= 0 -> true  comparison operator convert null to number
 
 // true -> 1
 // false-> 0
@@ -179,22 +179,76 @@
 
 // "a-b" -> NaN
 // ' 1'+2+2 -> '122'
-//   8 +'5' -> '85'
-//  '5'+ 8  -> '58'
-//   8 -'5' -> 3
-//  '5'- 8  -> -3
-//  '5'-'8' -> -3
+//   8 +'5' -> '85'  //Ye unary plus operator hai, jo string ko number me convert karta hai. Agar tum explicitly unary plus use karoge: 
+//   8 + +'5' -> 8 + 5 -> 13
 
-//  '1'--'1' ->  2
-//  '1'++'1' -> '1'+ 1 -> '1' + '1'->'11'  (so pehle +1 -> number ban gya fhir '1' + k wajah se fhir "1" string)
-//  '1'-+'1' -> '1'- 1 -> 1 - 1 -> 0
-//  '1'+-'1' -> '1'+ (-1) -> '1+ '-1' -> '1-1'
+//  '5'+ 8  -> '58'        //+ me ek operand string hai, isliye concatenation.
+//   8 -'5' -> 8-5 -> 3
+//  '5'- 8  -> -3            //- string ko number bana deta hai.
+//  '5'-'8' -> -3
+//   5 + +'5' -> 10     //Unary + string ko number banata hai.
+//   5 - -'5' -> 5 - (-5) -> 10
+//  '5' * '2' -> 5 * 2 ->  10
+//  '5' / '2' -> 5 / 2 ->  2.5
+//  '5' % 2   -> 5 % 2 ->  1
+
+//  '1'--'1' -> Ye valid JavaScript syntax hi nahi hai. Kyunki JavaScript isse -- (decrement operator) samajhta hai, minus minus nahi.
+
+//  '1' - -'1' -> '1' - (-1) -> 1+1-> 2
+//  '1' + +'1' -> '1'+ 1 -> '1' + '1'->'11'  (so pehle +1 -> number ban gya fhir '1' + k wajah se fhir "1" string)
+//  '1' - +'1' -> '1'- 1 -> 1 - 1 -> 0
+//  '1' + -'1' -> '1'+ (-1) -> '1 + '-1' -> '1-1' ..... -'1' pehle -1 (number) ban gaya. Phir string '1' ke saath + hua.+ operator me ek operand string hai, isliye -1 ko bhi string "-1" bana diya.
+
+// + - to minus ho jana chahiye. ? no
+// Yahan + aur - alag operators hain. '1' + -'1' iska matlab hai: '1' + ( -'1' ) na ki: '1' +- '1'
+
 
 // "10"+true -> 10true
 // "5"+null -> 5null
 // "5"+{} -> 5[object object]
+// true + true -> 2
 // true-false-> 1
+// false - true -> 0-1 -> -1
 // '5'-true -> 4  
+// null + 1 -> 0 + 1 -> 1
+// null - 1 -> 0 - 1 -> -1
+// undefined + 1 -> NaN
+// [] + [] -> '' + '' -> ''
+// [] + {} -> '' + '[object Object]' -> '[object Object]'
+// {} + [] -> 0 or "[object Object]"
+// [1,2] + [3,4] -> "1,2" + "3,4" -> "1,23,4"
+// [] == false -> '' == 0 ->  0 == 0 -> true
+// [] === false -> false
+// '' == 0 -> 0 == 0 -> true
+// '' === 0 -> false
+// '0' == false -> 0 == 0 -> true
+// '0' === false -> false
+// null == undefined -> true
+// null === undefined -> false
+// NaN == NaN -> false
+// NaN === NaN -> false
+// typeof NaN -> "number"
+// typeof null -> "object" (JavaScript ka famous bug.)
+
+// +''  -> Number('') -> 0
+// Number('') -> 0
+// -'' -> -0 
+// +' ' -> 0   //Whitespace bhi empty string treat hota hai.
+// Boolean('0') -> Non-empty string. -> true
+// Boolean('') -> false
+// !!'hello' -> true
+// !0 -> true
+// !!0 -> false
+// ![] -> false
+// !![] -> true Array truthy hota hai.
+
+
+
+// + + string ⇒ concatenation
+// -, *, /, % ⇒ number conversion
+// true = 1, false = 0
+// null → 0 (numeric operations me)
+// undefined → NaN (numeric operations me)
 
 
 
@@ -253,8 +307,22 @@
 
 // -----------------------------------------------
 
-// falsy values:- false,"",null,0,undefined
-// truthy values:- true,"hey",12,-1
+// falsy values:- false,"",null,0,-0,0n,undefined,NaN
+// truthy values:- true,"hey",12,-1,Infinity,-Infinity," ",[],{}
+
+// Boolean([])      // true
+// Boolean({})      // true
+// Boolean("")      // false
+// Boolean(" ")     // true
+// Boolean("0")     // true
+// Boolean(0)       // false
+// Boolean(1)       // true
+// Boolean(null)    // false
+// Boolean(undefined) // false
+// Boolean(NaN)     // false
+// Boolean("false") // true
+// Boolean(false)   // false
+// Boolean(true)    // true
 
 //--------------------------------------------------
 
