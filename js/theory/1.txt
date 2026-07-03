@@ -50,4 +50,4 @@ variables holding strings can be reassigned to a new string value. Reassignment 
 
 "use strict" enables strict mode in JavaScript Strict mode enforces stricter parsing and error handling on your code, which helps you write cleaner, safer, and more robust JavaScript by catching common mistakes and disallowing "unsafe" or poorly thought-out features of the language. 
 
-use strict" enables strict mode in JavaScript, which helps catch common coding mistakes and makes the code more secure.Prevents accidental global variables .Makes code more secure and easier to debug.
+use strict" enables strict mode in JavaScript, which helps catch common coding mistakes and makes the code more secure.Prevents accidental global variables .Makes code more secure and easier to debug..
