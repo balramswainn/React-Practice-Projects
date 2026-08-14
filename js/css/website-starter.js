@@ -1,4 +1,4 @@
-// 1. sabko same width dena hai if koi bada screen se dekhe toh bada chota na :-
+// 1. sabko same width dena hai if koi bada screen se dekhe toh bada chota na :-x
 
 // <header className="yaha color wagera dena ">
 //  <nav className="max-w-7xl mx-auto"></nav>
