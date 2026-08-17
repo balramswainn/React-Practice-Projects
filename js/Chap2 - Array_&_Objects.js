@@ -369,8 +369,8 @@
 // how to add key value pair to objects
 // person.gender ="make";
 // or
-// person["person"] = "male";
-// console.log(person);   //-> {name: 'harshit', age: 22, hobbies: Array(3), person: 'male'}
+// person["gender"] = "male";
+// console.log(person);   //-> {name: 'harshit', age: 22, hobbies: Array(3), gender: 'male'}
 
 
 
@@ -507,7 +507,7 @@
 // let { bandName, famousSong, ...restProps } = band;
 // console.log(bandName);   //-> led zepplin
 // console.log(restProps);  //-> {year: 1968, anotherFamousSong: 'kashmir'}
-// bandName = "jerry"       // bcz humne let likha hai variable let se ban rha hai ( hum reassigned kar rhe hai bandNAme me isiliye const me error aaega)
+// bandName = "jerry"       // bcz humne let likha hai variable let se ban rha hai ( hum reassigned kar pa rhe hai bandNAme me but const use karte toh error aaega)
 // console.log(bandName)  //-> jerry   
 
 // const likhte toh change nhi hota
