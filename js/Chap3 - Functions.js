@@ -547,13 +547,16 @@
 // In strict mode, when a regular function is called without an object, this becomes undefined instead of the global object.
 
 
+
+
 // "use strict"
 // const obj = {
 //   name: "Balram",
 
 //   normalFunc() {
+// console.log(this) //->  {name: 'Balram', normalFunc: ƒ}
 //     function inner() {
-//       console.log(this.name);
+//       console.log(this.name);  // TypeError: Cannot
 //       console.log(this)  // undefined
 //     }
 
@@ -561,13 +564,17 @@
 //   },
 // };
 
-// obj.normalFunc(); //->undefined  Kyuki inner() ek normal function hai, uska apna this hota hai.
+// obj.normalFunc(); //-> {name: 'Balram', normalFunc: ƒ}  TypeError: Cannot   undefined  
+// Yahan normalFunc ko obj ke through call kiya hai, isliye: this === obj So normalFunc ke andar this.name "Balram" milta.
+// Yahan inner ko kisi object ke through call nahi kiya. isiliye this -> undefined and this.name -> type error
+
+//Non-strict mode me plain function ka: this === window
 
 // without use strict :- blank and window{}
 
 
 
-
+// Agar tum chahte ho ki inner() ko bhi outer this mile, to arrow function use karo:
 
 // arrow fun ...with or without use strict will behave same 
 // const obj = {
@@ -600,7 +607,7 @@
 // object k andr function -> this -> object
 // object k andr arrow function -> this -> window
 // object k andr function uske andhr arrow function -> this -> object .....bcz arrow ka parent fun ka this = obj
-// object k andr function uske andhr function -> this -> window .....bcz function ka this = window 
+// object k andr function uske andhr function -> this -> undefined  ...without strict mode (browser) → this === window
 
 // ===================================================
 
