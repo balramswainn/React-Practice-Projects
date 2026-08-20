@@ -9,6 +9,15 @@
 
 //  const numbers = [4,2,5,8];
 
+
+// numbers.forEach((ele)=>{
+//     console.log(ele)
+// })
+
+
+
+
+
 // numbers.forEach(function(number,index){
 //     console.log(`index is ${index} number is ${number}`);   
 // });
@@ -72,7 +81,6 @@
 // filter method is non-mutating  means og array ko change nhi karega
 
 // const numbers = [1,3,2,6,4,8];
-
 
 
 // const evenNumbers = numbers.filter((number)=>{
