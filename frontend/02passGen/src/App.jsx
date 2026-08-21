@@ -39,7 +39,7 @@ function App() {
 
   //Normally, in React:Every time your component re-renders(Component ke andar koi state change ho,Props change ho,Same component UI me dobara show ho,    Re-render means:When React redraws the UI because state or props changed(without browser refresh).),all functions written inside it are created again (new copies in memory).So if you didn’t use useCallback,passwordGenerator would be a new function every render —even if its logic didn’t change!
 
-  //When to use useCallback?.....When passing function as prop to a child component,Function heavy/expensive computation karta ho Performance optimize,Function dependency ho kisi useEffect me(means useEffect me function call kiya hai )
+  //When to use useCallback?.....When passing function as prop to a child component,Function heavy/expensive computation karta ho Performance optimize,Function dependency ho kisi useEffect me(means useEffect me function call kiya hai and dependecy array mai hai )
   
   //Should we wrap all functions in useCallback?”No. Only those functions that are passed as props to children or used inside useEffect and could cause unnecessary re-renders ,should be wrapped in useCallback. Otherwise it harms performance.
 

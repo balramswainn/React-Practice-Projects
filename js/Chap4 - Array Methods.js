@@ -314,7 +314,7 @@
 //     }
 // });
 
-// console.log(users);  //[{g},{h},{m},{n}]  short from me likha bas
+// console.log(users);  //[{g},{h},{m},{n}]  short form me likha bas
 
 
 
@@ -423,7 +423,7 @@
 
 // delete
 // const deletedItem = myArray.splice(1, 2);
-// console.log("deleted item", deletedItem);      //-> delted item (2) ['item2', 'item3']
+// console.log("deleted item", deletedItem);      //-> deleted item (2) ['item2', 'item3']
 // console.log(myArray);  //-> ['item1']
 
 // insert 
