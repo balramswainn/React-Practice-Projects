@@ -83,7 +83,3 @@ export const githubInfoLoader = async () => {
     // const res = await response.json()   // response.json() k pehle await likhna hota hai bcz wo promise return karta hai
     // return res;
 }
-
-
-
-
