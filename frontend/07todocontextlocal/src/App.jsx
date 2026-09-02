@@ -55,7 +55,10 @@ function App() {
                         <TodoForm />
                     </div>
                     <div className="flex flex-wrap gap-y-3">
-                        {/*Loop and Add TodoItem here */}
+                        {/*Loop and Add TodoItem here */} 
+                        {/* Small app → App me map() perfectly fine ✅
+                        Bigger app → TodoList me map() cleaner/maintainable ✅( app-> TodoList-> map-> TodoItem)
+                        Performance → dono almost same. TodoList banane se automatically faster nahi hota. */}
                         {todos.map((todo) => (
                           <div key={todo.id} className='w-full'>
                             <TodoItem todo={todo}/>
