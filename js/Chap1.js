@@ -582,3 +582,13 @@
 // A
 // End
 // (B baad me)
+
+
+// ===================================================
+
+// let and const creates block scope  .. global , functionscope pehle se hota hai
+// only one non primitive data type:- object 
+
+// dynmaic type vs static type 
+// js is dynamic type where we dont have to spcify data type while declaring variable 
+// typescript filled that gap
