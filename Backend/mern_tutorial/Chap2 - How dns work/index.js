@@ -5,7 +5,7 @@
 // 2. Browser DNS se poochta hai ki ye domain ka actual IP address kya hai, kyunki computer domain nahi, IP se baat karta hai.
 
 // 3. IP milne ke baad, browser server ke sath TCP connection establish karta hai.
-// Agar website HTTPS hai, toh TLS/SSL handshake hota hai taaki communication secure ho jaye.
+// Agar website HTTPS hai, toh TLS/SSL -(Transport Layer Security,Secure Sockets Layer)  handshake hota hai taaki communication secure ho jaye.
 
 // 4. TCP connection banne ke baad, browser server ko HTTP request bhejta hai (e.g. "home page lao").
 

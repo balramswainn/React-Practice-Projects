@@ -592,3 +592,61 @@
 // dynmaic type vs static type 
 // js is dynamic type where we dont have to spcify data type while declaring variable 
 // typescript filled that gap
+
+
+// let num=12;
+
+// num.toString();  -> '12'   new String() -> String {''}  iske andhr .toString ka access leta hai 
+// boxing ->  (often called autoboxing) is the automatic process where a primitive data type is temporarily wrapped into its corresponding object counterpart. This allows you to access methods and properties on a primitive value even though primitives themselves cannot hold properties. [1] (https://www.hackfrontend.com/en/docs/javascript/boxing-and-unboxing), [2] (https://www.linkedin.com/pulse/understanding-boxing-javascript-bridging-primitives-objects-vhatkar-psjce), [3] (https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
+
+// How Boxing WorksWhen you attempt to use a method or property on a primitive value (like a string, number, or boolean), JavaScript carries out three automated steps behind the scenes:
+// It creates a temporary object wrapper around the primitive value using its respective global constructor (String, Number, or Boolean).
+// It executes the property or method on that temporary object.
+// It discards (deletes) the temporary object immediately after the operation is complete.
+
+// so if koi bada array hai jisme hume toString use karna hai toh performance liye thikh nhi bcz object create and delete so use String()
+
+// String(num) -> '12'  
+
+
+// true.toString() -> 'true'
+// "text".toString() -> 'test'
+
+// 23.toString() -> syntax error js gets confused  decimal hai ya key ko access kar rhe ho
+// way :- (23).toString() -> '23'
+// way :- 23..toString() -> '23'
+
+// typeof NAN -> number
+// NaN == NaN -> false
+// isNaN(NaN) -> true
+// Number.isNaN(NaN) -> true
+
+//const value = Number(undefined) ->NaN
+// so for example NaN aya toh tuje condition lagani hai so 
+//  value=NaN;
+// if(value === NaN) console.log("not allowed")
+// else console.log("print")
+
+// o/p :- print bcz  NaN == NaN ->false so use isNaN()
+
+// -0 == -0 -> true
+//  0 == -0 -> true
+//  0 === -0 -> true
+
+// Object.is(0,-0) -> false   same as === but can compare 0,-0 and NaN
+// Object.is(NaN,NaN) -> true
+
+
+
+// closure
+
+// function one(){
+//     let name="jerry";
+//         function child(){
+//         console.log(name);
+//     }
+//     console.dir(child)
+// }
+// one()
+
+// scopes -> closure show hoga means child k pass kis value ka accesshai jo ki closurehai
