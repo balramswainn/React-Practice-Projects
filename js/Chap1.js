@@ -649,4 +649,4 @@
 // }
 // one()
 
-// scopes -> closure show hoga means child k pass kis value ka accesshai jo ki closurehai
+// o/p- click kar usme dikhega -> scopes -> closure show hoga means child k pass kis value ka accesshai jo ki closurehai
