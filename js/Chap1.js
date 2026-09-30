@@ -29,6 +29,7 @@
 // 1. Undeclared Variables Ko Allow Nahi Karta :
 //  "use strict";
 // x = 10; // ❌ ReferenceError
+// Prevents Accidental Global Variables: In normal JavaScript, assigning a value to an undelected variable automatically creates a global variable. Strict mode throws a ReferenceError instead, catching typing mistakes instantly.
 
 // 2. Duplicate Parameters Allow Nahi
 // "use strict";
@@ -45,6 +46,7 @@
 //   console.log(this);
 // }
 // test();  //->  undefined....window -> hota without use strict
+//  if a function is invoked in the global context, this defaults to the global object (like window in browsers). Strict mode leaves this as undefined, preventing accidental modifications to the global environment.
 
 // Modern JS modules (import/export) automatically strict mode me hote hain. // Automatically strict mode :- export const name = "Balram";
 // Isliye React, Next.js, Node ES Modules me mostly "use strict" manually nahi likhna padta.
@@ -192,7 +194,7 @@
 //  '5' / '2' -> 5 / 2 ->  2.5
 //  '5' % 2   -> 5 % 2 ->  1
 
-//  '1'--'1' -> Ye valid JavaScript syntax hi nahi hai. Kyunki JavaScript isse -- (decrement operator) samajhta hai, minus minus nahi.
+//  '1'--'1' -> Ye valid JavaScript syntax nahi hai. Kyunki JavaScript isse -- (decrement operator) samajhta hai, minus minus nahi.
 
 //  '1' - -'1' -> '1' - (-1) -> 1+1-> 2
 //  '1' + +'1' -> '1'+ 1 -> '1' + '1'->'11'  (so pehle +1 -> number ban gya fhir '1' + k wajah se fhir "1" string)
@@ -302,7 +304,7 @@
 // console.log(num1 == num2 ) //-> true
 // console.log(num1 === num2 ) //-> false    compares the value but also the data types
 
-// console.log(num1 != num2) //-> false   only comapres the value
+// console.log(num1 != num2) //-> false   only compares the value
 // console.log(num1 !== num2) //-> true 
 
 // -----------------------------------------------

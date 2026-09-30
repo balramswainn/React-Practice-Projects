@@ -85,3 +85,148 @@ const hero = "/assets/images/hero.jpg";
 
 ya directly:
 <img src="/assets/images/hero.jpg" />
+
+
+
+
+
+App
+│
+├── Pages              → Routes/screens
+│
+├── Features           → Business functionality
+│
+├── Components         → Reusable UI
+│
+├── Layout             → Navbar/Footer/Sidebar
+│
+├── Hooks              → Reusable React logic
+│
+├── Services           → API/external communication
+│
+├── Utils              → Generic helper functions
+│
+├── Context/Store      → Global state
+│
+└── Assets             → Images/icons/fonts
+
+
+
+src/
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── fonts/
+│
+├── components/
+│   ├── common/
+│   │   ├── Button.jsx
+│   │   ├── Input.jsx
+│   │   ├── Modal.jsx
+│   │   ├── Loader.jsx
+│   │   └── Card.jsx
+│   │
+│   ├── layout/
+│   │   ├── Navbar/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── NavLinks.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   ├── MobileMenu.jsx
+│   │   │   └── UserMenu.jsx
+│   │   │
+│   │   ├── Footer/
+│   │   └── Sidebar/
+│   │
+│   └── product/
+│       ├── ProductCard.jsx
+│       ├── ProductGrid.jsx
+│       ├── ProductFilter.jsx
+│       └── ProductSort.jsx
+│
+├── features/
+│   ├── auth/
+│   │   ├── components/
+│   │   │   ├── LoginForm.jsx
+│   │   │   └── RegisterForm.jsx
+│   │   ├── authSlice.js
+│   │   ├── authApi.js
+│   │   └── authUtils.js
+│   │
+│   ├── cart/
+│   │   ├── components/
+│   │   │   ├── CartItem.jsx
+│   │   │   └── CartSummary.jsx
+│   │   ├── cartSlice.js
+│   │   └── cartApi.js
+│   │
+│   ├── products/
+│   │   ├── components/
+│   │   │   ├── ProductCard.jsx
+│   │   │   └── ProductDetails.jsx
+│   │   ├── productSlice.js
+│   │   └── productApi.js
+│   │
+│   └── checkout/
+│       ├── components/
+│       └── checkoutApi.js
+│
+├── pages/
+│   ├── Home/
+│   │   └── Home.jsx
+│   ├── Products/
+│   │   └── Products.jsx
+│   ├── ProductDetails/
+│   │   └── ProductDetails.jsx
+│   ├── Cart/
+│   │   └── Cart.jsx
+│   ├── Login/
+│   │   └── Login.jsx
+│   └── Checkout/
+│       └── Checkout.jsx
+│
+├── hooks/
+│   ├── useDebounce.js
+│   ├── useClickOutside.js
+│   └── useAuth.js
+│
+├── services/
+│   ├── api.js
+│   └── authService.js
+│
+├── utils/
+│   ├── formatPrice.js
+│   ├── validation.js
+│   └── constants.js
+│
+├── context/
+│   └── ...
+│
+├── routes/
+│   └── AppRoutes.jsx
+│
+├── App.jsx
+└── main.jsx
+
+
+
+Component kab split karna hai?
+
+Main ye 5 questions puchunga:
+
+① Kya component bada ho raha hai?
+Navbar.jsx
+400 lines → Split karne ka reason.
+
+② Kya koi section logically independent hai?
+Example: SearchBar, Cart, UserMenu → Split karna sensible.
+
+③ Kya reuse hoga?
+<Button />10 places pe use ho raha hai.→ Definitely component.
+
+④ Kya uska apna state/logic hai?
+Example: <MobileMenu /> iske paas: const [open, setOpen] = useState(false) aur menu ka pura logic hai.
+→ Separate component makes sense.
+
+⑤ Kya independently test/modify karna useful hai?
+Agar yes → split.
