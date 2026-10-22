@@ -24,7 +24,7 @@ export default UserContextProvider
 
 // | Data kya hai?                  | Initial state             | Example                      |
 // | ------------------------------ | ------------------------- | ---------------------------- |
-// | Ek object aana hai             | `null`                    | `user`, `product`, `profile` |
+// | Ek single object aana hai      | `null`                    | `user`, `product`, `profile` |
 // | Multiple objects/list aani hai | `[]`                      | `users`, `products`, `posts` |
 // | Text/string aani hai           | `''`                      | `name`, `search`, `email`    |
 // | Number aana hai                | `0` / `null`              | `age`, `price`, `count`      |
@@ -109,7 +109,7 @@ export default UserContextProvider
 
 // | Data kya hai?                  | Initial state             | Example                      |
 // | ------------------------------ | ------------------------- | ---------------------------- |
-// | Ek object aana hai             | `null`                    | `user`, `product`, `profile` |
+// | bas single object aana hai     | `null`                    | `user`, `product`, `profile` |
 // | Multiple objects/list aani hai | `[]`                      | `users`, `products`, `posts` |
 // | Text/string aani hai           | `''`                      | `name`, `search`, `email`    |
 // | Number aana hai                | `0` / `null`              | `age`, `price`, `count`      |
